@@ -4,10 +4,10 @@ import { PlayerService } from 'src/app/service/player.service';
 
 @Component({
   selector: 'app-first-login',
-  templateUrl: './first-login.component.html',
-  styleUrls: ['./first-login.component.css']
+  templateUrl: './first-login-view.component.html',
+  styleUrls: ['./first-login-view.component.css']
 })
-export class FirstLoginComponent implements OnInit {
+export class FirstLoginViewComponent implements OnInit {
 
   player!: Player
   submitted = false;

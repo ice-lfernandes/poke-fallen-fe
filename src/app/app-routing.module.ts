@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginViewComponent } from './view/login-view/login-view.component';
-import { FirstLoginComponent } from './view/first-login/first-login.component';
+import { FirstLoginViewComponent } from './view/first-login-view/first-login-view.component';
+import { HomeViewComponent } from './view/home-view/home-view.component';
 
 const routes: Routes = [
+  { path: '', component: HomeViewComponent },
+  { path: 'home', component: HomeViewComponent },
   { path: 'login', component: LoginViewComponent },
-  { path: 'first-login', component: FirstLoginComponent }
+  { path: 'first-login', component: FirstLoginViewComponent },
 ];
 
 @NgModule({

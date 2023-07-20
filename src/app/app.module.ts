@@ -9,14 +9,16 @@ import { BrowserAnimationsModule }from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LoginViewComponent } from './view/login-view/login-view.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { FirstLoginComponent } from './view/first-login/first-login.component';
+import { FirstLoginViewComponent } from './view/first-login-view/first-login-view.component';
+import { HomeViewComponent } from './view/home-view/home-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginViewComponent,
     HeaderComponent,
-    FirstLoginComponent
+    FirstLoginViewComponent,
+    HomeViewComponent
   ],
   imports: [
     BrowserModule,

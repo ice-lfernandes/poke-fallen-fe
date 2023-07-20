@@ -1,20 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-fixed-top nav-bar-main">
+<nav class="navbar navbar-expand-lg nav-bar-main fixed-top">
     <div class="container">
         <div class="navbar-brand">
             <span class="navbar-logo logo-header">
-                <a href="#">
+                <a routerLink="/home">
                     <img src="assets/images/icon-121x121.png" alt="Poke Fallen" class="me-2" style="height: 3.8rem;">
                     <span>PokeFallen RPG</span>
                 </a>
             </span>
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto" data-app-modern-menu="true">
                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
-                        href="index.html">Introdução</a></li>
+                        routerLink="/home">Introdução</a></li>
                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
                         href="page2.html">Download</a></li>
                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page1.html">Fallen
@@ -22,7 +23,7 @@
                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page3.html">Saves
                         e Progresso</a></li>
                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
-                        href="page3.html">Login | Primeiro Acesso</a></li>
+                        routerLink="/login">Login | Primeiro Acesso</a></li>
             </ul>
 
         </div>
