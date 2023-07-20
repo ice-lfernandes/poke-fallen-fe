@@ -10,3 +10,10 @@ input {
 .btn-login {
     font-weight: 500;
 }
+
+
+.toast-alert {
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+}

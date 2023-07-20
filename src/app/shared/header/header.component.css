@@ -3,3 +3,8 @@
     font-weight: 600 !important;
     color: #000000 !important;
 }
+
+.nav-bar-main {
+    border-bottom: 2px solid #e6e6e6;
+    background-color: #fff
+}

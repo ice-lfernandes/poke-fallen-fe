@@ -1,0 +1,52 @@
+<div class="container">
+    <ngb-toast [autohide]="true" *ngIf="submitted" (hide)="submitted = false"
+        class="position-fixed bottom-0 end-0 toast-alert">
+        <div class="alert alert-success text-center" role="alert">
+            Jogador Criado com Sucesso!
+        </div>
+    </ngb-toast>
+    <form (ngSubmit)="register()">
+        <div class="row">
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                <div class="card form-login text-center">
+                    <div class="card-body">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Card Id"
+                                [(ngModel)]="player.playerId" name="playerId">
+                            <label for="floatingInput">Card Id</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingFullName" placeholder="Nome Completo"
+                                [(ngModel)]="player.name" name="name">
+                            <label for="floatingFullName">Nome Completo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingUsername" name="username"
+                                placeholder="Nome (Usuário do Jogo)" [(ngModel)]="player.username">
+                            <label for="floatingUsername">Nome (Usuário do Jogo)</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingEmail" placeholder="Email"
+                                [(ngModel)]="player.loginData.email" name="email">
+                            <label for="floatingEmail">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"
+                                [(ngModel)]="player.loginData.password" name="password">
+                            <label for="floatingPassword">Senha</label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-login mb-3" type="submit">REGISTRAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+
+
+    </form>
+</div>
