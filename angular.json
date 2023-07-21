@@ -28,6 +28,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
               "node_modules/bootstrap/dist/css/bootstrap-reboot.min.css",
+              "node_modules/animate.css/animate.min.css",
               "src/styles.css"
             ],
             "scripts": [

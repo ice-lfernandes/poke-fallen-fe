@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-3">
+        <div class="player-basic-information m-3 container p-3 shadow p-3 mb-5 bg-body rounded">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                        Meus Dados
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <fa-icon [icon]="faFloppyDisk"></fa-icon>
+                        Game Save
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <fa-icon [icon]="faHandHoldingDollar"></fa-icon>
+                        Doações
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <fa-icon [icon]="faAward"></fa-icon>
+                        Prêmios
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <fa-icon [icon]="faArrowRightArrowLeft"></fa-icon>
+                        Trocas
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-9">
+        <div class=" animate__animated animate__zoomIn container player-content m-3 text-center">
+            <h3>Game Save</h3>
+            <h6>Arquivo de save do jogo (game.xrdata)</h6>
+            <figure class="figureProfile">
+                <img src="assets/images/fileimage.png">
+            </figure>
+            
+            <button class="btn btn-primary me-4">
+                <fa-icon [icon]="faDownload"></fa-icon>
+                Download
+            </button>
+            <button class="btn btn-primary">
+                <fa-icon [icon]="faUpload"></fa-icon>
+                Upload
+            </button>
+        </div>
+    </div>
+
+
+</div>
