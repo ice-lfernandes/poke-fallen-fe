@@ -12,6 +12,15 @@ body {
     background-color: #f9fbfd !important;
 }
 
+/** Buttons */
+
 .btn {
-    font-weight: 500;
+    font-weight: 500 !important;
 }
+
+/** Input */
+input {
+    border: 1px solid #666 !important;
+}
+
+

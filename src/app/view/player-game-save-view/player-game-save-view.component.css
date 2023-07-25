@@ -1,5 +1,28 @@
+.player-basic-information {
+    height: 500px;
+    width: 80%;
+    background-color: #FFF;
+    border-radius: 2%;
+    border: 2px solid #e6e6e6;
+}
+
+.player-basic-information a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid #949494;
+}
+
+.player-content {
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
 .figureProfile img {
-    border: 5px solid #fff;
-    border-radius: 50%;
-    width: 10px;
+    width: 150px;
+}
+
+h6 {
+    color: #949494;
 }
