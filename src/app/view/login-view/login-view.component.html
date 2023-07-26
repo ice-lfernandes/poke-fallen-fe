@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <form action="">
+    <form>
         <div class="row">
             <div class="col-4">
             </div>
@@ -7,15 +7,17 @@
                 <div class="card form-login text-center">
                     <div class="card-body">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="Card Id">
-                            <label for="floatingInput">Card Id</label>
+                            <input type="email" class="form-control" id="floatingInput" placeholder="Email"
+                                [(ngModel)]="email" name="email">
+                            <label for="floatingInput">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Senha">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"
+                                [(ngModel)]="password" name="password">
                             <label for="floatingPassword">Senha</label>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary btn-login mb-3">ENTRAR</button>
+                            <button class="btn btn-primary btn-login mb-3" (click)="checkLogin()">ENTRAR</button>
                             <span>
                                 Não tem Card Id? <a href="">Baixe o Game</a>
                             </span>

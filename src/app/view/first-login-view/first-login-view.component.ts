@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Player } from 'src/app/model/player';
 import { PlayerService } from 'src/app/service/integration/player.service';
 

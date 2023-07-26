@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {
   faArrowRightArrowLeft, faAward, faDownload, faFloppyDisk,
@@ -6,17 +6,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import * as fileSaver from 'file-saver';
+import { Player } from 'src/app/model/player';
 
 import { PlayerService } from 'src/app/service/integration/player.service';
-
 
 @Component({
   selector: 'app-player-details-view',
   templateUrl: './player-details-view.component.html',
   styleUrls: ['./player-details-view.component.css']
 })
-export class PlayerDetailsViewComponent {
+export class PlayerDetailsViewComponent implements OnInit {
 
+  // Icons
   faUser = faUser
   faFloppyDisk = faFloppyDisk
   faHandHoldingDollar = faHandHoldingDollar
@@ -25,7 +26,17 @@ export class PlayerDetailsViewComponent {
   faDownload = faDownload
   faUpload = faUpload
 
+  player!: Player
+
+
   constructor(private playerService: PlayerService) { }
+
+  ngOnInit(): void {
+    this.playerService.findByPlayerId()
+      .subscribe(response => this.player = response,
+        error => console.log(error));
+
+  }
 
   download() {
     this.playerService.downloadGameSave("55555").subscribe(response => {
