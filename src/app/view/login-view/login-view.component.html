@@ -24,6 +24,9 @@
                             <span>
                                 Primeiro acesso? <a routerLink="/first-login">Crie sua senha</a>
                             </span>
+                            <div class="alert alert-danger text-center" role="alert" *ngIf="invalidLogin">
+                                Email ou senha estão incorretos
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {
-  faArrowRightArrowLeft, faAward, faDownload, faFloppyDisk,
-  faHandHoldingDollar, faUpload, faUser
-} from '@fortawesome/free-solid-svg-icons';
-
-import * as fileSaver from 'file-saver';
 import { Player } from 'src/app/model/player';
 import { PlayerUpdateBasicRequest } from 'src/app/service/integration/model/player-update-basic-request';
-
 import { PlayerService } from 'src/app/service/integration/player.service';
 
 @Component({
@@ -17,15 +10,6 @@ import { PlayerService } from 'src/app/service/integration/player.service';
   styleUrls: ['./player-details-view.component.css']
 })
 export class PlayerDetailsViewComponent implements OnInit {
-
-  // Icons
-  faUser = faUser
-  faFloppyDisk = faFloppyDisk
-  faHandHoldingDollar = faHandHoldingDollar
-  faAward = faAward
-  faArrowRightArrowLeft = faArrowRightArrowLeft
-  faDownload = faDownload
-  faUpload = faUpload
 
   player: Player = new Player();
 

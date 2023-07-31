@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-3">
+        <div class="player-basic-information m-3 container p-3 shadow p-3 mb-5 bg-body rounded">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a *ngIf="loginService.isUserAllowedByRole('ROLE_USER')" class="nav-link active" aria-current="page"
+                        routerLink="/player-details">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                        Meus Dados
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')" class="nav-link active"
+                        aria-current="page" routerLink="/home">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                        Jogadores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="loginService.isUserAllowedByRole('ROLE_USER')" class="nav-link"
+                        routerLink="/player-game-save" routerLink="/player-game-save">
+                        <fa-icon [icon]="faFloppyDisk"></fa-icon>
+                        Game Save
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')" class="nav-link active"
+                        aria-current="page" routerLink="/home">
+                        <fa-icon [icon]="faAward"></fa-icon>
+                        Gerenciamento de Prêmios
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')">
+                        <fa-icon [icon]="faHandHoldingDollar"></fa-icon>
+                        Doações
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="loginService.isUserAllowedByRole('ROLE_USER')" class="nav-link" href="#">
+                        <fa-icon [icon]="faAward"></fa-icon>
+                        Prêmios
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-9">
+       <ng-content></ng-content>
+    </div>
+
+
+</div>

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  faArrowRightArrowLeft, faAward, faDownload, faFloppyDisk,
-  faHandHoldingDollar, faPaperclip, faUpload, faUser
-} from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faPaperclip, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 import * as fileSaver from 'file-saver';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,11 +14,6 @@ import { PlayerService } from 'src/app/service/integration/player.service';
 })
 export class PlayerGameSaveViewComponent {
 
-  faUser = faUser
-  faFloppyDisk = faFloppyDisk
-  faHandHoldingDollar = faHandHoldingDollar
-  faAward = faAward
-  faArrowRightArrowLeft = faArrowRightArrowLeft
   faDownload = faDownload
   faUpload = faUpload
   faPaperclip = faPaperclip

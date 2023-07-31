@@ -1,0 +1,8 @@
+<button [class]="class">
+    <ng-content></ng-content>
+    {{textButton}}
+</button>
+
+<div class="alert alert-danger text-center" role="alert" *ngIf="submitted">
+    <ng-content></ng-content>
+</div>

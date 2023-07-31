@@ -12,8 +12,12 @@ import { LoginViewComponent } from './view/login-view/login-view.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FirstLoginViewComponent } from './view/first-login-view/first-login-view.component';
 import { HomeViewComponent } from './view/home-view/home-view.component';
-import { PlayerDetailsViewComponent } from './view/player-details-view/player-details-view.component';
-import { PlayerGameSaveViewComponent } from './view/player-game-save-view/player-game-save-view.component';
+import { PlayerDetailsViewComponent } from './view/internal/player-details-view/player-details-view.component';
+import { PlayerGameSaveViewComponent } from './view/internal/player-game-save-view/player-game-save-view.component';
+import { ButtonComponent } from './shared/button/button.component';
+import { AdminPlayersViewComponent } from './view/internal/admin-players-view/admin-players-view.component';
+import { ManagerRewardsViewComponent } from './view/internal/manager-rewards-view/manager-rewards-view.component';
+import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { PlayerGameSaveViewComponent } from './view/player-game-save-view/player
     FirstLoginViewComponent,
     HomeViewComponent,
     PlayerDetailsViewComponent,
-    PlayerGameSaveViewComponent
+    PlayerGameSaveViewComponent,
+    ButtonComponent,
+    AdminPlayersViewComponent,
+    ManagerRewardsViewComponent,
+    MenuLateralComponent
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginViewComponent } from './view/login-view/login-view.component';
 import { FirstLoginViewComponent } from './view/first-login-view/first-login-view.component';
 import { HomeViewComponent } from './view/home-view/home-view.component';
-import { PlayerDetailsViewComponent } from './view/player-details-view/player-details-view.component';
-import { PlayerGameSaveViewComponent } from './view/player-game-save-view/player-game-save-view.component';
+import { PlayerDetailsViewComponent } from './view/internal/player-details-view/player-details-view.component';
+import { PlayerGameSaveViewComponent } from './view/internal/player-game-save-view/player-game-save-view.component';
 import { AuthGaurdService } from './service/authentication/auth/authguard.service';
 
 const routes: Routes = [

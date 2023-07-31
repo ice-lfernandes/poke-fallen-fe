@@ -13,16 +13,19 @@ export class AuthenticationService {
 
   constructor(private router: Router, private authenticationClient: AuthenticationClientService) { }
 
-  async authenticate(username: string, password: string) {
+  authenticate(username: string, password: string) {
     try {
-      this.user = await this.authenticationClient.authenticate(username, password)
+      this.authenticationClient.authenticate(username, password)
+        .subscribe(response => this.user = response)
 
       if (this.user === null) return false
 
       sessionStorage.setItem('token', this.user!.token)
       sessionStorage.setItem('playerId', this.user!.playerId)
+      sessionStorage.setItem('roles', this.user!.roles.join(","))
       return true;
     } catch (error) {
+      console.log('login error')
       return false
     }
   }
@@ -33,8 +36,12 @@ export class AuthenticationService {
     this.router.navigate(['login'])
   }
 
-  isUserLoggedIn() {
+  isUserLoggedIn(): boolean {
     let token = sessionStorage.getItem('token')
     return !(token === null)
+  }
+
+  isUserAllowedByRole(role: string): boolean {
+    return this.isUserLoggedIn() && sessionStorage.getItem('roles')!.includes(role)
   }
 }

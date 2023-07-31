@@ -20,11 +20,14 @@ export class LoginViewComponent {
   }
 
   async checkLogin() {
-    if (await this.loginservice.authenticate(this.email, this.password)) {
+    console.log('inicou login')
+    if (this.loginservice.authenticate(this.email, this.password)) {
       this.invalidLogin = false
       this.router.navigate(['/player-details'])
-    } else
+    } else {
+      console.log('erro login')
       this.invalidLogin = true
+    }
   }
 
 }
