@@ -1,10 +1,13 @@
 export class Player {
 
-    name: String | undefined
-    username: String | undefined
-    playerId: String | undefined
-    email: String | undefined
-    password: String | undefined
+    name: string = ""
+    username: string = ""
+    playerId: string = ""
+    email: string = ""
+    password: string = ""
+    points: number = 0
+    occupations: string[] = []
+    prettyOccupations: string = ""
 
-    
+        
 }
