@@ -29,6 +29,14 @@ export class PlayerService {
     })
   }
 
+  // Headers
+  httpOptionsWithAuthorizationAndResponseTypeBlob = {
+    headers: new HttpHeaders({
+      'responseType': 'blob',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+    })
+  }
+
   createPlayer(player: Player): Observable<any> {
     return this.http
       .post(baseUrl, JSON.stringify(player), this.httpOptions)
@@ -46,10 +54,10 @@ export class PlayerService {
   }
 
   downloadGameSave(playerId: string): Observable<any> {
-    return this.http.get(baseUrl + "/" + playerId + "/game-save", { responseType: 'blob' })
+    return this.http.get(baseUrl + "/" + playerId + "/game-save", this.httpOptionsWithAuthorizationAndResponseTypeBlob)
   }
 
-  uploadGameSave(file: File |  null): Observable<any> {
+  uploadGameSave(file: File | null): Observable<any> {
     const formData = new FormData()
 
     formData.append("gameSave", file!!, file!!.name)
