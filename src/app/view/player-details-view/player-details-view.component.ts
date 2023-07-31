@@ -50,17 +50,6 @@ export class PlayerDetailsViewComponent implements OnInit {
     }
   }
 
-  download() {
-    this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
-      let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
-      const url = window.URL.createObjectURL(blob);
-      //window.open(url);
-      //window.location.href = response.url;
-      fileSaver.saveAs(blob, 'employees.json');
-    }, error => console.log('Error downloading the file: ' + error),
-      () => console.info('File downloaded successfully'));
-  }
-
   updateBasicData() {
     console.log('atualizando... ')
     this.playerService.updateBasicDataPlayer(new PlayerUpdateBasicRequest(this.player.email, this.player.name))

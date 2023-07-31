@@ -25,7 +25,6 @@ export class PlayerService {
   // Headers
   httpOptionsWithAuthorization = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + sessionStorage.getItem('token')
     })
   }
@@ -48,6 +47,14 @@ export class PlayerService {
 
   downloadGameSave(playerId: string): Observable<any> {
     return this.http.get(baseUrl + "/" + playerId + "/game-save", { responseType: 'blob' })
+  }
+
+  uploadGameSave(file: File |  null): Observable<any> {
+    const formData = new FormData()
+
+    formData.append("gameSave", file!!, file!!.name)
+
+    return this.http.patch(baseUrl + "/" + sessionStorage.getItem('playerId'), formData, this.httpOptionsWithAuthorization)
   }
 
 }
