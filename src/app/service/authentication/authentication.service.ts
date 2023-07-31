@@ -33,7 +33,7 @@ export class AuthenticationService {
   logout() {
     sessionStorage.clear()
     this.user = undefined
-    this.router.navigate(['login'])
+    this.router.navigate(['home'])
   }
 
   isUserLoggedIn(): boolean {
