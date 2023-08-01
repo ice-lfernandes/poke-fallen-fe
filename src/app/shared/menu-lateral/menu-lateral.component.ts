@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faUser, faFloppyDisk, faHandHoldingDollar, faAward, faArrowRightArrowLeft, faDownload, faUpload } from '@fortawesome/free-solid-svg-icons';
-import { Player } from 'src/app/model/player';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
+import { Player } from 'src/app/service/integration/model/commons/player';
 
 @Component({
   selector: 'app-menu-lateral',

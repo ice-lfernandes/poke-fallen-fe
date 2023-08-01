@@ -23,7 +23,11 @@ export class LoginViewComponent {
     console.log('inicou login')
     if (this.loginservice.authenticate(this.email, this.password)) {
       this.invalidLogin = false
-      this.router.navigate(['/player-details'])
+      if (this.loginservice.isUserAllowedByRole("USER")) {
+        this.router.navigate(['/player-details'])
+      } else {
+        this.router.navigate(['/players-details'])
+      }
     } else {
       console.log('erro login')
       this.invalidLogin = true

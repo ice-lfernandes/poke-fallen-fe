@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Player } from 'src/app/service/integration/model/commons/player';
 
-import { Player } from 'src/app/model/player';
-import { PlayerUpdateBasicRequest } from 'src/app/service/integration/model/player-update-basic-request';
+import { PlayerUpdateBasicRequest } from 'src/app/service/integration/model/request/player-update-basic-request';
 import { PlayerService } from 'src/app/service/integration/player.service';
 
 @Component({
@@ -20,7 +20,6 @@ export class PlayerDetailsViewComponent implements OnInit {
     this.playerService.findByPlayerId()
       .subscribe(response => {
         this.player = response
-        this.player.prettyOccupations = this.fillPrettyOccupations(this.player.occupations)
       },
         error => console.log(error));
 

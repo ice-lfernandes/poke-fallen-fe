@@ -41,6 +41,7 @@ import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.compone
     FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
+    
     NgbModule
   ],
   providers: [],
