@@ -1,12 +1,40 @@
+section {
+  min-height: 100vh;
+}
+
 .main-div-image {
-    background-image: url("../../../assets/images/2000-01-09-04-17-14.400-512x384.png");
+    background-image: url("../../../assets/images/2000-01-09-04-17-14.400-512x384-2 .png");
     width: 100%;
     height: 100vh;
     background-size: cover;
     position: relative;
-    padding: 15em;
-} 
+    scroll-behavior: smooth;
+    opacity : 0.3;
+
+    overflow: hidden;
+    z-index: -100;
+}
 
 img {
     width: 100%;
+}
+
+.container-wellcome{
+  opacity : 1;
+  width: 100%;
+  height: 250px;
+  position: relative;
+  bottom: 760px;
+  transition: 500ms linear;
+}
+
+.text-title{
+  font-weight: bold;
+  font-size: 4.6em;
+  transition: 500ms linear;
+}
+
+.text-paragraph{
+  font-size: 2em;
+  transition: 500ms linear;
 }

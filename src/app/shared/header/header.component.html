@@ -1,40 +1,42 @@
-<nav class="navbar navbar-expand-lg nav-bar-main">
+<div class="fixed-top">
+  <nav class="navbar navbar-expand-lg nav-bar-main">
     <div class="container">
-        <div class="navbar-brand">
-            <span class="navbar-logo logo-header">
-                <a routerLink="/home">
-                    <img src="assets/images/icon-121x121.png" alt="Poke Fallen" class="me-2" style="height: 3.8rem;">
-                    <span>PokeFallen RPG</span>
-                </a>
-            </span>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto" data-app-modern-menu="true">
-                <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
-                        routerLink="/home">Introdução</a></li>
-                <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
-                        href="page2.html">Download</a></li>
-                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page1.html">Fallen
-                        Shop</a></li>
-                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page3.html">Saves
-                        e Progresso</a></li>
-                <li class="nav-item"><a *ngIf="!loginService.isUserLoggedIn()"
-                        class="nav-link link text-black text-primary display-4" routerLink="/login">Login | Primeiro
-                        Acesso</a></li>
-                <li class="nav-item">
-                    <ng-container *ngIf="loginService.isUserLoggedIn()">
-                        <button type="button" class="btn btn-sm btn-card" (click)="logout()">
-                            Logout
-                            <fa-icon [icon]="faArrowUpFromBracket"></fa-icon>
-                        </button>
-                    </ng-container>
-                </li>
-            </ul>
+      <div class="navbar-brand">
+        <span class="navbar-logo logo-header">
+          <a routerLink="/home">
+            <img src="assets/images/icon-121x121.png" alt="Poke Fallen" class="me-2" style="height: 3.8rem;">
+            <span>PokeFallen RPG</span>
+          </a>
+        </span>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto" data-app-modern-menu="true">
+          <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
+              routerLink="/home">Introdução</a></li>
+          <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page2.html">Download</a>
+          </li>
+          <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page1.html">Fallen
+              Shop</a></li>
+          <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page3.html">Saves
+              e Progresso</a></li>
+          <li class="nav-item"><a *ngIf="!loginService.isUserLoggedIn()"
+              class="nav-link link text-black text-primary display-3" routerLink="/login">Login | Primeiro
+              Acesso</a></li>
+          <li class="nav-item">
+            <ng-container *ngIf="loginService.isUserLoggedIn()">
+              <button type="button" class="btn btn-sm btn-card" (click)="logout()">
+                Logout
+                <fa-icon [icon]="faArrowUpFromBracket"></fa-icon>
+              </button>
+            </ng-container>
+          </li>
+        </ul>
 
-        </div>
+      </div>
     </div>
-</nav>
+  </nav>
+</div>
