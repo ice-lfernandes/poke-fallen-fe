@@ -18,6 +18,7 @@ import { ButtonComponent } from './shared/button/button.component';
 import { AdminPlayersViewComponent } from './view/internal/admin-players-view/admin-players-view.component';
 import { ManagerRewardsViewComponent } from './view/internal/manager-rewards-view/manager-rewards-view.component';
 import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.component';
+import { WellcomeViewComponent } from './view/wellcome-view/wellcome-view.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.compone
     ButtonComponent,
     AdminPlayersViewComponent,
     ManagerRewardsViewComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
+    WellcomeViewComponent
   ],
   imports: [
     BrowserModule,
