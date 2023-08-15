@@ -7,8 +7,8 @@ import { Player } from './model/commons/player';
 import { PlayersPaginateResponse } from './model/response/players-paginate-response';
 
 
-const baseUrlPlayers: string = 'http://localhost:8080/players'
-const baseUrlGamesSave: string = 'http://localhost:8080/games-save'
+const baseUrlPlayers: string = 'http://poke-fallen-qa.us-east-1.elasticbeanstalk.com/players'
+const baseUrlGamesSave: string = 'http://poke-fallen-qa.us-east-1.elasticbeanstalk.com/games-save'
 
 @Injectable({
   providedIn: 'root'
