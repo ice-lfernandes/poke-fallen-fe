@@ -17,7 +17,7 @@ export class PlayerDetailsViewComponent implements OnInit {
   constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
-    this.playerService.findByPlayerId()
+    this.playerService.findByPlayerId(sessionStorage.getItem('playerId')!!)
       .subscribe(response => {
         this.player = response
       },
@@ -35,7 +35,8 @@ export class PlayerDetailsViewComponent implements OnInit {
 
   updateBasicData() {
     console.log('atualizando... ')
-    this.playerService.updateBasicDataPlayer(new PlayerUpdateBasicRequest(this.player.email, this.player.name))
+    this.playerService.updateBasicDataPlayer(new PlayerUpdateBasicRequest(this.player.email, this.player.name),
+      this.player.playerId)
       .subscribe(
         response => {
           console.log('atualizou com sucesso');

@@ -1,7 +1,7 @@
 <app-menu-lateral>
     <div class="animate__animated animate__zoomIn container player-content m-3">
         <div class="row">
-            <table class="table table-hover ">
+            <table class="table table-hover">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Ações</th>
@@ -14,17 +14,20 @@
                 <tbody>
                     <tr *ngFor="let player of players; index as i">
                         <th>
-                            <fa-icon [icon]="faPen" class="me-3 icon-action-datatable" title="Editar Usuário"></fa-icon>
-                            <fa-icon [icon]="faFloppyDisk" class="me-3 icon-action-datatable"
-                                title="Editar Game Save"></fa-icon>
-                            <fa-icon [icon]="faHandHoldingDollar" class="me-3 icon-action-datatable"
-                                title="Visualizar Doações"></fa-icon>
-                            <fa-icon [icon]="faTrash" class="icon-action-datatable" title="Apagar Usuário"></fa-icon>
+                            <a (click)="openModalInformation(player)">
+                                <fa-icon [icon]="faPen" class="me-3 icon-action-datatable"
+                                    title="Editar Usuário"></fa-icon>
+                            </a>
+                            <a (click)="openModalGameSave(player)">
+                                <fa-icon [icon]="faFloppyDisk" class="me-3 icon-action-datatable"
+                                    title="Editar Game Save"></fa-icon>
+                            </a>
                         </th>
                         <td>{{ player.playerId }}</td>
                         <td>{{ player.username }}</td>
                         <td>{{ player.points }}</td>
                         <td>{{ player.prettyOccupations }}</td>
+
                     </tr>
                 </tbody>
             </table>
@@ -34,8 +37,6 @@
                     [pageSize]="tableResponse.size">
                 </ngb-pagination>
             </div>
-        </div>
-        <div class="row">
 
         </div>
     </div>

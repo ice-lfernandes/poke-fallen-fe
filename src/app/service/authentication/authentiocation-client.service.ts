@@ -21,7 +21,7 @@ export class AuthenticationClientService {
 
   authenticate(email: string, password: string): Observable<User> {
     return this.http
-      .post<User>(this.url, new LoginRequest(email, password), this.httpOptions).pipe()
+      .post<User>(this.url, new LoginRequest(email, password), this.httpOptions)
   }
 
 }

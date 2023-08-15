@@ -1,19 +1,17 @@
 import { Component, Input } from '@angular/core';
-import { faDownload, faPaperclip, faUpload } from '@fortawesome/free-solid-svg-icons';
-
+import { faDownload, faUpload, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as fileSaver from 'file-saver';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { PlayerService } from 'src/app/service/integration/player.service';
 import { Player } from 'src/app/service/integration/model/commons/player';
 
+import { PlayerService } from 'src/app/service/integration/player.service';
 
 @Component({
-  selector: 'app-player-game-save-view',
-  templateUrl: './player-game-save-view.component.html',
-  styleUrls: ['./player-game-save-view.component.css']
+  selector: 'app-modal-game-save',
+  templateUrl: './modal-game-save.component.html',
+  styleUrls: ['./modal-game-save.component.css']
 })
-export class PlayerGameSaveViewComponent {
+export class ModalGameSaveComponent {
 
   faDownload = faDownload
   faUpload = faUpload
@@ -28,7 +26,9 @@ export class PlayerGameSaveViewComponent {
   @Input()
   player!: Player
 
-  constructor(private playerService: PlayerService, private modalService: NgbModal) { }
+  constructor(private playerService: PlayerService, private modalService: NgbModal, 
+    public activeModal: NgbActiveModal) {}
+
 
   download() {
     this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
@@ -80,4 +80,5 @@ export class PlayerGameSaveViewComponent {
       }
     );
   }
+
 }

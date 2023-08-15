@@ -4,6 +4,10 @@ import { faFloppyDisk, faTrash, faPen, faHandHoldingDollar } from '@fortawesome/
 import { Player } from 'src/app/service/integration/model/commons/player';
 import { PlayersPaginateResponse } from 'src/app/service/integration/model/response/players-paginate-response';
 import { PlayerService } from 'src/app/service/integration/player.service';
+import { ActionChoice, valueOfActionChoice } from './action-choose.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalFormPlayerComponent } from 'src/app/shared/modal/modal-form-player/modal-form-player.component';
+import { ModalGameSaveComponent } from 'src/app/shared/modal/modal-game-save/modal-game-save.component';
 
 @Component({
   selector: 'app-admin-players-view',
@@ -12,17 +16,22 @@ import { PlayerService } from 'src/app/service/integration/player.service';
 })
 export class AdminPlayersViewComponent implements OnInit {
 
+  // Icons
   faPen = faPen
   faFloppyDisk = faFloppyDisk
   faHandHoldingDollar = faHandHoldingDollar
-
   faTrash = faTrash
 
+  // Datatable
   tableResponse!: PlayersPaginateResponse
-  players: Player[] = [];
+  players: Player[] = []
   total: number = 0
 
-  constructor(private playerService: PlayerService) { }
+  // Actions
+  actionChoice: ActionChoice = ActionChoice.INFORMATION
+  playerSelected: Player | undefined
+
+  constructor(private playerService: PlayerService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.players = []
@@ -33,6 +42,21 @@ export class AdminPlayersViewComponent implements OnInit {
         this.total = response.numberOfElements
       },
         error => console.log(error))
+  }
+
+
+  openModalInformation(player: Player) {
+    console.log('testando')
+    const modalRef = this.modalService.open(ModalFormPlayerComponent, { size: 'lg' });
+    console.log(player)
+    modalRef.componentInstance.player = player
+  }
+
+  openModalGameSave(player: Player) {
+    console.log('testando')
+    const modalRef = this.modalService.open(ModalGameSaveComponent, { size: 'lg' });
+    console.log(player)
+    modalRef.componentInstance.player = player
   }
 
 
