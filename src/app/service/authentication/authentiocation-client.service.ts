@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationClientService {
 
-  url = 'http://localhost:8080/login'
+  url = 'http://poke-fallen-qa.us-east-1.elasticbeanstalk.com/login'
   errorMsg: string = ""
 
   // Headers
@@ -19,9 +19,9 @@ export class AuthenticationClientService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(email: string, password: string): Observable<User> {
+  authenticate(email: string, password: string) {
     return this.http
-      .post<User>(this.url, new LoginRequest(email, password), this.httpOptions)
+      .post<User>(this.url, new LoginRequest(email, password), this.httpOptions).toPromise()
   }
 
 }

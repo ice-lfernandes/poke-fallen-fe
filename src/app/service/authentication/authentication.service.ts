@@ -13,21 +13,13 @@ export class AuthenticationService {
 
   constructor(private router: Router, private authenticationClient: AuthenticationClientService) { }
 
-  authenticate(username: string, password: string) {
-    try {
-      this.authenticationClient.authenticate(username, password)
-        .subscribe(response => this.user = response)
+  async authenticate(username: string, password: string) {
+    const user = await this.authenticationClient.authenticate(username, password)
+    this.user = user
 
-      if (this.user === null) return false
-
-      sessionStorage.setItem('token', this.user!.token)
-      sessionStorage.setItem('playerId', this.user!.playerId)
-      sessionStorage.setItem('roles', this.user!.roles.join(","))
-      return true;
-    } catch (error) {
-      console.log('login error')
-      return false
-    }
+    sessionStorage.setItem('token', this.user!.token)
+    sessionStorage.setItem('playerId', this.user!.playerId)
+    sessionStorage.setItem('roles', this.user!.roles.join(","))
   }
 
   logout() {
@@ -45,3 +37,4 @@ export class AuthenticationService {
     return this.isUserLoggedIn() && sessionStorage.getItem('roles')!.includes(role)
   }
 }
+
