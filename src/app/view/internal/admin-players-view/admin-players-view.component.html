@@ -15,11 +15,11 @@
                     <tr *ngFor="let player of players; index as i">
                         <th>
                             <a (click)="openModalInformation(player)">
-                                <fa-icon [icon]="faPen" class="me-3 icon-action-datatable"
+                                <fa-icon [icon]="faPen" class="me-3 icon-action"
                                     title="Editar Usuário"></fa-icon>
                             </a>
                             <a (click)="openModalGameSave(player)">
-                                <fa-icon [icon]="faFloppyDisk" class="me-3 icon-action-datatable"
+                                <fa-icon [icon]="faFloppyDisk" class="me-3 icon-action"
                                     title="Editar Game Save"></fa-icon>
                             </a>
                         </th>

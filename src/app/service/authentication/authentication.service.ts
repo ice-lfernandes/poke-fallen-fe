@@ -18,6 +18,8 @@ export class AuthenticationService {
     this.user = user
 
     sessionStorage.setItem('token', this.user!.token)
+    sessionStorage.setItem('username', this.user!.username)
+    sessionStorage.setItem('email', this.user!.email)
     sessionStorage.setItem('playerId', this.user!.playerId)
     sessionStorage.setItem('roles', this.user!.roles.join(","))
   }

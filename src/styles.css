@@ -18,6 +18,10 @@ body {
     font-weight: 500 !important;
 }
 
+.icon-action:hover {
+    color: #B22222 !important;
+}
+
 /** Input */
 input {
     border: 1px solid #666 !important;
@@ -28,6 +32,16 @@ input {
     border: transparent;
     box-shadow: none;
 }
+
+
+/* Anchors */
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+
+/** Main classes */
 
 .container-page {
     margin-top: 100px !important;

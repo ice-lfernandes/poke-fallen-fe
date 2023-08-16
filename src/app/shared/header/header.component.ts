@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
@@ -11,12 +11,19 @@ import { AuthenticationService } from 'src/app/service/authentication/authentica
 })
 export class HeaderComponent {
 
+  // icons
+  faRightFromBracket = faRightFromBracket
+  faCircleUser = faCircleUser
+  usernameLogged = sessionStorage.getItem('username')
+
+
   constructor(public loginService: AuthenticationService) { }
 
-  faArrowUpFromBracket = faArrowUpFromBracket
 
   logout() {
     this.loginService.logout()
   }
+
+
 
 }

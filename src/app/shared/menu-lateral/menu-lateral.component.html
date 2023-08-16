@@ -25,14 +25,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')" class="nav-link active"
-                            aria-current="page" routerLink="/home">
+                        <a *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')" class="nav-link active disabled"
+                            aria-current="page" routerLink="/home" data-toggle="tooltip" title="Some tooltip text!">
                             <fa-icon [icon]="faAward"></fa-icon>
                             Gerenciamento de Prêmios
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')">
+                        <a class="nav-link disabled" href="#" *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')">
                             <fa-icon [icon]="faHandHoldingDollar"></fa-icon>
                             Controle de Doações
                         </a>
@@ -48,7 +48,11 @@
         </div>
 
         <div class="col-9">
-            <ng-content></ng-content>
+            <div class="row">
+                <div class="animate__animated animate__zoomIn container player-content m-3">
+                    <ng-content></ng-content>
+                </div>
+            </div>
         </div>
 
 
