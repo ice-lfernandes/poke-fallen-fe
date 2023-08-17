@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Player } from 'src/app/service/integration/model/commons/player';
 import { PlayerService } from 'src/app/service/integration/player.service';
 
+const msgSuccess = "Jogador Criado com Sucesso!"
+const msgError = "Erro ao criar jogador!"
+const classSuccess = "alert alert-success text-center"
+const classerror = "alert alert-danger text-center"
+
 @Component({
   selector: 'app-first-login',
   templateUrl: './first-login-view.component.html',
@@ -13,6 +18,9 @@ export class FirstLoginViewComponent implements OnInit {
   player!: Player
   submitted = false;
 
+  msgAfterSubmitted: string = ""
+  classAfterSubmitted: string = ""
+
   constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
@@ -21,20 +29,21 @@ export class FirstLoginViewComponent implements OnInit {
 
   register() {
     this.submitted = false
-    console.log('iniciou cadastro')
 
     this.playerService.createPlayer(this.player)
       .subscribe(
         response => {
-          console.log('cadastrou com sucesso');
+          this.msgAfterSubmitted = msgSuccess
+          this.classAfterSubmitted = classSuccess
         }, error => {
           console.log(error)
+          this.msgAfterSubmitted = msgError
+          this.classAfterSubmitted = classerror
         }
       );
 
     this.submitted = true
     this.resetForm()
-    console.log('finalizou cadastro')
   }
 
   private resetForm() {

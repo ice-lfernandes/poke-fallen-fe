@@ -22,6 +22,7 @@ import { WellcomeViewComponent } from './view/wellcome-view/wellcome-view.compon
 import { FormPlayerComponent } from './shared/form-player/form-player.component';
 import { ModalFormPlayerComponent } from './shared/modal/modal-form-player/modal-form-player.component';
 import { ModalGameSaveComponent } from './shared/modal/modal-game-save/modal-game-save.component';
+import { DownloadViewComponent } from './view/download-view/download-view.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ModalGameSaveComponent } from './shared/modal/modal-game-save/modal-gam
     WellcomeViewComponent,
     FormPlayerComponent,
     ModalFormPlayerComponent,
-    ModalGameSaveComponent
+    ModalGameSaveComponent,
+    DownloadViewComponent
   ],
   imports: [
     BrowserModule,

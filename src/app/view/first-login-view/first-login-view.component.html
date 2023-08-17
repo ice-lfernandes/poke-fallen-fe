@@ -32,9 +32,9 @@
                             <label for="floatingPassword">Senha</label>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary btn-login mb-3" type="submit">REGISTRAR</button>
-                            <div class="alert alert-success text-center" role="alert">
-                                Jogador Criado com Sucesso!
+                            <button class="btn btn-primary mb-3" type="submit">REGISTRAR</button>
+                            <div *ngIf="submitted" [class]="classAfterSubmitted" role="alert">
+                                {{msgAfterSubmitted}}
                             </div>
                         </div>
                     </div>

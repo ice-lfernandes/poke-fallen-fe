@@ -46,3 +46,13 @@ a.disabled {
 .container-page {
     margin-top: 100px !important;
 }
+
+/** Utilities  */
+.backgroud-transparent {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.red {
+    color: #B22222 !important;
+}
