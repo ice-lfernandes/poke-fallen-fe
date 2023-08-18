@@ -23,6 +23,7 @@ import { FormPlayerComponent } from './shared/form-player/form-player.component'
 import { ModalFormPlayerComponent } from './shared/modal/modal-form-player/modal-form-player.component';
 import { ModalGameSaveComponent } from './shared/modal/modal-game-save/modal-game-save.component';
 import { DownloadViewComponent } from './view/download-view/download-view.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { DownloadViewComponent } from './view/download-view/download-view.compon
     FormPlayerComponent,
     ModalFormPlayerComponent,
     ModalGameSaveComponent,
-    DownloadViewComponent
+    DownloadViewComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

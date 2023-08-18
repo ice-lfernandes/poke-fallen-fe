@@ -40,11 +40,16 @@ a.disabled {
     cursor: default;
 }
 
+a:hover {
+    transition: .2s linear;
+}
+
 
 /** Main classes */
 
 .container-page {
     margin-top: 100px !important;
+    height: 100vh;
 }
 
 /** Utilities  */
