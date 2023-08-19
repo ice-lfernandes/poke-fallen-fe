@@ -10,7 +10,7 @@
             <figure class="figureProfile">
                 <img src="assets/images/fileimage.png">
             </figure>
-        
+
             <button class="btn btn-primary me-4" (click)="download()">
                 <fa-icon [icon]="faDownload"></fa-icon>
                 DOWNLOAD
@@ -19,9 +19,14 @@
                 <fa-icon [icon]="faUpload"></fa-icon>
                 UPLOAD
             </button>
-        
+
+            <div class="file-operation-progress mt-3">
+                <ngb-progressbar *ngIf="downloadFile | async as downloadFile" type="success"
+                    [value]="downloadFile.progress" [showValue]="true" [striped]="true"></ngb-progressbar>
+            </div>
+
         </div>
-        
+
         <ng-template #content let-modal>
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-basic-title">Anexar arquivo</h4>
@@ -32,7 +37,7 @@
                 <form>
                     <div class="mb-3 text-center">
                         <input type="file" (change)="onChange($event)">
-        
+
                         <div class="spinner-border" role="status" *ngIf="loading">
                             <span class="visually-hidden">Loading...</span>
                         </div>
@@ -48,4 +53,3 @@
         </ng-template>
     </div>
 </div>
-

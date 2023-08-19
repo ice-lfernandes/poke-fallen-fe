@@ -2,9 +2,12 @@ import { Component, Input } from '@angular/core';
 import { faDownload, faUpload, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as fileSaver from 'file-saver';
+import { Observable } from 'rxjs';
+import { GameSaveService } from 'src/app/service/integration/game-save-service.service';
 import { Player } from 'src/app/service/integration/model/commons/player';
 
 import { PlayerService } from 'src/app/service/integration/player.service';
+import { Download } from 'src/app/utils/download';
 
 @Component({
   selector: 'app-modal-game-save',
@@ -17,27 +20,24 @@ export class ModalGameSaveComponent {
   faUpload = faUpload
   faPaperclip = faPaperclip
 
-  // Variable to store shortLink from api response
-  shortLink: string = "";
   loading: boolean = false; // Flag variable
   file: File | null = null; // Variable to store file
   closeResult = '';
+
+  downloadFile!: Observable<Download>
+
 
   @Input()
   player!: Player
 
   constructor(private playerService: PlayerService, private modalService: NgbModal,
-    public activeModal: NgbActiveModal) { }
-
+    public activeModal: NgbActiveModal, private gameSaveService: GameSaveService) { }
 
   download() {
-    this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
-      console.log(response)
-      let blob: any = new Blob([response], { type: 'application/octet-stream' });
-      const url = window.URL.createObjectURL(blob);
-      fileSaver.saveAs(blob, 'game.xrdata');
-    }, error => console.log(error),
-      () => console.info('File downloaded successfully'));
+    this.downloadFile = this.gameSaveService.downloadGameSave(
+      this.player.playerId,
+      'game.rxdata'
+    )
   }
 
   open(content: any) {
