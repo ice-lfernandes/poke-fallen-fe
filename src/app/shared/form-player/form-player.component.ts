@@ -21,9 +21,12 @@ export class FormPlayerComponent implements OnInit {
   constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
-    console.log(this.player)
     if (this.player == undefined) {
-      this.player = new Player()
+      this.playerService.findByPlayerId(sessionStorage.getItem('playerId')!!)
+      .subscribe(response => {
+        this.player = response
+      },
+        error => console.log(error));
     }
   }
 

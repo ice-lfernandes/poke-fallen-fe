@@ -10,11 +10,23 @@
 }
 
 a {
-    color: #f9fbfd !important;
+    color: #f9fbfd;
 }
 
-a:hover {
-    color: #B22222 !important
+a:hover.whatsapp  {
+    color: #25d366 !important
+}
+
+a:hover.facebook  {
+    color: #3b5998 !important
+}
+
+a:hover.discord  {
+    color: #7289da !important
+}
+
+a:hover.instagram  {
+    color: #E1306C !important
 }
 
 .social-icon {

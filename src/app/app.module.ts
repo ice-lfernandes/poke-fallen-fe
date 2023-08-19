@@ -24,6 +24,8 @@ import { ModalFormPlayerComponent } from './shared/modal/modal-form-player/modal
 import { ModalGameSaveComponent } from './shared/modal/modal-game-save/modal-game-save.component';
 import { DownloadViewComponent } from './view/download-view/download-view.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { FallenShopViewComponent } from './view/fallen-shop-view/fallen-shop-view.component';
+import { SaveProgressViewComponent } from './view/save-progress-view/save-progress-view.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { FooterComponent } from './shared/footer/footer.component';
     ModalFormPlayerComponent,
     ModalGameSaveComponent,
     DownloadViewComponent,
-    FooterComponent
+    FooterComponent,
+    FallenShopViewComponent,
+    SaveProgressViewComponent
   ],
   imports: [
     BrowserModule,
