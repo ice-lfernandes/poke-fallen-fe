@@ -26,17 +26,17 @@ export class ModalGameSaveComponent {
   @Input()
   player!: Player
 
-  constructor(private playerService: PlayerService, private modalService: NgbModal, 
-    public activeModal: NgbActiveModal) {}
+  constructor(private playerService: PlayerService, private modalService: NgbModal,
+    public activeModal: NgbActiveModal) { }
 
 
   download() {
-    this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
+    this.playerService.downloadGameSave(this.player.playerId).subscribe((response: any) => {
       let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
       const url = window.URL.createObjectURL(blob);
       fileSaver.saveAs(blob, 'game.xrdata');
-    }, error => console.log('Error downloading the file: ' + error),
-      () => console.info('File downloaded successfully'));
+    }), (error: any) => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
   }
 
   open(content: any) {
@@ -71,10 +71,6 @@ export class ModalGameSaveComponent {
     this.playerService.uploadGameSave(this.file, this.player.playerId).subscribe(
       (event: any) => {
         if (typeof (event) === 'object') {
-
-          // Short link via api response
-          this.shortLink = event.link;
-
           this.loading = false; // Flag variable 
         }
       }

@@ -1,5 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
 import { LoginRequest } from './model/login-request';
 import { User } from './model/user.model';
 
@@ -8,7 +10,7 @@ import { User } from './model/user.model';
 })
 export class AuthenticationClientService {
 
-  url = 'http://poke-fallen-qa.us-east-1.elasticbeanstalk.com/login'
+  url = environment.apiUrl + "/login"
   errorMsg: string = ""
 
   // Headers

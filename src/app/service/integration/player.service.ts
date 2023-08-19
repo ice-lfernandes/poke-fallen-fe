@@ -1,14 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { PlayerUpdateBasicRequest } from './model/request/player-update-basic-request';
 import { Player } from './model/commons/player';
 import { PlayersPaginateResponse } from './model/response/players-paginate-response';
 
 
-const baseUrlPlayers: string = 'http://poke-fallen-qa.us-east-1.elasticbeanstalk.com/players'
-const baseUrlGamesSave: string = 'http://poke-fallen-qa.us-east-1.elasticbeanstalk.com/games-save'
+const baseUrlPlayers: string = environment.apiUrl + '/players'
+const baseUrlGamesSave: string = environment.apiUrl + '/games-save'
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +33,19 @@ export class PlayerService {
     })
   }
 
-  // Headers with Blob for Upload
+  // Headers with Blob for Download
   httpOptionsWithAuthorizationAndResponseTypeBlob = {
     headers: new HttpHeaders({
       'responseType': 'blob',
       'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+    })
+  }
+
+  // Headers with Multiparfile for Upload
+  httpOptionsWithAuthorizationAndContentTypeMultipartFile = {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      'accept': '*/*'
     })
   }
 
@@ -62,7 +71,10 @@ export class PlayerService {
   }
 
   downloadGameSave(playerId: string): Observable<any> {
-    return this.http.get(baseUrlGamesSave + "/" + playerId + "/download", this.httpOptionsWithAuthorizationAndResponseTypeBlob)
+    const file = this.http.get(baseUrlGamesSave + "/" + playerId + "/download",
+      this.httpOptionsWithAuthorizationAndResponseTypeBlob)
+    console.log(file)
+    return file
   }
 
   uploadGameSave(file: File | null, playerId: string): Observable<any> {
@@ -70,7 +82,8 @@ export class PlayerService {
 
     formData.append("gameSave", file!!, file!!.name)
 
-    return this.http.patch(baseUrlGamesSave + "/" + playerId + "/upload", formData, this.httpOptionsWithAuthorization)
+    return this.http.patch(baseUrlGamesSave + "/" + playerId + "/upload", formData,
+      this.httpOptionsWithAuthorizationAndContentTypeMultipartFile)
   }
 
 }

@@ -31,11 +31,11 @@ export class PlayerGameSaveViewComponent {
   constructor(private playerService: PlayerService, private modalService: NgbModal) { }
 
   download() {
-    this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
+    this.playerService.downloadGameSave(sessionStorage.getItem('playerId')!!).subscribe(response => {
       let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
       const url = window.URL.createObjectURL(blob);
       fileSaver.saveAs(blob, 'game.xrdata');
-    }, error => console.log('Error downloading the file: ' + error),
+    }, error => console.log(error),
       () => console.info('File downloaded successfully'));
   }
 
