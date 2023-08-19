@@ -31,8 +31,9 @@ export class PlayerGameSaveViewComponent {
   constructor(private playerService: PlayerService, private modalService: NgbModal) { }
 
   download() {
-    this.playerService.downloadGameSave(sessionStorage.getItem('playerId')!!).subscribe(response => {
-      let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
+    this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
+      console.log(response)
+      let blob: any = new Blob([response], { type: 'application/octet-stream' });
       const url = window.URL.createObjectURL(blob);
       fileSaver.saveAs(blob, 'game.xrdata');
     }, error => console.log(error),

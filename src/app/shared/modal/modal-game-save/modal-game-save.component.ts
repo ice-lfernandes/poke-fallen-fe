@@ -31,12 +31,13 @@ export class ModalGameSaveComponent {
 
 
   download() {
-    this.playerService.downloadGameSave(this.player.playerId).subscribe((response: any) => {
-      let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
+    this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
+      console.log(response)
+      let blob: any = new Blob([response], { type: 'application/octet-stream' });
       const url = window.URL.createObjectURL(blob);
       fileSaver.saveAs(blob, 'game.xrdata');
-    }), (error: any) => console.log('Error downloading the file'),
-      () => console.info('File downloaded successfully');
+    }, error => console.log(error),
+      () => console.info('File downloaded successfully'));
   }
 
   open(content: any) {

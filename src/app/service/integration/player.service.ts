@@ -33,14 +33,6 @@ export class PlayerService {
     })
   }
 
-  // Headers with Blob for Download
-  httpOptionsWithAuthorizationAndResponseTypeBlob = {
-    headers: new HttpHeaders({
-      'responseType': 'blob',
-      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-    })
-  }
-
   // Headers with Multiparfile for Upload
   httpOptionsWithAuthorizationAndContentTypeMultipartFile = {
     headers: new HttpHeaders({
@@ -71,10 +63,11 @@ export class PlayerService {
   }
 
   downloadGameSave(playerId: string): Observable<any> {
-    const file = this.http.get(baseUrlGamesSave + "/" + playerId + "/download",
-      this.httpOptionsWithAuthorizationAndResponseTypeBlob)
-    console.log(file)
-    return file
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      'Content-Type' : 'application/octet-stream'
+    })
+    return this.http.get(baseUrlGamesSave + "/" + playerId + "/download", { headers, responseType: 'blob' })
   }
 
   uploadGameSave(file: File | null, playerId: string): Observable<any> {
