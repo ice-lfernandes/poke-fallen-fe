@@ -26,6 +26,8 @@ import { DownloadViewComponent } from './view/download-view/download-view.compon
 import { FooterComponent } from './shared/footer/footer.component';
 import { FallenShopViewComponent } from './view/fallen-shop-view/fallen-shop-view.component';
 import { SaveProgressViewComponent } from './view/save-progress-view/save-progress-view.component';
+import { SinopseViewComponent } from './view/sinopse-view/sinopse-view.component';
+import { SystemViewComponent } from './view/system-view/system-view.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { SaveProgressViewComponent } from './view/save-progress-view/save-progre
     DownloadViewComponent,
     FooterComponent,
     FallenShopViewComponent,
-    SaveProgressViewComponent
+    SaveProgressViewComponent,
+    SinopseViewComponent,
+    SystemViewComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,7 @@ import { SaveProgressViewComponent } from './view/save-progress-view/save-progre
     FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
-    
+
     NgbModule
   ],
   providers: [],

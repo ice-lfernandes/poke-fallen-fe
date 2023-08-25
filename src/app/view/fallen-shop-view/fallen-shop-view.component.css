@@ -1,3 +1,39 @@
 .shop-options {
     height: 50vw;
 }
+
+.text-title {
+  font-weight: bold;
+  font-size: 4.6em;
+  text-align: center;
+}
+
+img {
+  border-radius: 15px;
+  height: 700px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-paragraph{
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.container-pontos {
+  background-color: white;
+  width: 100%;
+
+  display: flex;
+}
+
+.container-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+
+
+}
