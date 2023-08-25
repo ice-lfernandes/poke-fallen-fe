@@ -14,28 +14,41 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto" data-app-modern-menu="true">
-          <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
-              routerLink="/home">Introdução</a></li>
-          <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page2.html">Download</a>
-          </li>
-          <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page1.html">Fallen
-              Shop</a></li>
-          <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="page3.html">Saves
-              e Progresso</a></li>
-          <li class="nav-item"><a *ngIf="!loginService.isUserLoggedIn()"
-              class="nav-link link text-black text-primary display-3" routerLink="/login">Login | Primeiro
-              Acesso</a></li>
-          <li class="nav-item">
-            <ng-container *ngIf="loginService.isUserLoggedIn()">
-              <button type="button" class="btn btn-sm btn-card" (click)="logout()">
-                Logout
-                <fa-icon [icon]="faArrowUpFromBracket"></fa-icon>
-              </button>
-            </ng-container>
-          </li>
-        </ul>
 
+        <ng-container *ngIf="!loginService.isUserLoggedIn()">
+          <ul class="navbar-nav ms-auto" data-app-modern-menu="true">
+            <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
+                routerLink="/home">Introdução</a></li>
+            <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                routerLink="/download">Download</a>
+            </li>
+            <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                routerLink="/fallen-shop">Fallen
+                Shop</a></li>
+            <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                routerLink="/save-progress">Saves
+                e Progresso</a></li>
+            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" routerLink="/login">Login |
+                Primeiro
+                Acesso</a></li>
+          </ul>
+        </ng-container>
+        <ng-container *ngIf="loginService.isUserLoggedIn()">
+          <ul class="navbar-nav ms-auto" data-app-modern-menu="true">
+            <li class="nav-item" *ngIf="loginService.isUserLoggedIn()">
+              <button class="nav-link link text-black text-primary display-4 icon-action">
+                <fa-icon [icon]="faCircleUser" size="xl" class="icon-action"></fa-icon>
+                {{usernameLogged}}
+              </button>
+            </li>
+            <li class="nav-item" *ngIf="loginService.isUserLoggedIn()">
+              <button class="nav-link link text-black text-primary display-4 icon-action" (click)="logout()">
+                Logout
+                <fa-icon [icon]="faRightFromBracket" size="xl" class="icon-action"></fa-icon>
+              </button>
+            </li>
+          </ul>
+        </ng-container>
       </div>
     </div>
   </nav>

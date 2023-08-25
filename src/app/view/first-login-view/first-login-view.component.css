@@ -7,18 +7,9 @@ input {
     border: 1px solid #666;
 }
 
-.btn-login {
-    font-weight: 500;
-}
-
 
 .toast-alert {
     background-color: transparent;
     border: transparent;
     box-shadow: none;
-}
-
-
-.container-page {
-    margin-top: 100px !important;
 }

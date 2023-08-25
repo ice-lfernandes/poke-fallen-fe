@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { PlayerUpdateBasicRequest } from './model/request/player-update-basic-request';
 import { Player } from './model/commons/player';
 import { PlayersPaginateResponse } from './model/response/players-paginate-response';
 
 
-const baseUrl: string = 'http://localhost:8080/players'
+const baseUrlPlayers: string = environment.apiUrl + '/players'
+const baseUrlGamesSave: string = environment.apiUrl + '/games-save'
 
 @Injectable({
   providedIn: 'root'
@@ -26,49 +28,55 @@ export class PlayerService {
   // Headers with Authorization
   httpOptionsWithAuthorization = {
     headers: new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      'Content-Type': 'application/json',
     })
   }
 
-  // Headers with Blob for Upload
-  httpOptionsWithAuthorizationAndResponseTypeBlob = {
+  // Headers with Multiparfile for Upload
+  httpOptionsWithAuthorizationAndContentTypeMultipartFile = {
     headers: new HttpHeaders({
-      'responseType': 'blob',
-      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      'accept': '*/*'
     })
   }
 
   createPlayer(player: Player): Observable<any> {
     return this.http
-      .post(baseUrl, JSON.stringify(player), this.httpOptions)
+      .post(baseUrlPlayers, JSON.stringify(player), this.httpOptions)
   }
 
-  updateBasicDataPlayer(updateRequest: PlayerUpdateBasicRequest): Observable<any> {
+  updateBasicDataPlayer(updateRequest: PlayerUpdateBasicRequest, playerId: string): Observable<any> {
     return this.http
-      .patch(baseUrl + "/" + sessionStorage.getItem("playerId"),
+      .patch(baseUrlPlayers + "/" + playerId + "/basic-data",
         JSON.stringify(updateRequest), this.httpOptionsWithAuthorization)
   }
 
-  findByPlayerId(): Observable<Player> {
+  findByPlayerId(playerId: string): Observable<Player> {
     return this.http
-      .get<Player>(baseUrl + "/" + sessionStorage.getItem('playerId'), this.httpOptionsWithAuthorization).pipe()
+      .get<Player>(baseUrlPlayers + "/" + playerId, this.httpOptionsWithAuthorization).pipe()
   }
 
   findAllPlayers(): Observable<PlayersPaginateResponse> {
     return this.http
-      .get<PlayersPaginateResponse>(baseUrl, this.httpOptionsWithAuthorization).pipe()
+      .get<PlayersPaginateResponse>(baseUrlPlayers, this.httpOptionsWithAuthorization).pipe()
   }
 
   downloadGameSave(playerId: string): Observable<any> {
-    return this.http.get(baseUrl + "/" + playerId + "/game-save", this.httpOptionsWithAuthorizationAndResponseTypeBlob)
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      'Content-Type' : 'application/octet-stream'
+    })
+    return this.http.get(baseUrlGamesSave + "/" + playerId + "/download", { headers, responseType: 'blob' })
   }
 
-  uploadGameSave(file: File | null): Observable<any> {
+  uploadGameSave(file: File | null, playerId: string): Observable<any> {
     const formData = new FormData()
 
     formData.append("gameSave", file!!, file!!.name)
 
-    return this.http.patch(baseUrl + "/" + sessionStorage.getItem('playerId'), formData, this.httpOptionsWithAuthorization)
+    return this.http.patch(baseUrlGamesSave + "/" + playerId + "/upload", formData,
+      this.httpOptionsWithAuthorizationAndContentTypeMultipartFile)
   }
 
 }

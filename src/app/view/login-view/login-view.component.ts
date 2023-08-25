@@ -21,15 +21,24 @@ export class LoginViewComponent {
 
   async checkLogin() {
     console.log('inicou login')
-    if (this.loginservice.authenticate(this.email, this.password)) {
-      this.invalidLogin = false
-      if (this.loginservice.isUserAllowedByRole("USER")) {
-        this.router.navigate(['/player-details'])
+
+    this.invalidLogin = false
+    try {
+
+      await this.loginservice.authenticate(this.email, this.password)
+
+      if (this.loginservice.isUserLoggedIn()) {
+        if (this.loginservice.isUserAllowedByRole("USER")) {
+          this.router.navigate(['/player-details'])
+        } else {
+          this.router.navigate(['/players-details'])
+        }
       } else {
-        this.router.navigate(['/players-details'])
+        console.log('erro login')
+        this.invalidLogin = true
       }
-    } else {
-      console.log('erro login')
+    } catch (error) {
+      console.log(error)
       this.invalidLogin = true
     }
   }

@@ -1,0 +1,35 @@
+.footer {
+    background-color: #232323;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+a {
+    color: #f9fbfd;
+}
+
+a:hover.whatsapp  {
+    color: #25d366 !important
+}
+
+a:hover.facebook  {
+    color: #3b5998 !important
+}
+
+a:hover.discord  {
+    color: #7289da !important
+}
+
+a:hover.instagram  {
+    color: #E1306C !important
+}
+
+.social-icon {
+    margin-right: 1rem;
+    right: 0px;
+}

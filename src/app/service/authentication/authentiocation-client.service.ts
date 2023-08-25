@@ -1,15 +1,16 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
 import { LoginRequest } from './model/login-request';
 import { User } from './model/user.model';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationClientService {
 
-  url = 'http://localhost:8080/login'
+  url = environment.apiUrl + "/login"
   errorMsg: string = ""
 
   // Headers
@@ -19,9 +20,9 @@ export class AuthenticationClientService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(email: string, password: string): Observable<User> {
+  authenticate(email: string, password: string) {
     return this.http
-      .post<User>(this.url, new LoginRequest(email, password), this.httpOptions).pipe()
+      .post<User>(this.url, new LoginRequest(email, password), this.httpOptions).toPromise()
   }
 
 }

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faDownload, faPaperclip, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 import * as fileSaver from 'file-saver';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { PlayerService } from 'src/app/service/integration/player.service';
+import { Player } from 'src/app/service/integration/model/commons/player';
 
 
 @Component({
@@ -24,14 +25,18 @@ export class PlayerGameSaveViewComponent {
   file: File | null = null; // Variable to store file
   closeResult = '';
 
+  @Input()
+  player!: Player
+
   constructor(private playerService: PlayerService, private modalService: NgbModal) { }
 
   download() {
-    this.playerService.downloadGameSave(sessionStorage.getItem('playerId')!!).subscribe(response => {
-      let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
+    this.playerService.downloadGameSave(this.player.playerId).subscribe(response => {
+      console.log(response)
+      let blob: any = new Blob([response], { type: 'application/octet-stream' });
       const url = window.URL.createObjectURL(blob);
       fileSaver.saveAs(blob, 'game.xrdata');
-    }, error => console.log('Error downloading the file: ' + error),
+    }, error => console.log(error),
       () => console.info('File downloaded successfully'));
   }
 
@@ -64,7 +69,7 @@ export class PlayerGameSaveViewComponent {
   upload() {
     this.loading = !this.loading;
     console.log(this.file);
-    this.playerService.uploadGameSave(this.file).subscribe(
+    this.playerService.uploadGameSave(this.file, this.player.playerId).subscribe(
       (event: any) => {
         if (typeof (event) === 'object') {
 

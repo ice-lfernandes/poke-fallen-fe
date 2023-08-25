@@ -18,6 +18,10 @@ body {
     font-weight: 500 !important;
 }
 
+.icon-action:hover {
+    color: #B22222 !important;
+}
+
 /** Input */
 input {
     border: 1px solid #666 !important;
@@ -27,4 +31,43 @@ input {
     background-color: transparent;
     border: transparent;
     box-shadow: none;
+}
+
+
+/* Anchors */
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+a:hover {
+    transition: .2s linear;
+}
+
+
+/** Main classes */
+
+.container-page {
+    margin-top: 100px !important;
+    min-height: 100vh;
+}
+
+/** Utilities  */
+.backgroud-transparent {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.red {
+    color: #B22222 !important;
+}
+
+.numberCircle {
+    width: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 32px;
+    background-color: #B22222;
+    color: white;
 }
