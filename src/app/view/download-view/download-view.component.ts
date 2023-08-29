@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-download-view',
@@ -10,5 +10,6 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 export class DownloadViewComponent {
 
   faArrowRight = faArrowRight
+  faDownload = faDownload
 
 }
