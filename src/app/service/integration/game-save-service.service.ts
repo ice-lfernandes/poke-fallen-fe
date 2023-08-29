@@ -82,11 +82,6 @@ export class GameSaveService {
 
     formData.append("gameSave", file!!, file!!.name)
 
-    constheaders: new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-      'accept': '*/*'
-    })
-
     return this.http.patch(baseUrlGamesSave + "/" + playerId + "/upload", formData,
       this.httpOptionsWithAuthorizationAndContentTypeMultipartFile)
   }

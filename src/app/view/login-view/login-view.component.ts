@@ -13,6 +13,7 @@ export class LoginViewComponent {
   email: string = ''
   password: string = ''
   invalidLogin: boolean | undefined
+  loading: boolean = false
 
   constructor(private router: Router, private loginservice: AuthenticationService) { }
 
@@ -20,12 +21,13 @@ export class LoginViewComponent {
   }
 
   async checkLogin() {
-    console.log('inicou login')
-
     this.invalidLogin = false
+    this.loading = true
     try {
 
       await this.loginservice.authenticate(this.email, this.password)
+      
+      this.loading = false
 
       if (this.loginservice.isUserLoggedIn()) {
         if (this.loginservice.isUserAllowedByRole("USER")) {
@@ -34,12 +36,12 @@ export class LoginViewComponent {
           this.router.navigate(['/players-details'])
         }
       } else {
-        console.log('erro login')
         this.invalidLogin = true
       }
     } catch (error) {
       console.log(error)
       this.invalidLogin = true
+      this.loading = false
     }
   }
 

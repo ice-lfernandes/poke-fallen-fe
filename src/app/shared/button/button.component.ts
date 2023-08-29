@@ -9,13 +9,16 @@ import { IconPrefix, faUber } from '@fortawesome/free-brands-svg-icons';
 })
 export class ButtonComponent {
 
-
   @Input()
   textButton: string = ""
   @Input()
   class: string = ""
+  @Input()
+  loading: boolean = false
 
   response: boolean = false
   submitted: boolean = false
+  classAfterSubmitted: string = ''
+  msgAfterSubmitted: string = ''
 
 }

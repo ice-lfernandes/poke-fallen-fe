@@ -4,6 +4,11 @@ import { Player } from 'src/app/service/integration/model/commons/player';
 import { PlayerUpdateBasicRequest } from 'src/app/service/integration/model/request/player-update-basic-request';
 import { PlayerService } from 'src/app/service/integration/player.service';
 
+const msgSuccess = "Dados de jogador alterado com Sucesso!"
+const msgError = "Erro ao alterar dados de jogador!"
+const classSuccess = "alert alert-success text-center"
+const classError = "alert alert-danger text-center"
+
 @Component({
   selector: 'app-form-player',
   templateUrl: './form-player.component.html',
@@ -13,9 +18,13 @@ export class FormPlayerComponent implements OnInit {
 
   @Input()
   player!: Player;
-
   @Input()
   isUser: boolean = true
+
+  submitted = false;
+  loading: boolean = false
+  msgAfterSubmitted: string = ""
+  classAfterSubmitted: string = ""
 
 
   constructor(private playerService: PlayerService) { }
@@ -31,14 +40,21 @@ export class FormPlayerComponent implements OnInit {
   }
 
   updateBasicData() {
-    console.log('atualizando... ')
+    this.loading = true
     this.playerService.updateBasicDataPlayer(new PlayerUpdateBasicRequest(this.player.email, this.player.name), 
     this.player.playerId)
       .subscribe(
         response => {
-          console.log('atualizou com sucesso');
+          this.loading = false
+          this.msgAfterSubmitted = msgSuccess
+          this.classAfterSubmitted = classSuccess
+          this.submitted = true
         }, error => {
           console.log(error)
+          this.loading = false
+          this.msgAfterSubmitted = msgError
+          this.classAfterSubmitted = classError
+          this.submitted = true
         }
       );
   }

@@ -17,6 +17,7 @@ export class FirstLoginViewComponent implements OnInit {
 
   player!: Player
   submitted = false;
+  loading: boolean = false
 
   msgAfterSubmitted: string = ""
   classAfterSubmitted: string = ""
@@ -29,18 +30,22 @@ export class FirstLoginViewComponent implements OnInit {
 
   register() {
     this.submitted = false
+    this.loading = true
 
     this.playerService.createPlayer(this.player)
       .subscribe(
         response => {
           this.msgAfterSubmitted = msgSuccess
           this.classAfterSubmitted = classSuccess
+          this.loading = false
         }, error => {
           console.log(error)
           this.msgAfterSubmitted = msgError
           this.classAfterSubmitted = classerror
+          this.loading = false
         }
       );
+
 
     this.submitted = true
     this.resetForm()

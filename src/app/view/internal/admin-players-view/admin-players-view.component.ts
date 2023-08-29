@@ -46,16 +46,12 @@ export class AdminPlayersViewComponent implements OnInit {
 
 
   openModalInformation(player: Player) {
-    console.log('testando')
     const modalRef = this.modalService.open(ModalFormPlayerComponent, { size: 'lg' });
-    console.log(player)
     modalRef.componentInstance.player = player
   }
 
   openModalGameSave(player: Player) {
-    console.log('testando')
     const modalRef = this.modalService.open(ModalGameSaveComponent, { size: 'lg' });
-    console.log(player)
     modalRef.componentInstance.player = player
   }
 

@@ -26,7 +26,6 @@ export class ModalGameSaveComponent {
 
   downloadFile!: Observable<Download>
 
-
   @Input()
   player!: Player
 
@@ -68,11 +67,10 @@ export class ModalGameSaveComponent {
 
   upload() {
     this.loading = !this.loading;
-    console.log(this.file);
     this.playerService.uploadGameSave(this.file, this.player.playerId).subscribe(
       (event: any) => {
         if (typeof (event) === 'object') {
-          this.loading = false; // Flag variable 
+          this.loading = false; 
         }
       }
     );

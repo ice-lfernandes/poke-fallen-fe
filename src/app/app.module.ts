@@ -28,6 +28,7 @@ import { FallenShopViewComponent } from './view/fallen-shop-view/fallen-shop-vie
 import { SaveProgressViewComponent } from './view/save-progress-view/save-progress-view.component';
 import { SinopseViewComponent } from './view/sinopse-view/sinopse-view.component';
 import { SystemViewComponent } from './view/system-view/system-view.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SystemViewComponent } from './view/system-view/system-view.component';
     FallenShopViewComponent,
     SaveProgressViewComponent,
     SinopseViewComponent,
-    SystemViewComponent
+    SystemViewComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

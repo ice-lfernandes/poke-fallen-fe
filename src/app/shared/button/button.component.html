@@ -3,6 +3,8 @@
     {{textButton}}
 </button>
 
-<div class="alert alert-danger text-center" role="alert" *ngIf="submitted">
-    <ng-content></ng-content>
+<app-loading [loading]="loading"></app-loading>
+
+<div *ngIf="submitted" [class]="classAfterSubmitted" role="alert">
+    {{msgAfterSubmitted}}
 </div>
