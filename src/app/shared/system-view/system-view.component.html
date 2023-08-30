@@ -1,4 +1,4 @@
-<section class="section-system">
+<section class="section-system mb-5">
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="title col-12 col-md-9">
@@ -15,7 +15,19 @@
         </p>
         <br><br>
 
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows"
+          [showNavigationIndicators]="showNavigationIndicators">
+          <ng-template ngbSlide *ngFor="let item of images">
+            <p class="text-carousel">
+              {{item.text}}
+            </p>
+            <div class="picsum-img-wrapper">
+              <img [src]="item.imageUrl" alt="Random slide" />
+            </div>
+          </ng-template>
+        </ngb-carousel>
+
+        <!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
 
             <div class="carousel-item active">
@@ -23,7 +35,7 @@
                 Loots: Cada monstrinho pode dropar um item ao fim da batalha, itens desde itens básico até itens
                 raros.
               </p>
-              <img class="img-carousel" src="../../../assets/images/batalha.png" class="d-block w-100" alt="...">
+              <img class="img-carousel" src="../../../assets/images/drop-itens.png" class="d-block w-100" alt="...">
             </div>
 
             <div class="carousel-item">
@@ -37,7 +49,7 @@
               <p class="text-carousel">
                 Seus monstrinhos de bolso querem ficar ao seu lado, eles podem ficar fora da Pokebola.
               </p>
-              <img class="img-carousel" src="../../../assets/images/batalha.png" class="d-block w-100" alt="...">
+              <img class="img-carousel" src="../../../assets/images/pokemon-open-world.png" class="d-block w-100" alt="...">
             </div>
 
             <div class="carousel-item">
@@ -65,7 +77,7 @@
                 dano e nocautes causados aumentam e isso pode melhorar a sua força! (Stats).
               </p>
               <br>
-              <img class="img-carousel" src="../../../assets/images/batalha.png" class="d-block w-100" alt="...">
+              <img class="img-carousel" src="../../../assets/images/performance.png" class="d-block w-100" alt="...">
             </div>
 
             <div class="carousel-item">
@@ -73,7 +85,7 @@
                 Sistema de Outifits (Customize seu Personagem)
               </p>
 
-              <img class="img-carousel" src="../../../assets/images/batalha.png" class="d-block w-100" alt="...">
+              <img class="img-carousel" src="../../../assets/images/outfit.png" class="d-block w-100" alt="...">
             </div>
 
             <div class="carousel-item">
@@ -104,7 +116,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

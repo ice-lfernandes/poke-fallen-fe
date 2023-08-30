@@ -18,7 +18,7 @@ import { ButtonComponent } from './shared/button/button.component';
 import { AdminPlayersViewComponent } from './view/internal/admin-players-view/admin-players-view.component';
 import { ManagerRewardsViewComponent } from './view/internal/manager-rewards-view/manager-rewards-view.component';
 import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.component';
-import { WellcomeViewComponent } from './view/wellcome-view/wellcome-view.component';
+import { WellcomeViewComponent } from './shared/wellcome-view/wellcome-view.component';
 import { FormPlayerComponent } from './shared/form-player/form-player.component';
 import { ModalFormPlayerComponent } from './shared/modal/modal-form-player/modal-form-player.component';
 import { ModalGameSaveComponent } from './shared/modal/modal-game-save/modal-game-save.component';
@@ -26,8 +26,8 @@ import { DownloadViewComponent } from './view/download-view/download-view.compon
 import { FooterComponent } from './shared/footer/footer.component';
 import { FallenShopViewComponent } from './view/fallen-shop-view/fallen-shop-view.component';
 import { SaveProgressViewComponent } from './view/save-progress-view/save-progress-view.component';
-import { SinopseViewComponent } from './view/sinopse-view/sinopse-view.component';
-import { SystemViewComponent } from './view/system-view/system-view.component';
+import { SinopseViewComponent } from './shared/sinopse-view/sinopse-view.component';
+import { SystemViewComponent } from './shared/system-view/system-view.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({

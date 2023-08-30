@@ -44,3 +44,7 @@ img {
 
   scroll-behavior: smooth;
 }
+
+.picsum-img-wrapper > img {
+  width: 100%;
+}
