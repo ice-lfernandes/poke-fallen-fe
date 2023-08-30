@@ -2,30 +2,12 @@
     height: 50vw;
 }
 
-.text-title {
-  font-weight: bold;
-  font-size: 4.6em;
-  text-align: center;
-}
-
 img {
-  border-radius: 15px;
-  height: 700px;
-}
-
-.text-center{
-  text-align: center;
-}
-
-.text-paragraph{
-  font-size: 1.6em;
-  font-weight: bold;
+  border-radius: 5px;
 }
 
 .container-pontos {
-  background-color: white;
   width: 100%;
-
   display: flex;
 }
 
@@ -34,6 +16,7 @@ img {
   flex-direction: column;
   justify-content: center;
   margin: 10px;
+  padding: 5%;
 
 
 }

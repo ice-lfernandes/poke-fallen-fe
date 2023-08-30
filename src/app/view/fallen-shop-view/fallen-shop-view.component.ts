@@ -1,6 +1,5 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-fallen-shop-view',
@@ -9,6 +8,6 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class FallenShopViewComponent {
 
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  faCartShopping = faCartShopping
 
 }

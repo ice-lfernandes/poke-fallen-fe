@@ -33,6 +33,11 @@ input {
     box-shadow: none;
 }
 
+/* UL */
+.list-without-dot {
+    list-style-type: none;
+}
+
 
 /* Anchors */
 a.disabled {
