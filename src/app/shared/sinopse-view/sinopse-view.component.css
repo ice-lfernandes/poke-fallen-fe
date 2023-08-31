@@ -1,36 +1,52 @@
-section {
+.section-introduction{
+  margin: 0;
   height: 100vh;
 }
 
-.container-sinopse{
-  background-image: url("../../../assets/images/sinopse.jpg");
+.container-wellcome {
+  position: relative;
+}
+
+.container-img {
   width: 100%;
+  max-width: 100%;
   height: 100vh;
+  opacity: 0.3;
+
+  background-image: url(../../../assets/images/sinopse.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
-  scroll-behavior: smooth;
-  opacity : 0.4;
-
-  overflow: hidden;
-  z-index: -100;
+  background-position: 100% 0%;
 }
 
-.sinopse-text{
-  opacity : 1;
-  width: 100%;
-  height: 250px;
-  position: relative;
-  bottom: 760px;
-  transition: 500ms linear;
-  }
+.container-img::before {
+ content: '';
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+ height: 100vh;
+ background: linear-gradient(#ffffff, transparent);
+ z-index: 50;
+}
+
+.center-text{
+  position: absolute;
+  top: 55%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
 
 .text-title{
   font-weight: bold;
   font-size: 4.6em;
-  text-align: center;
+  transition: 500ms linear;
 }
 
-  .text-paragraph{
+.text-paragraph{
   font-size: 2em;
-  text-align: center;
+  transition: 500ms linear;
 }
+

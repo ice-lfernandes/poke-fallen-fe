@@ -20,19 +20,34 @@
 }
 
 .section-doubts {
-  background: url("../../../assets/images/background.jpg");
-  height: 100%;
+  margin: 0;
+  position: relative;
+}
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.container-background {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
 
-  overflow: hidden;
-  z-index: -100;
+  background-image: url(../../../assets/images/background-pokebola.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 0%;
+}
+
+.container-center {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  width: 60%;
+
+  transform: translate(-50%, -50%);
 }
 
 .accordion-view {
-  margin-left: 25%;
-  margin-right: 25%;
-
+  width: 100%;
 }
+
+
