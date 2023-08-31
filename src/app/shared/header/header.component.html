@@ -5,7 +5,7 @@
         <span class="navbar-logo logo-header">
           <a routerLink="/home">
             <img src="assets/images/icon-121x121.png" alt="Poke Fallen" class="me-2" style="height: 3.8rem;">
-            <span>PokeFallen RPG</span>
+            <span style="font-size: 1.4em; text-align: center;">PokeFallen RPG</span>
           </a>
         </span>
       </div>
@@ -13,24 +13,24 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse teste" id="navbarSupportedContent">
 
         <ng-container *ngIf="!loginService.isUserLoggedIn()">
           <ul class="navbar-nav ms-auto" data-app-modern-menu="true">
             <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
                 routerLink="/home">Introdução</a></li>
-            <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+            <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
                 routerLink="/download">Download</a>
             </li>
-            <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
-                routerLink="/fallen-shop">Fallen
-                Shop</a></li>
-            <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
-                routerLink="/save-progress">Saves
-                e Progresso</a></li>
-            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" routerLink="/login">Login |
-                Primeiro
-                Acesso</a></li>
+            <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
+                routerLink="/fallen-shop">Fallen Shop</a>
+            </li>
+            <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
+                routerLink="/save-progress">Saves e Progresso</a>
+            </li>
+            <li class="nav-item nav-text"><a class="nav-link link text-black text-primary display-4"
+              routerLink="/login">Login | Primeiro Acesso</a>
+            </li>
           </ul>
         </ng-container>
         <ng-container *ngIf="loginService.isUserLoggedIn()">

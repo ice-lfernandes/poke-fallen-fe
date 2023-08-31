@@ -9,17 +9,6 @@
   height: 5em;
 }
 
-.text-title{
-  font-weight: bold;
-  font-size: 4.6em;
-  text-align: center;
-}
-
-.text-paragraph{
-  font-size: 1.6em;
-  font-weight: bold;
-}
-
 .text-carousel {
   font-size: 1.8em;
   text-align: center;
@@ -44,8 +33,6 @@ img {
   width: 100%;
   background-color: white;
   margin: 0;
-
-  scroll-behavior: smooth;
 }
 
 .picsum-img-wrapper > img {

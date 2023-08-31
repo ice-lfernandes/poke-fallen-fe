@@ -13,3 +13,11 @@
 li > a {
     font-weight: 500;
 }
+
+.nav-text {
+  font-size: 1.3em;
+}
+
+a:hover{
+  text-decoration: underline;
+}

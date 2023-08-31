@@ -76,3 +76,14 @@ a:hover {
     background-color: #B22222;
     color: white;
 }
+
+.text-title{
+  font-weight: bold;
+  font-size: 4.6em;
+  transition: 500ms linear;
+}
+
+.text-paragraph{
+  font-size: 2em;
+  transition: 500ms linear;
+}
