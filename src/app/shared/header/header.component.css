@@ -38,7 +38,7 @@ li>a::before {
   left: 0;
   background-color: #000;
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 li>a:hover::before {

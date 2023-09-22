@@ -9,6 +9,7 @@ img {
 .container-pontos {
   width: 100%;
   display: flex;
+  margin-bottom: 30px;
 }
 
 .container-text {
