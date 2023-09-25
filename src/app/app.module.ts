@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { BrowserAnimationsModule }from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
@@ -29,6 +29,8 @@ import { SaveProgressViewComponent } from './view/save-progress-view/save-progre
 import { SinopseViewComponent } from './shared/sinopse-view/sinopse-view.component';
 import { SystemViewComponent } from './shared/system-view/system-view.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { JsonPipe } from '@angular/common';
+import { ManagerPokemonsComponent } from './view/internal/manager-pokemons/manager-pokemons.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { LoadingComponent } from './shared/loading/loading.component';
     SaveProgressViewComponent,
     SinopseViewComponent,
     SystemViewComponent,
-    LoadingComponent
+    LoadingComponent,
+    ManagerPokemonsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { LoadingComponent } from './shared/loading/loading.component';
     FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
-
+    NgbDatepickerModule, 
+    JsonPipe,
     NgbModule
   ],
   providers: [],

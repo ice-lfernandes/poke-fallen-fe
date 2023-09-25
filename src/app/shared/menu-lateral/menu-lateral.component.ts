@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faUser, faFloppyDisk, faHandHoldingDollar, faAward, faArrowRightArrowLeft, faDownload, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faFloppyDisk, faHandHoldingDollar, faAward, faArrowRightArrowLeft, faDownload, faUpload, faOtter } from '@fortawesome/free-solid-svg-icons';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 import { Player } from 'src/app/service/integration/model/commons/player';
 
@@ -19,13 +19,14 @@ export class MenuLateralComponent {
   faArrowRightArrowLeft = faArrowRightArrowLeft
   faDownload = faDownload
   faUpload = faUpload
+  faOtter = faOtter
 
   player: Player = new Player();
 
 
   constructor(public loginService: AuthenticationService) { }
 
-  
+
 
 
 }

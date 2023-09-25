@@ -1,0 +1,14 @@
+<app-menu-lateral>
+  <div class="row mb-3">
+    <form>
+      <input type="text" placeholder="Pokemon..." class="form-control">
+
+    </form>
+  </div>
+  <div class="container row row-cols-1 row-cols-sm-5 g-4 text-center">
+    <div class="col" *ngFor="let pokemon of pokemons">
+      <img [src]="pokemon.imageBlob"  [alt]="pokemon.name">
+      <h6>{{pokemon.name}}</h6>
+    </div>
+  </div>
+</app-menu-lateral>

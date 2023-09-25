@@ -11,6 +11,8 @@ import { AdminPlayersViewComponent } from './view/internal/admin-players-view/ad
 import { DownloadViewComponent } from './view/download-view/download-view.component';
 import { FallenShopViewComponent } from './view/fallen-shop-view/fallen-shop-view.component';
 import { SaveProgressViewComponent } from './view/save-progress-view/save-progress-view.component';
+import { ManagerRewardsViewComponent } from './view/internal/manager-rewards-view/manager-rewards-view.component';
+import { ManagerPokemonsComponent } from './view/internal/manager-pokemons/manager-pokemons.component';
 
 const routes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'save-progress', component: SaveProgressViewComponent },
   { path: 'player-details', component: PlayerDetailsViewComponent, canActivate: [AuthGuardService] },
   { path: 'player-game-save', component: PlayerGameSaveViewComponent, canActivate: [AuthGuardService] },
-  { path: 'players-details', component: AdminPlayersViewComponent, canActivate: [AuthGuardService] }
+  { path: 'players-details', component: AdminPlayersViewComponent, canActivate: [AuthGuardService] },
+  { path: 'manager-awards', component: ManagerRewardsViewComponent, canActivate: [AuthGuardService] },
+  { path: 'manager-pokemons', component: ManagerPokemonsComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
