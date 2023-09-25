@@ -1,4 +1,15 @@
 <app-menu-lateral>
+    <div class="row">
+        <div class="col-3">
+            <label for="date-init" class="form-label">Data Inicio: </label>
+        </div>
+        <div class="col-3">
+            <label for="date-init" class="form-label">Data Fim: </label>
+        </div>
+        <div class="col-3">
+            <label for="date-init" class="form-label">Status: </label>
+        </div>
+    </div>
     <form class="row row-cols-sm-auto mb-5">
         <div class="col-12">
             <div class="dp-hidden position-absolute">
@@ -34,116 +45,66 @@
             </div>
         </div>
         <div class="col-12">
-            <button class="btn btn-primary">
+            <select class="form-select" aria-label="Default select example">
+                <option value="1"></option>
+                <option value="2">Finalizado</option>
+                <option value="3">Agendado</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" (click)="search()">
                 <fa-icon [icon]="faSearch"></fa-icon>
                 PESQUISAR
             </button>
         </div>
-
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card border-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data: 22/09/2023</h5>
-                        <p class="card-text">
-                            Qtd itens Básico: 25
-                            <br>
-                            Qtd itens Premium: 25
-                            <br>
-                            Status: Finalizado
-                        </p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <button class="btn btn-sm btn-primary">
-                            <fa-icon [icon]="faEye"></fa-icon>
-                            DETALHAR
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data: 22/09/2023</h5>
-                        <p class="card-text">
-                            Qtd itens Básico: 25
-                            <br>
-                            Qtd itens Premium: 25
-                            <br>
-                            Status: Finalizado
-                        </p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <button class="btn btn-sm btn-primary">
-                            <fa-icon [icon]="faEye"></fa-icon>
-                            DETALHAR
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data: 22/09/2023</h5>
-                        <p class="card-text">
-                            Qtd itens Básico: 25
-                            <br>
-                            Qtd itens Premium: 25
-                            <br>
-                            Status: Finalizado
-                        </p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <button class="btn btn-sm btn-primary">
-                            <fa-icon [icon]="faEye"></fa-icon>
-                            DETALHAR
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-secondary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data: 22/09/2023</h5>
-                        <p class="card-text">
-                            Qtd itens Básico: 25
-                            <br>
-                            Qtd itens Premium: 25
-                            <br>
-                            Status: Finalizado
-                        </p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <button class="btn btn-sm btn-primary">
-                            <fa-icon [icon]="faEye"></fa-icon>
-                            DETALHAR
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </form>
 
-    <div class="card border-secondary">
+    <div class="col-12">
+        <app-loading [loading]="loading"></app-loading>
+    </div>
+
+    <div class="row">
+        <ng-template [ngIf]="awardWeekList != []">
+            <div class="col-3" *ngFor="let week of awardWeekList">
+                <div class="card border-secondary text-center">
+                    <div class="card-body">
+                        <h5 class="text-tittle">Data: {{formatDateTime(week.dateTime)}}</h5>
+                        <p class="card-text">
+                            Quantidade itens Básico: 25
+                            <br>
+                            Quantidade itens Premium: 25
+                            <br>
+                            Status: {{week.status}}
+                        </p>
+                        <button class="btn btn-sm btn-primary">
+                            <fa-icon [icon]="faEye"></fa-icon>
+                            DETALHAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+    <div *ngIf="" class="card border-secondary">
         <div class="card-header text-center">
             <h2 class="card-title">Sorteio Semanal 22/09/2023</h2>
-
+            <h6 class="card-title">Status: Agendado</h6>
         </div>
         <div class="card-body">
             <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
                 <li [ngbNavItem]="1">
                     <button ngbNavLink>Básico</button>
                     <ng-template ngbNavContent>
-                        <p>
-                            Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown
-                            aliqua, retro synth
-                            master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro
-                            keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
-                            Aliquip placeat
-                            salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
-                            qui.
-                        </p>
+                        <div class="container row row-cols-1 row-cols-sm-5 g-4 text-center">
+                            <div class="col pokemon-presentation" *ngFor="let pokemon of pokemons">
+                                <a href="#">
+                                    <img [src]="pokemon.imageBlob" [alt]="pokemon.name">
+                                    <br>
+                                    {{pokemon.name}}
+                                </a>
+                            </div>
+                        </div>
                     </ng-template>
                 </li>
                 <li [ngbNavItem]="2">
@@ -164,14 +125,15 @@
                         </p>
                     </ng-template>
                 </li>
-               
+
             </ul>
 
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
-            <div class="text-center">
+            <div class="text-center mt-5">
                 <button class="btn btn-sm btn-primary">
-                    SALVAR
+                    <fa-icon [icon]="faPencil"></fa-icon>
+                    EDITAR
                 </button>
             </div>
         </div>

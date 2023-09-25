@@ -1,0 +1,10 @@
+.pokemon-presentation a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.pokemon-presentation :hover {
+    color: #B22222 !important;
+}
+

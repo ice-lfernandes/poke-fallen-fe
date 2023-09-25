@@ -23,8 +23,8 @@ export class PokemonService {
   }
 
   findAllPokemons(): Observable<PokemonsPaginatedResponse> {
-    console.log(baseUrlPokemons)
+    let url = baseUrlPokemons + "?page=0&size=15"
     return this.http
-      .get<PokemonsPaginatedResponse>(baseUrlPokemons, this.httpOptionsWithAuthorization).pipe();
+      .get<PokemonsPaginatedResponse>(url, this.httpOptionsWithAuthorization).pipe();
   }
 }
