@@ -9,6 +9,7 @@ import { AwardWeekService } from 'src/app/service/integration/award-week.service
 import { StatusAwardWeek } from 'src/app/service/integration/model/commons/status-award-week';
 import { AwardWeek } from 'src/app/service/integration/model/commons/award-week';
 import { formatDate } from '@angular/common';
+import { el } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-manager-rewards-view',
@@ -17,6 +18,7 @@ import { formatDate } from '@angular/common';
 })
 export class ManagerRewardsViewComponent {
 
+  statusList = ["", "Agendado", "Finalizado"]
   faCalendarDays = faCalendarDays
   faSearch = faSearch
   faEye = faEye
@@ -30,6 +32,7 @@ export class ManagerRewardsViewComponent {
   status: StatusAwardWeek | undefined
   awardWeekList: AwardWeek[] = []
   loading: boolean = false
+  statusSelect: String = "0"
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
     private pokemonService: PokemonService, private sanitizer: DomSanitizer,
@@ -71,6 +74,24 @@ export class ManagerRewardsViewComponent {
   validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
     const parsed = this.formatter.parse(input);
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
+  }
+
+  onChange(eventValue: String) {
+    
+    if (eventValue === "Finalizado") {
+      console.log(eventValue)
+      this.status = StatusAwardWeek.FINISHED
+      console.log(this.status)
+      return
+    } else if (eventValue === "Agendado") {
+      console.log(eventValue)
+      this.status = StatusAwardWeek.SCHEDULED
+      console.log(this.status)
+    } else {
+      console.log(eventValue)
+      this.status = undefined
+      console.log(this.status)
+    }
   }
 
   search() {

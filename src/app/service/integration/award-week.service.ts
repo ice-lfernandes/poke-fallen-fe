@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { StatusAwardWeek } from './model/commons/status-award-week';
 import { environment } from 'src/environments/environment';
 import { AwardWeek } from './model/commons/award-week';
+import { el } from '@fullcalendar/core/internal-common';
 
 const baseUrlAwardWeek: string = environment.apiUrl + '/award-week'
 
@@ -25,8 +26,10 @@ export class AwardWeekService {
   findByRangeDatas(dateInit: String, dateFinish: String, status: StatusAwardWeek | undefined): Observable<AwardWeek[]> {
     let url = baseUrlAwardWeek + '?dateInit=' + dateInit + "&dateFinish=" + dateFinish
 
-    if (status) {
-      url = url + "&status=" + status
+    if (status == 0) {
+      url = url + "&status=" + "FINISHED"
+    } else if (status == 1) {
+      url = url + "&status=" + "SCHEDULED"
     }
 
     return this.http.get<AwardWeek[]>(url, this.httpOptionsWithAuthorization).pipe();

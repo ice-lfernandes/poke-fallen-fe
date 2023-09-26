@@ -45,10 +45,9 @@
             </div>
         </div>
         <div class="col-12">
-            <select class="form-select" aria-label="Default select example">
-                <option value="1"></option>
-                <option value="2">Finalizado</option>
-                <option value="3">Agendado</option>
+            <select class="form-select" [ngModel]="statusSelect" (ngModelChange)="onChange($event)"
+                name="status-award-week">
+                <option *ngFor="let statusOption of statusList" [value]="statusOption">{{statusOption}}</option>
             </select>
         </div>
         <div class="col-12">
