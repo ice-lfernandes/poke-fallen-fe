@@ -5,6 +5,6 @@ export class Pokemon {
     name: String = ""
     gameID: number = 1
     image: String[] = []
-    stas: PokemonStats | undefined
+    stats: PokemonStats | undefined
     imageBlob: any
 }

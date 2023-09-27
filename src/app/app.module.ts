@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -69,6 +69,7 @@ import { AwardWeekViewComponent } from './view/internal/manager-rewards-view/awa
     AppRoutingModule,
     FontAwesomeModule,
     NgbDatepickerModule, 
+    NgbPopoverModule,
     JsonPipe,
     NgbModule
   ],

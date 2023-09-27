@@ -16,4 +16,7 @@
     font-weight: 500;
 }
 
-
+.modal-body .pokemon-image {
+    width: 200px;
+    height: 200px;
+}
