@@ -31,6 +31,7 @@ import { SystemViewComponent } from './shared/system-view/system-view.component'
 import { LoadingComponent } from './shared/loading/loading.component';
 import { JsonPipe } from '@angular/common';
 import { ManagerPokemonsComponent } from './view/internal/manager-pokemons/manager-pokemons.component';
+import { AwardWeekViewComponent } from './view/internal/manager-rewards-view/award-week-view/award-week-view.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ManagerPokemonsComponent } from './view/internal/manager-pokemons/manag
     SinopseViewComponent,
     SystemViewComponent,
     LoadingComponent,
-    ManagerPokemonsComponent
+    ManagerPokemonsComponent,
+    AwardWeekViewComponent
   ],
   imports: [
     BrowserModule,

@@ -27,12 +27,14 @@ export class ManagerRewardsViewComponent {
   hoveredDate: NgbDate | null = null;
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
-  active = 1;
-  pokemons: PokemonImage[] = []
+  
+  
   status: StatusAwardWeek | undefined
   awardWeekList: AwardWeek[] = []
   loading: boolean = false
   statusSelect: String = "0"
+  awardWeekSelected = false
+  awardWeek!: AwardWeek
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
     private pokemonService: PokemonService, private sanitizer: DomSanitizer,
@@ -94,7 +96,14 @@ export class ManagerRewardsViewComponent {
     }
   }
 
+  detailAwardWeek(awardWeek: AwardWeek) {
+    this.awardWeekSelected = true
+    this.awardWeek = awardWeek
+  }
+
+
   search() {
+    this.awardWeekSelected = false
     this.loading = true
     let foundData = false
     this.awardWeekList = []
@@ -103,6 +112,7 @@ export class ManagerRewardsViewComponent {
       this.awardWeekService.findByRangeDatas(this.dateToString(this.fromDate), this.dateToString(this.toDate), this.status)
         .subscribe({
           next: response => {
+            console.log(response)
             this.awardWeekList = response
             this.loading = false
             foundData = true
@@ -117,16 +127,7 @@ export class ManagerRewardsViewComponent {
 
   }
 
-  getItemsAwardWeek() {
-    this.pokemonService.findAllPokemons()
-      .subscribe(data => {
-        this.pokemons = data.content
-        this.pokemons.forEach(p => {
-          let objectURL = 'data:image/jpeg;base64,' + p.image
-          p.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-        })
-      })
-  }
+ 
 
   private dateToString(date: NgbDate | null) {
     if (date) {

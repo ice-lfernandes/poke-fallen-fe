@@ -28,14 +28,3 @@ select {
     min-width: 10em;
 }
 
-.nav-tabs .nav-link.active {
-    color: #B22222 !important;
-}
-
-.nav-tabs .nav-link{
-    color: black;
-}
-
-.text-tittle {
-    font-weight: 500;
-}

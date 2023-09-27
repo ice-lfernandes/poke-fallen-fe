@@ -1,0 +1,19 @@
+.nav-tabs .nav-link.active {
+    color: #B22222 !important;
+}
+
+.nav-tabs .nav-link{
+    color: black;
+}
+
+.text-tittle {
+    font-weight: 500;
+}
+
+.pokemon-presentation a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+

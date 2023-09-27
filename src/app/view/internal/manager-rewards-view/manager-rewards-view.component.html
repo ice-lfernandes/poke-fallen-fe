@@ -63,7 +63,7 @@
     </div>
 
     <div class="row">
-        <ng-template [ngIf]="awardWeekList != []">
+        <ng-template [ngIf]="awardWeekList != [] && !awardWeekSelected">
             <div class="col-3" *ngFor="let week of awardWeekList">
                 <div class="card border-secondary text-center">
                     <div class="card-body">
@@ -75,7 +75,7 @@
                             <br>
                             Status: {{week.status}}
                         </p>
-                        <button class="btn btn-sm btn-primary">
+                        <button class="btn btn-sm btn-primary" (click)="detailAwardWeek(week)">
                             <fa-icon [icon]="faEye"></fa-icon>
                             DETALHAR
                         </button>
@@ -85,57 +85,7 @@
         </ng-template>
     </div>
 
-    <div *ngIf="" class="card border-secondary">
-        <div class="card-header text-center">
-            <h2 class="card-title">Sorteio Semanal 22/09/2023</h2>
-            <h6 class="card-title">Status: Agendado</h6>
-        </div>
-        <div class="card-body">
-            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
-                <li [ngbNavItem]="1">
-                    <button ngbNavLink>Básico</button>
-                    <ng-template ngbNavContent>
-                        <div class="container row row-cols-1 row-cols-sm-5 g-4 text-center">
-                            <div class="col pokemon-presentation" *ngFor="let pokemon of pokemons">
-                                <a href="#">
-                                    <img [src]="pokemon.imageBlob" [alt]="pokemon.name">
-                                    <br>
-                                    {{pokemon.name}}
-                                </a>
-                            </div>
-                        </div>
-                    </ng-template>
-                </li>
-                <li [ngbNavItem]="2">
-                    <button ngbNavLink>Premium</button>
-                    <ng-template ngbNavContent>
-                        <p>
-                            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan
-                            four loko
-                            farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk
-                            aliquip jean shorts
-                            ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus
-                            mollit. Keytar
-                            helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio
-                            cillum wes anderson
-                            8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art
-                            party scenester
-                            stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
-                        </p>
-                    </ng-template>
-                </li>
-
-            </ul>
-
-            <div [ngbNavOutlet]="nav" class="mt-2"></div>
-
-            <div class="text-center mt-5">
-                <button class="btn btn-sm btn-primary">
-                    <fa-icon [icon]="faPencil"></fa-icon>
-                    EDITAR
-                </button>
-            </div>
-        </div>
-
-    </div>
+    <ng-template [ngIf]="awardWeekSelected">
+        <app-award-week-view [awardWeek]="awardWeek"></app-award-week-view>
+    </ng-template>
 </app-menu-lateral>

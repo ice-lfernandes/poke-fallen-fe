@@ -1,0 +1,62 @@
+<div class="card border-secondary">
+    <div class="card-header text-center">
+        <h2 class="card-title">Sorteio Semanal</h2>
+        <h5>Data: {{formatDateTime(awardWeek.dateTime)}}</h5>
+        <h5 class="card-title">Status: Agendado</h5>
+    </div>
+    <div class="card-body">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
+            <li [ngbNavItem]="1">
+                <button ngbNavLink>Básico</button>
+                <ng-template ngbNavContent>
+                    <div class="container row text-center">
+                        <div class="col-4 pokemon-presentation" *ngFor="let item of awardWeek.items">
+                            <div class="card border-secondary">
+                                <div class="card-header">
+                                    {{item.name}} | Qtd: {{item.quantity}} | Shiny: {{item.pokemon.stas?.shiny == true ?
+                                    "Sim" : "Não"}}
+                                </div>
+                                <div class="card-body">
+                                    <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name">
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button class="btn btn-sm btn-primary me-2">
+                                        <fa-icon [icon]="faPencil"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-sm btn-primary">
+                                        <fa-icon [icon]="faMinus"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <button ngbNavLink>Premium</button>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </li>
+
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+        <div class="text-center mt-5">
+            <button class="btn btn-sm btn-primary me-2">
+                <fa-icon [icon]="faArrowLeft"></fa-icon>
+                VOLTAR
+            </button>
+            <button class="btn btn-sm btn-primary me-2">
+                <fa-icon [icon]="faPencil"></fa-icon>
+                EDITAR
+            </button>
+            <button class="btn btn-sm btn-primary me-2">
+                <fa-icon [icon]="faFloppyDisk"></fa-icon>
+                SALVAR
+            </button>
+        </div>
+    </div>
+
+</div>
