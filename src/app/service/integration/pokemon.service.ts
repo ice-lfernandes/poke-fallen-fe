@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { PokemonsPaginatedResponse } from './model/response/pokemons-paginated-response';
+import { PokemonImage } from './model/commons/pokemon-image';
 
 const baseUrlPokemons: string = environment.apiUrl + '/pokemons'
 
@@ -22,9 +23,14 @@ export class PokemonService {
     })
   }
 
-  findAllPokemons(): Observable<PokemonsPaginatedResponse> {
+  findAllPokemonsWithPageable(): Observable<PokemonsPaginatedResponse> {
     let url = baseUrlPokemons + "?page=0&size=15"
     return this.http
       .get<PokemonsPaginatedResponse>(url, this.httpOptionsWithAuthorization).pipe();
+  }
+
+  findAllPokemons(): Observable<PokemonImage[]> {
+    return this.http
+      .get<PokemonImage[]>(baseUrlPokemons, this.httpOptionsWithAuthorization).pipe();
   }
 }

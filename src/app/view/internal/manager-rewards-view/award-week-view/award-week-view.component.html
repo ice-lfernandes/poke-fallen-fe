@@ -38,79 +38,11 @@
                                     <h4 class="modal-title text-center" id="modal-basic-title">{{item.name}}</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
-                                        <div class="mb-3 text-center">
-                                            <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name"
-                                                class="pokemon-image">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="text" class="form-control" id="floatingInput"
-                                                        disabled="true" [value]="item.pokemon.name"
-                                                        placeholder="pokemon">
-                                                    <label for="floatingInput">Pokemon</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="text" class="form-control" id="floatingInput"
-                                                        [value]="item.pokemon.gameID" placeholder="Game ID">
-                                                    <label for="floatingInput">Game ID</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="text" class="form-control" id="floatingInput"
-                                                        [value]="item.pokemon.stats?.nature" placeholder="Natureza">
-                                                    <label for="floatingInput">Natureza</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="text" class="form-control" id="floatingInput"
-                                                        [value]="item.pokemon.stats?.form" placeholder="Forma">
-                                                    <label for="floatingInput">Forma</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="number" class="form-control" id="floatingInput"
-                                                        [value]="item.pokemon.stats?.experienceValues"
-                                                        placeholder="Ponts EV">
-                                                    <label for="floatingInput">Ponts EV</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="number" class="form-control" id="floatingInput"
-                                                        [value]="item.pokemon.stats?.individualValues"
-                                                        placeholder="Pontos IV">
-                                                    <label for="floatingInput">Pontos IV</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 mb-3">
-                                                <div class="form-floating">
-                                                    <input type="text" class="form-control" id="floatingInput"
-                                                        [value]="item.pokemon.stats?.shiny" placeholder="Shiny">
-                                                    <label for="floatingInput">Shiny</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="button" class="btn btn-primary"
-                                                (click)="modal.close('Save click')">SALVAR</button>
-                                        </div>
-                                    </form>
+                                    <app-form-award-item [item]="item"></app-form-award-item>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-primary"
+                                            (click)="modal.close('Save click')">SALVAR</button>
+                                    </div>
                                 </div>
                             </ng-template>
                         </div>
@@ -137,7 +69,7 @@
                 <fa-icon [icon]="faRotateLeft"></fa-icon>
                 REVERTER
             </button>
-            <button class="btn btn-sm btn-primary me-2">
+            <button class="btn btn-sm btn-primary me-2" (click)="newItem(content_new_item)">
                 <fa-icon [icon]="faPlus"></fa-icon>
                 NOVO
             </button>
@@ -147,5 +79,44 @@
             </button>
         </div>
     </div>
+
+    <ng-template #content_new_item let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Novo Item</h4>
+        </div>
+        <div class="modal-body">
+            <div class="choose-type-item mb-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Tipo Pokemon
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Tipo Item
+                    </label>
+                </div>
+            </div>
+
+            <div class="choose-by-autocomplete">
+                <label for="typeahead-basic" class="form-label">Escolha o Pokemon:</label>
+                <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="typeItemChoose"
+                    [ngbTypeahead]="search" (change)="updateModel()" />
+                <br>
+                <br>
+                <div class="text-center">
+                    <app-form-award-item *ngIf="!(pokemonSelected == undefined)" [item]="newAwardItem"></app-form-award-item>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">SALVAR</button>
+            </div>
+        </div>
+    </ng-template>
 
 </div>

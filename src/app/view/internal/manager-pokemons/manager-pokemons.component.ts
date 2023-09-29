@@ -18,7 +18,7 @@ export class ManagerPokemonsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pokemonService.findAllPokemons()
+    this.pokemonService.findAllPokemonsWithPageable()
       .subscribe(data => {
         this.pokemons = data.content
         this.pokemons.forEach(p => {
