@@ -20,8 +20,8 @@
                                     <br>
                                     Shiny: {{item.pokemon.stas?.shiny == true ? "Sim" : "Não"}} -->
                                 </div>
-                                <div class="card-body">
-                                    <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name">
+                                <div class="text-center">
+                                    <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name" class="pokemon-image">
                                 </div>
                                 <div class="card-footer text-center">
                                     <button class="btn btn-sm btn-primary me-2">
@@ -38,7 +38,13 @@
                                     <h4 class="modal-title text-center" id="modal-basic-title">{{item.name}}</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <app-form-award-item [item]="item"></app-form-award-item>
+                                    <div class="mb-3 col-2">
+                                        <label for="floatingInput">Quantidade</label>
+                                        <input type="number" class="form-control" id="floatingInput"
+                                            [(ngModel)]="item.quantity" placeholder="Quantidade">
+                                    </div>
+                                    <app-type-pokemon [pokemon]="item.pokemon"></app-type-pokemon>
+                                    <br>
                                     <div class="text-center">
                                         <button type="button" class="btn btn-primary"
                                             (click)="modal.close('Save click')">SALVAR</button>
@@ -85,29 +91,58 @@
             <h4 class="modal-title">Novo Item</h4>
         </div>
         <div class="modal-body">
-            <div class="choose-type-item mb-3">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Tipo Pokemon
-                    </label>
+            <div class="row">
+                <div class="col-3">
+                    <div class="choose-type-item mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                value="pokemon" [(ngModel)]="typeItemChoose" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Tipo Pokemon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                                value="item" [(ngModel)]="typeItemChoose">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Tipo Item
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Tipo Item
-                    </label>
+
+                <div class="col-2">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="floatingInput" [(ngModel)]="newAwardItem.quantity"
+                            placeholder="Quantidade">
+                        <label for="floatingInput">Quantidade</label>
+                    </div>
                 </div>
             </div>
 
-            <div class="choose-by-autocomplete">
+            <div *ngIf="typeItemChoose == 'pokemon'" class="choose-by-autocomplete form-floating">
+                <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="itemChoose"
+                    [ngbTypeahead]="searchPokemons" (change)="updateModel()" />
                 <label for="typeahead-basic" class="form-label">Escolha o Pokemon:</label>
-                <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="typeItemChoose"
-                    [ngbTypeahead]="search" (change)="updateModel()" />
-                <br>
                 <br>
                 <div class="text-center">
-                    <app-form-award-item *ngIf="!(pokemonSelected == undefined)" [item]="newAwardItem"></app-form-award-item>
+                    <form *ngIf="!(pokemonSelected == undefined)"
+                        class="form-pokemon-item  animate__animated animate__zoomIn">
+                        <app-type-pokemon [pokemon]="newAwardItem.pokemon"></app-type-pokemon>
+                    </form>
+                </div>
+            </div>
+
+            <div *ngIf="typeItemChoose == 'item'" class="choose-by-autocomplete form-floating">
+                <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="itemChoose"
+                    [ngbTypeahead]="searchItems" (change)="updateModel()" />
+                <label for="typeahead-basic" class="form-label">Escolha o Item:</label>
+                <br>
+                <div class="text-center">
+                    <form *ngIf="!(itemSelected == undefined)"
+                        class="form-pokemon-item  animate__animated animate__zoomIn">
+                        <app-type-item [item]="newAwardItem.item"></app-type-item>
+                    </form>
                 </div>
             </div>
 

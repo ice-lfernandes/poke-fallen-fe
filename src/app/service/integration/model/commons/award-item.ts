@@ -1,3 +1,4 @@
+import { ItemImage } from "./item-image"
 import { Pokemon } from "./pokemon"
 
 export class AwardItem {
@@ -7,4 +8,5 @@ export class AwardItem {
     occupation: String = ""
     typeItemAward: String = ""
     pokemon: Pokemon = new Pokemon()
+    item: ItemImage = new ItemImage()
 }

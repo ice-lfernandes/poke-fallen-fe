@@ -2,11 +2,14 @@ import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { faArrowLeft, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { el } from '@fullcalendar/core/internal-common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OperatorFunction, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { ItemService } from 'src/app/service/integration/item.service';
 
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 import { AwardWeek } from 'src/app/service/integration/model/commons/award-week';
+import { ItemImage } from 'src/app/service/integration/model/commons/item-image';
 import { PokemonImage } from 'src/app/service/integration/model/commons/pokemon-image';
 import { PokemonService } from 'src/app/service/integration/pokemon.service';
 
@@ -32,15 +35,32 @@ export class AwardWeekViewComponent implements OnInit {
 
   itemsReverted: AwardItem[] = []
   pokemonsImage: PokemonImage[] = []
+  itemsImage: ItemImage[] = []
+
   active = 1
   closeResult = '';
 
-  typeItemChoose: any;
+  typeItemChoose: string = 'pokemon'
+  itemChoose: any;
   pokemonSelected: PokemonImage | undefined
+  itemSelected: ItemImage | undefined
   newAwardItem: AwardItem = new AwardItem()
 
-  constructor(private sanitizer: DomSanitizer, private modalService: NgbModal,
-    private pokemonService: PokemonService) { }
+  constructor(
+    private sanitizer: DomSanitizer,
+    private modalService: NgbModal,
+    private pokemonService: PokemonService,
+    private itemService: ItemService) { }
+
+  ngOnInit(): void {
+    this.awardWeek.items.forEach(item => {
+      if (item.pokemon != null) {
+        let objectURL = 'data:image/jpeg;base64,' + item.pokemon.image
+        item.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      }
+    })
+    console.log(this.awardWeek)
+  }
 
   open(content: any) {
     this.modalService.open(content, { size: 'lg' }).result.then(
@@ -63,6 +83,11 @@ export class AwardWeekViewComponent implements OnInit {
       },
     );
 
+    this.findPokemonsImages()
+    this.findItemsImages()
+  }
+
+  private findPokemonsImages() {
     this.pokemonService.findAllPokemons().subscribe(
       {
         next: response => {
@@ -71,7 +96,6 @@ export class AwardWeekViewComponent implements OnInit {
             let objectURL = 'data:image/jpeg;base64,' + p.image
             p.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
           })
-          console.log(this.pokemonsImage)
         },
         error: error => {
           console.log(error)
@@ -80,7 +104,24 @@ export class AwardWeekViewComponent implements OnInit {
     )
   }
 
-  search: OperatorFunction<string, readonly String[]> = (text$: Observable<string>) =>
+  private findItemsImages() {
+    this.itemService.findAllItems().subscribe(
+      {
+        next: response => {
+          this.itemsImage = response
+          this.itemsImage.forEach(item => {
+            let objectURL = 'data:image/jpeg;base64,' + item.image
+            item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          })
+        },
+        error: error => {
+          console.log(error)
+        }
+      }
+    )
+  }
+
+  searchPokemons: OperatorFunction<string, readonly String[]> = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
@@ -89,12 +130,31 @@ export class AwardWeekViewComponent implements OnInit {
       )
     );
 
-  updateModel() {
-    this.pokemonSelected = this.pokemonsImage.find(p => p.name == this.typeItemChoose)
+  searchItems: OperatorFunction<string, readonly String[]> = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map((term) =>
+        term.length < 2 ? [] : this.itemsImage.map(p => p.name).filter((v) => v.indexOf(term.toUpperCase()) > -1).slice(0, 10),
+      )
+    );
 
-    this.newAwardItem.pokemon.image = this.pokemonSelected!.image
-    this.newAwardItem.pokemon.imageBlob = this.pokemonSelected!.imageBlob
-    this.newAwardItem.pokemon.name = this.pokemonSelected!.name
+  updateModel() {
+    if (this.typeItemChoose == 'pokemon') {
+      this.pokemonSelected = this.pokemonsImage.find(p => p.name == this.itemChoose)
+
+      this.newAwardItem.pokemon.image = this.pokemonSelected!.image
+      this.newAwardItem.pokemon.imageBlob = this.pokemonSelected!.imageBlob
+      this.newAwardItem.pokemon.name = this.pokemonSelected!.name
+
+      
+    } else {
+      this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
+
+      this.newAwardItem.item.image = this.itemSelected!.image
+      this.newAwardItem.item.imageBlob = this.itemSelected!.imageBlob
+      this.newAwardItem.item.name = this.itemSelected!.name
+    }
   }
 
 
@@ -115,16 +175,6 @@ export class AwardWeekViewComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  }
-
-  ngOnInit(): void {
-    this.awardWeek.items.forEach(item => {
-      if (item.pokemon != null) {
-        let objectURL = 'data:image/jpeg;base64,' + item.pokemon.image
-        item.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      }
-    })
-    console.log(this.awardWeek)
   }
 
   formatDateTime(date: Date): String {

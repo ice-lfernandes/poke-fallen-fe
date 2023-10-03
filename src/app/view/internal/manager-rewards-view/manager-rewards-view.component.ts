@@ -81,18 +81,13 @@ export class ManagerRewardsViewComponent {
   onChange(eventValue: String) {
     
     if (eventValue === "Finalizado") {
-      console.log(eventValue)
       this.status = StatusAwardWeek.FINISHED
-      console.log(this.status)
       return
     } else if (eventValue === "Agendado") {
-      console.log(eventValue)
       this.status = StatusAwardWeek.SCHEDULED
       console.log(this.status)
     } else {
-      console.log(eventValue)
       this.status = undefined
-      console.log(this.status)
     }
   }
 
@@ -112,7 +107,6 @@ export class ManagerRewardsViewComponent {
       this.awardWeekService.findByRangeDatas(this.dateToString(this.fromDate), this.dateToString(this.toDate), this.status)
         .subscribe({
           next: response => {
-            console.log(response)
             this.awardWeekList = response
             this.loading = false
             foundData = true

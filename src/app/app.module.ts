@@ -32,7 +32,8 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import { JsonPipe } from '@angular/common';
 import { ManagerPokemonsComponent } from './view/internal/manager-pokemons/manager-pokemons.component';
 import { AwardWeekViewComponent } from './view/internal/manager-rewards-view/award-week-view/award-week-view.component';
-import { FormAwardItemComponent } from './shared/form-award-item/form-award-item.component';
+import { TypePokemonComponent } from './shared/form-award-item/type-pokemon/type-pokemon.component';
+import { TypeItemComponent } from './shared/form-award-item/type-item/type-item.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { FormAwardItemComponent } from './shared/form-award-item/form-award-item
     LoadingComponent,
     ManagerPokemonsComponent,
     AwardWeekViewComponent,
-    FormAwardItemComponent
+    TypePokemonComponent,
+    TypeItemComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ import { FormAwardItemComponent } from './shared/form-award-item/form-award-item
     FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgbDatepickerModule, 
+    NgbDatepickerModule,
     NgbPopoverModule,
     JsonPipe,
     NgbModule
