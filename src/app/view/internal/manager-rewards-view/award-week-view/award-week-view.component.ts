@@ -1,13 +1,12 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { faArrowLeft, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
-import { el } from '@fullcalendar/core/internal-common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { faArrowLeft, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { OperatorFunction, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
+
 import { AwardWeekService } from 'src/app/service/integration/award-week.service';
 import { ItemService } from 'src/app/service/integration/item.service';
-
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 import { AwardWeek } from 'src/app/service/integration/model/commons/award-week';
 import { ItemImage } from 'src/app/service/integration/model/commons/item-image';
@@ -42,6 +41,7 @@ export class AwardWeekViewComponent implements OnInit {
 
   active = 1
   closeResult = '';
+  loading: boolean = false
 
   typeItemChoose: string = 'pokemon'
   itemChoose: any;
@@ -108,13 +108,16 @@ export class AwardWeekViewComponent implements OnInit {
   }
 
   save() {
+    this.loading = true
     this.awardWeekService.updateItems(this.awardWeek.id, this.awardWeek.items).subscribe(
       {
         next: response => {
-          console.log('atualização de semana de premios realizada com sucesso!', response)
+          console.log('atualização de semana de premios realizada com sucesso!')
+          this.loading = false
         },
         error: error => {
           console.log(error)
+          this.loading = false
         }
       }
     )
