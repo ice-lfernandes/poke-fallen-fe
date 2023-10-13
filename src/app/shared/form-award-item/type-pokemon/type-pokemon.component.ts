@@ -14,6 +14,8 @@ export class TypePokemonComponent {
   awardItem!: AwardItem
   @Input()
   action!: (args: any) => void;
+  @Input()
+  disableEdit!: boolean
 
   statusSelect: String = "0"
   natureList: String[] = [

@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { faArrowLeft, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCircleInfo, faEye, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { OperatorFunction, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
 
 import { AwardWeekService } from 'src/app/service/integration/award-week.service';
@@ -13,6 +13,7 @@ import { ItemImage } from 'src/app/service/integration/model/commons/item-image'
 import { PokemonImage } from 'src/app/service/integration/model/commons/pokemon-image';
 import { PokemonService } from 'src/app/service/integration/pokemon.service';
 import { ToastService } from 'src/app/shared/toasts/toast-service.service';
+import { StatusAwardWeek } from 'src/app/service/integration/model/commons/status-award-week';
 
 @Component({
   selector: 'app-award-week-view',
@@ -24,6 +25,7 @@ export class AwardWeekViewComponent implements OnInit {
 
   // Icons
   faPencil = faPencil
+  faCircleInfo = faCircleInfo
   faArrowLeft = faArrowLeft
   faMinus = faMinus
   faFloppyDisk = faFloppyDisk
@@ -79,6 +81,10 @@ export class AwardWeekViewComponent implements OnInit {
     );
   }
 
+  awardWeekCanUpdatable(): boolean {
+    return this.awardWeek.status == StatusAwardWeek.SCHEDULED
+  }
+
   newItem(contentNewItem: any) {
     this.modalService.open(contentNewItem, { size: 'lg' }).result.then(
       (result) => {
@@ -93,15 +99,22 @@ export class AwardWeekViewComponent implements OnInit {
     this.findItemsImages()
   }
 
-  saveNewAwardItem() {
+  addNewAwardItem() {
     this.itemsReverted = this.awardWeek.items
     this.awardWeek.items.push(this.newAwardItem)
     this.updateEacheTypeItems()
 
-    this.newAwardItem == null
+    this.clear()
 
     this.modalService.dismissAll()
     console.log('atualizando items da lista para backend: items: ' + this.awardWeek.items)
+  }
+
+  private clear() {
+    this.newAwardItem = new AwardItem()
+    this.itemChoose = ""
+    this.pokemonSelected = undefined
+    this.itemSelected = undefined
   }
 
   private updateEacheTypeItems() {
@@ -127,7 +140,7 @@ export class AwardWeekViewComponent implements OnInit {
         }
       }
     )
-    
+
   }
 
   private findPokemonsImages() {

@@ -2,6 +2,9 @@
     <div class="mb-3 text-center">
         <img [src]="awardItem.pokemon.imageBlob" [alt]="awardItem.pokemon.name" class="pokemon-image">
     </div>
+    <div class="row mb-1">
+        <h6 class="red">Dados do Prêmio</h6>
+    </div>
     <div class="row">
         <div class="col-4 mb-3">
             <div class="form-floating">
@@ -14,7 +17,7 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="occupation"
+                <input type="text" class="form-control" id="floatingInput" name="occupation" [disabled]="disableEdit"
                     [(ngModel)]="awardItem.occupation" placeholder="Cargo do Prêmio">
                 <label for="floatingInput">Cargo do Prêmio</label>
             </div>
@@ -22,8 +25,8 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.name" required
-                    name="name-award" placeholder="Nome do Prêmio">
+                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.name"
+                    [disabled]="disableEdit" name="name-award" placeholder="Nome do Prêmio">
                 <label for="floatingInput">Nome do Prêmio</label>
             </div>
         </div>
@@ -35,14 +38,14 @@
         <div class="col-4 mb-3">
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.pokemon.stats.shiny"
-                    name="shiny" placeholder="Shiny">
+                    [disabled]="disableEdit" name="shiny" placeholder="Shiny">
                 <label for="floatingInput">Shiny</label>
             </div>
         </div>
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput"
+                <input type="text" class="form-control" id="floatingInput" [disabled]="disableEdit"
                     [(ngModel)]="awardItem.pokemon.stats.individualValueType" name="type-iv" placeholder="Tipo EV">
                 <label for="floatingInput">Tipo EV</label>
             </div>
@@ -51,7 +54,7 @@
         <div class="col-4 mb-3">
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.pokemon.stats.nature"
-                    required name="nature" placeholder="Natureza">
+                    required name="nature" placeholder="Natureza" [disabled]="disableEdit">
                 <label for="floatingInput">Natureza</label>
             </div>
 
@@ -61,7 +64,7 @@
     <div class="row">
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="number" class="form-control" id="floatingInput" name="ev-hp"
+                <input type="number" class="form-control" id="floatingInput" name="ev-hp" [disabled]="disableEdit"
                     [(ngModel)]="awardItem.pokemon.stats.experienceValues.hp" placeholder="Ponts EV">
                 <label for="floatingInput">Pontos de HP</label>
             </div>
@@ -69,7 +72,7 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="number" class="form-control" id="floatingInput" name="ev-attack"
+                <input type="number" class="form-control" id="floatingInput" name="ev-attack" [disabled]="disableEdit"
                     [(ngModel)]="awardItem.pokemon.stats.experienceValues.attack" placeholder="Pontos de Ataque">
                 <label for="floatingInput">Pontos de Ataque</label>
             </div>
@@ -77,7 +80,7 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="number" class="form-control" id="floatingInput" name="ev-defense"
+                <input type="number" class="form-control" id="floatingInput" name="ev-defense" [disabled]="disableEdit"
                     [(ngModel)]="awardItem.pokemon.stats.experienceValues.defense" placeholder="Pontos de Defesa">
                 <label for="floatingInput">Pontos de Defesa</label>
             </div>
@@ -87,7 +90,7 @@
         <div class="col-4 mb-3">
             <div class="form-floating">
                 <input type="number" class="form-control" id="floatingInput" name="ev-defense-special"
-                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialDefense"
+                    [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialDefense"
                     placeholder="Points de Defesa Especial">
                 <label for="floatingInput">Points de Defesa Especial</label>
             </div>
@@ -96,7 +99,7 @@
         <div class="col-4 mb-3">
             <div class="form-floating">
                 <input type="number" class="form-control" id="floatingInput" name="ev-attack-special"
-                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialAttack"
+                    [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialAttack"
                     placeholder="Pontos de Ataque Especial">
                 <label for="floatingInput">Pontos de Ataque Especial</label>
             </div>
@@ -104,9 +107,31 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="number" class="form-control" id="floatingInput" name="ev-speed"
+                <input type="number" class="form-control" id="floatingInput" name="ev-speed" [disabled]="disableEdit"
                     [(ngModel)]="awardItem.pokemon.stats.experienceValues.speed" placeholder="Pontos de Velocidade">
                 <label for="floatingInput">Pontos de Velocidade</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-1">
+        <h6 class="red">Dados do Jogador Premiado</h6>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="ev-defense-special"
+                    [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialDefense"
+                    placeholder="Username do Jogador Premiado">
+                <label for="floatingInput">Username do Jogador Premiado</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="ev-attack-special"
+                    [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialAttack"
+                    placeholder="GameID do Jogador Premiado">
+                <label for="floatingInput">GameID do Jogador Premiado</label>
             </div>
         </div>
     </div>

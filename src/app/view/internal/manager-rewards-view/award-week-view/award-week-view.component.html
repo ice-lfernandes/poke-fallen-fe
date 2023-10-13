@@ -8,21 +8,23 @@
             <fa-icon [icon]="faArrowLeft"></fa-icon>
             VOLTAR
         </button> -->
-        <button class="btn btn-sm btn-primary me-2" (click)="revertAction()">
-            <fa-icon [icon]="faRotateLeft"></fa-icon>
-            REVERTER
-        </button>
-        <button class="btn btn-sm btn-primary me-2" (click)="newItem(content_new_item)">
-            <fa-icon [icon]="faPlus"></fa-icon>
-            NOVO
-        </button>
-        <button class="btn btn-sm btn-primary me-2" (click)="save()">
-            <fa-icon [icon]="faFloppyDisk"></fa-icon>
-            SALVAR
-        </button>
-        <br>
-        <br>
-        <app-loading [loading]="loading"></app-loading>
+        <ng-template *ngIf="awardWeekCanUpdatable()">
+            <button class="btn btn-sm btn-primary me-2" (click)="revertAction()">
+                <fa-icon [icon]="faRotateLeft"></fa-icon>
+                REVERTER
+            </button>
+            <button class="btn btn-sm btn-primary me-2" (click)="newItem(content_new_item)">
+                <fa-icon [icon]="faPlus"></fa-icon>
+                NOVO
+            </button>
+            <button class="btn btn-sm btn-primary me-2" (click)="save()">
+                <fa-icon [icon]="faFloppyDisk"></fa-icon>
+                SALVAR
+            </button>
+            <br>
+            <br>
+            <app-loading [loading]="loading"></app-loading>
+        </ng-template>
     </div>
     <div class="card-body">
         <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
@@ -39,12 +41,17 @@
                                 <div class="text-center">
                                     <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name" class="pokemon-image">
                                 </div>
-                                <div class="card-footer text-center">
+                                <div *ngIf="awardWeekCanUpdatable()" class="card-footer text-center">
                                     <button class="btn btn-sm btn-primary me-2">
                                         <fa-icon [icon]="faPencil" (click)="open(content)"></fa-icon>
                                     </button>
                                     <button class="btn btn-sm btn-primary">
                                         <fa-icon [icon]="faMinus" (click)="removeItem(item)"></fa-icon>
+                                    </button>
+                                </div>
+                                <div *ngIf="!awardWeekCanUpdatable()" class="card-footer text-center">
+                                    <button class="btn btn-sm btn-primary me-2">
+                                        <fa-icon [icon]="faCircleInfo" (click)="open(content)"></fa-icon>
                                     </button>
                                 </div>
                             </div>
@@ -59,7 +66,8 @@
                                         <input type="number" class="form-control" id="floatingInput"
                                             [(ngModel)]="item.quantity" placeholder="Quantidade">
                                     </div>
-                                    <app-type-pokemon [awardItem]="item"></app-type-pokemon>
+                                    <app-type-pokemon [awardItem]="item"
+                                        [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
                                 </div>
                             </ng-template>
                         </div>
@@ -99,7 +107,8 @@
                                         <input type="number" class="form-control" id="floatingInput"
                                             [(ngModel)]="item.quantity" placeholder="Quantidade">
                                     </div>
-                                    <app-type-pokemon [awardItem]="item"></app-type-pokemon>
+                                    <app-type-pokemon [awardItem]="item"
+                                        [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
                                 </div>
                             </ng-template>
                         </div>
@@ -155,7 +164,8 @@
                 <div class="text-center">
                     <form *ngIf="!(pokemonSelected == undefined)"
                         class="form-pokemon-item  animate__animated animate__zoomIn">
-                        <app-type-pokemon [awardItem]="newAwardItem" [action]="saveNewAwardItem"></app-type-pokemon>
+                        <app-type-pokemon [awardItem]="newAwardItem" [action]="addNewAwardItem"
+                            [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
                     </form>
                 </div>
             </div>
@@ -176,7 +186,7 @@
             <br>
 
             <div class="text-center mt-3">
-                <button type="button" class="btn btn-primary" (click)="saveNewAwardItem()">
+                <button type="button" class="btn btn-primary" (click)="addNewAwardItem()">
                     <fa-icon [icon]="faPlus"></fa-icon>
                     ADICIONAR
                 </button>
