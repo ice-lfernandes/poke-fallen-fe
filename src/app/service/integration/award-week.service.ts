@@ -48,7 +48,6 @@ export class AwardWeekService {
         return new AwardItemsRequest(item.name, item.quantity, item.occupation, null, item.item)
       }
     })
-    console.log(itemsRequest)
     return this.http.put<any>(
       baseUrlAwardWeek + "/" + awardWeekId,
       new AwardWeekUpdateRequest(itemsRequest),

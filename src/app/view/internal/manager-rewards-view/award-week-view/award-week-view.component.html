@@ -8,10 +8,10 @@
             <fa-icon [icon]="faArrowLeft"></fa-icon>
             VOLTAR
         </button> -->
-        <!-- <button class="btn btn-sm btn-primary me-2" (click)="revertAction()">
+        <button class="btn btn-sm btn-primary me-2" (click)="revertAction()">
             <fa-icon [icon]="faRotateLeft"></fa-icon>
             REVERTER
-        </button> -->
+        </button>
         <button class="btn btn-sm btn-primary me-2" (click)="newItem(content_new_item)">
             <fa-icon [icon]="faPlus"></fa-icon>
             NOVO
@@ -22,7 +22,7 @@
         </button>
         <br>
         <br>
-        <app-loading [loading]="loading" class="mt-2"></app-loading>
+        <app-loading [loading]="loading"></app-loading>
     </div>
     <div class="card-body">
         <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">

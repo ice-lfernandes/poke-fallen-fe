@@ -12,6 +12,7 @@ import { AwardWeek } from 'src/app/service/integration/model/commons/award-week'
 import { ItemImage } from 'src/app/service/integration/model/commons/item-image';
 import { PokemonImage } from 'src/app/service/integration/model/commons/pokemon-image';
 import { PokemonService } from 'src/app/service/integration/pokemon.service';
+import { ToastService } from 'src/app/shared/toasts/toast-service.service';
 
 @Component({
   selector: 'app-award-week-view',
@@ -54,7 +55,8 @@ export class AwardWeekViewComponent implements OnInit {
     private modalService: NgbModal,
     private pokemonService: PokemonService,
     private itemService: ItemService,
-    private awardWeekService: AwardWeekService) { }
+    private awardWeekService: AwardWeekService,
+    private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.awardWeek.items.forEach(item => {
@@ -111,16 +113,21 @@ export class AwardWeekViewComponent implements OnInit {
     this.loading = true
     this.awardWeekService.updateItems(this.awardWeek.id, this.awardWeek.items).subscribe(
       {
-        next: response => {
-          console.log('atualização de semana de premios realizada com sucesso!')
+        next: () => {
           this.loading = false
+          this.toastService.show('Prêmios da Semana Atualizado com Sucesso!', { classname: 'bg-success text-light', delay: 10000 });
         },
         error: error => {
           console.log(error)
+          this.toastService.show('Erro ao atualizar Premios da Semana!', { classname: 'bg-danger text-light', delay: 10000 });
+          this.loading = false
+        },
+        complete: () => {
           this.loading = false
         }
       }
     )
+    
   }
 
   private findPokemonsImages() {
@@ -198,10 +205,12 @@ export class AwardWeekViewComponent implements OnInit {
   removeItem(item: AwardItem) {
     this.itemsReverted = this.awardWeek.items
     this.awardWeek.items = this.awardWeek.items.filter(awardItem => awardItem !== item)
+    this.updateEacheTypeItems()
   }
 
   revertAction() {
     this.awardWeek.items = this.itemsReverted
+    this.updateEacheTypeItems()
   }
 
   private getDismissReason(reason: any): string {
