@@ -64,7 +64,8 @@
                                     <div class="mb-3 col-2">
                                         <label for="floatingInput">Quantidade</label>
                                         <input type="number" class="form-control" id="floatingInput"
-                                            [(ngModel)]="item.quantity" placeholder="Quantidade">
+                                            [disabled]="!awardWeekCanUpdatable()" [(ngModel)]="item.quantity"
+                                            placeholder="Quantidade">
                                     </div>
                                     <app-type-pokemon [awardItem]="item"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>

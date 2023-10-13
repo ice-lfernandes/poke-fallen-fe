@@ -46,8 +46,8 @@
         <div class="col-4 mb-3">
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" [disabled]="disableEdit"
-                    [(ngModel)]="awardItem.pokemon.stats.individualValueType" name="type-iv" placeholder="Tipo EV">
-                <label for="floatingInput">Tipo EV</label>
+                    [(ngModel)]="awardItem.pokemon.stats.individualValueType" name="type-iv" placeholder="Tipo IV">
+                <label for="floatingInput">Tipo IV</label>
             </div>
         </div>
 
@@ -120,7 +120,7 @@
         <div class="col-4 mb-3">
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" name="ev-defense-special"
-                    [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialDefense"
+                    [disabled]="disableEdit" value="Ash"
                     placeholder="Username do Jogador Premiado">
                 <label for="floatingInput">Username do Jogador Premiado</label>
             </div>
@@ -129,9 +129,18 @@
         <div class="col-4 mb-3">
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" name="ev-attack-special"
-                    [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialAttack"
+                    [disabled]="disableEdit" value="12345"
                     placeholder="GameID do Jogador Premiado">
                 <label for="floatingInput">GameID do Jogador Premiado</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="statusaward-item-delivery"
+                    [disabled]="disableEdit" value="Aguardando Recebimento"
+                    placeholder="Status de Entrega do Prêmio">
+                <label for="floatingInput">Status de Entrega do Prêmio</label>
             </div>
         </div>
     </div>
