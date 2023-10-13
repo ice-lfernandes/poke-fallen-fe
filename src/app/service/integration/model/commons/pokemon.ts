@@ -3,8 +3,9 @@ import { PokemonStats } from "./pokemon-stats"
 export class Pokemon {
 
     name: String = ""
-    gameID: number = 1
+    gameId: String = ":"
     image: String[] = []
-    stats: PokemonStats | undefined
+    stats: PokemonStats = new PokemonStats()
     imageBlob: any
+    
 }

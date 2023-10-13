@@ -2,14 +2,10 @@ import { Component } from '@angular/core';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { faSearch, faCalendarDays, faEye, faPencil } from '@fortawesome/free-solid-svg-icons';
 
-import { DomSanitizer } from '@angular/platform-browser';
-import { PokemonService } from 'src/app/service/integration/pokemon.service';
-import { PokemonImage } from 'src/app/service/integration/model/commons/pokemon-image';
 import { AwardWeekService } from 'src/app/service/integration/award-week.service';
 import { StatusAwardWeek } from 'src/app/service/integration/model/commons/status-award-week';
 import { AwardWeek } from 'src/app/service/integration/model/commons/award-week';
 import { formatDate } from '@angular/common';
-import { el } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-manager-rewards-view',
@@ -37,7 +33,6 @@ export class ManagerRewardsViewComponent {
   awardWeek!: AwardWeek
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
-    private pokemonService: PokemonService, private sanitizer: DomSanitizer,
     private awardWeekService: AwardWeekService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -79,7 +74,6 @@ export class ManagerRewardsViewComponent {
   }
 
   onChange(eventValue: String) {
-    
     if (eventValue === "Finalizado") {
       this.status = StatusAwardWeek.FINISHED
       return

@@ -5,6 +5,7 @@ import { faArrowLeft, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft } fr
 import { el } from '@fullcalendar/core/internal-common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OperatorFunction, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { AwardWeekService } from 'src/app/service/integration/award-week.service';
 import { ItemService } from 'src/app/service/integration/item.service';
 
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
@@ -36,6 +37,8 @@ export class AwardWeekViewComponent implements OnInit {
   itemsReverted: AwardItem[] = []
   pokemonsImage: PokemonImage[] = []
   itemsImage: ItemImage[] = []
+  itemsBasic: AwardItem[] = []
+  itemsPremium: AwardItem[] = []
 
   active = 1
   closeResult = '';
@@ -50,7 +53,8 @@ export class AwardWeekViewComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private modalService: NgbModal,
     private pokemonService: PokemonService,
-    private itemService: ItemService) { }
+    private itemService: ItemService,
+    private awardWeekService: AwardWeekService) { }
 
   ngOnInit(): void {
     this.awardWeek.items.forEach(item => {
@@ -59,7 +63,7 @@ export class AwardWeekViewComponent implements OnInit {
         item.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
       }
     })
-    console.log(this.awardWeek)
+    this.updateEacheTypeItems()
   }
 
   open(content: any) {
@@ -85,6 +89,35 @@ export class AwardWeekViewComponent implements OnInit {
 
     this.findPokemonsImages()
     this.findItemsImages()
+  }
+
+  saveNewAwardItem() {
+    this.itemsReverted = this.awardWeek.items
+    this.awardWeek.items.push(this.newAwardItem)
+    this.updateEacheTypeItems()
+
+    this.newAwardItem == null
+
+    this.modalService.dismissAll()
+    console.log('atualizando items da lista para backend: items: ' + this.awardWeek.items)
+  }
+
+  private updateEacheTypeItems() {
+    this.itemsBasic = this.awardWeek.items.filter(i => i.occupation == 'BASIC')
+    this.itemsPremium = this.awardWeek.items.filter(i => i.occupation == 'PREMIUM')
+  }
+
+  save() {
+    this.awardWeekService.updateItems(this.awardWeek.id, this.awardWeek.items).subscribe(
+      {
+        next: response => {
+          console.log('atualização de semana de premios realizada com sucesso!', response)
+        },
+        error: error => {
+          console.log(error)
+        }
+      }
+    )
   }
 
   private findPokemonsImages() {
@@ -146,8 +179,9 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.pokemon.image = this.pokemonSelected!.image
       this.newAwardItem.pokemon.imageBlob = this.pokemonSelected!.imageBlob
       this.newAwardItem.pokemon.name = this.pokemonSelected!.name
+      this.newAwardItem.pokemon.gameId = ":" + this.pokemonSelected!.name
 
-      
+
     } else {
       this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
 

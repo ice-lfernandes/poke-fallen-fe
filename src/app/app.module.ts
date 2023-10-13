@@ -29,7 +29,7 @@ import { SaveProgressViewComponent } from './view/save-progress-view/save-progre
 import { SinopseViewComponent } from './shared/sinopse-view/sinopse-view.component';
 import { SystemViewComponent } from './shared/system-view/system-view.component';
 import { LoadingComponent } from './shared/loading/loading.component';
-import { JsonPipe } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { ManagerPokemonsComponent } from './view/internal/manager-pokemons/manager-pokemons.component';
 import { AwardWeekViewComponent } from './view/internal/manager-rewards-view/award-week-view/award-week-view.component';
 import { TypePokemonComponent } from './shared/form-award-item/type-pokemon/type-pokemon.component';
@@ -65,6 +65,7 @@ import { TypeItemComponent } from './shared/form-award-item/type-item/type-item.
     TypeItemComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,

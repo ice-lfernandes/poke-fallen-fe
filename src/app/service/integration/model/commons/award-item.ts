@@ -3,10 +3,10 @@ import { Pokemon } from "./pokemon"
 
 export class AwardItem {
 
-    name: String = ""
+    name: string = ""
     quantity: number = 1
-    occupation: String = ""
-    typeItemAward: String = ""
+    occupation: string = ""
+    typeItemAward: string | undefined
     pokemon: Pokemon = new Pokemon()
     item: ItemImage = new ItemImage()
 }

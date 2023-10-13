@@ -6,6 +6,9 @@ import { StatusAwardWeek } from './model/commons/status-award-week';
 import { environment } from 'src/environments/environment';
 import { AwardWeek } from './model/commons/award-week';
 import { el } from '@fullcalendar/core/internal-common';
+import { AwardItem } from './model/commons/award-item';
+import { AwardWeekUpdateRequest } from './model/request/award-week-update-request';
+import { AwardItemsRequest } from './model/request/award-items-request';
 
 const baseUrlAwardWeek: string = environment.apiUrl + '/award-week'
 
@@ -35,6 +38,22 @@ export class AwardWeekService {
     console.log(url)
 
     return this.http.get<AwardWeek[]>(url, this.httpOptionsWithAuthorization).pipe();
+  }
+
+  updateItems(awardWeekId: Number, awardItemsList: AwardItem[]): Observable<any> {
+    let itemsRequest = awardItemsList.map(item => {
+      if (item.pokemon.name != null) {
+        return new AwardItemsRequest(item.name, item.quantity, item.occupation, item.pokemon)
+      } else {
+        return new AwardItemsRequest(item.name, item.quantity, item.occupation, null, item.item)
+      }
+    })
+    console.log(itemsRequest)
+    return this.http.put<any>(
+      baseUrlAwardWeek + "/" + awardWeekId,
+      new AwardWeekUpdateRequest(itemsRequest),
+      this.httpOptionsWithAuthorization)
+      .pipe()
   }
 
 }

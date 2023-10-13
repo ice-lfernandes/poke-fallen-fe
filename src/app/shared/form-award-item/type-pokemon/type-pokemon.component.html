@@ -1,95 +1,114 @@
-<div class="mb-3 text-center">
-    <img [src]="pokemon.imageBlob" [alt]="pokemon.name" class="pokemon-image">
-</div>
-<div class="row">
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" disabled="true" [value]="pokemon.name"
-                placeholder="pokemon">
-            <label for="floatingInput">Pokemon</label>
+<form #pokemonForm="ngForm" (ngSubmit)="action">
+    <div class="mb-3 text-center">
+        <img [src]="awardItem.pokemon.imageBlob" [alt]="awardItem.pokemon.name" class="pokemon-image">
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" disabled="true" name="gameId"
+                    [(ngModel)]="awardItem.pokemon.gameId" placeholder="Game ID">
+                <label for="floatingInput">Game ID</label>
+            </div>
+        </div>
+
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="occupation"
+                    [(ngModel)]="awardItem.occupation" placeholder="Cargo do Prêmio">
+                <label for="floatingInput">Cargo do Prêmio</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.name" required
+                    name="name-award" placeholder="Nome do Prêmio">
+                <label for="floatingInput">Nome do Prêmio</label>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.pokemon.stats.shiny"
+                    name="shiny" placeholder="Shiny">
+                <label for="floatingInput">Shiny</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput"
+                    [(ngModel)]="awardItem.pokemon.stats.individualValueType" name="type-iv" placeholder="Tipo EV">
+                <label for="floatingInput">Tipo EV</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.pokemon.stats.nature"
+                    required name="nature" placeholder="Natureza">
+                <label for="floatingInput">Natureza</label>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingInput" name="ev-hp"
+                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.hp" placeholder="Ponts EV">
+                <label for="floatingInput">Pontos de HP</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingInput" name="ev-attack"
+                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.attack" placeholder="Pontos de Ataque">
+                <label for="floatingInput">Pontos de Ataque</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingInput" name="ev-defense"
+                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.defense" placeholder="Pontos de Defesa">
+                <label for="floatingInput">Pontos de Defesa</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingInput" name="ev-defense-special"
+                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialDefense"
+                    placeholder="Points de Defesa Especial">
+                <label for="floatingInput">Points de Defesa Especial</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingInput" name="ev-attack-special"
+                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialAttack"
+                    placeholder="Pontos de Ataque Especial">
+                <label for="floatingInput">Pontos de Ataque Especial</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingInput" name="ev-speed"
+                    [(ngModel)]="awardItem.pokemon.stats.experienceValues.speed" placeholder="Pontos de Velocidade">
+                <label for="floatingInput">Pontos de Velocidade</label>
+            </div>
         </div>
     </div>
 
-
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" [value]="pokemon.stats?.nature"
-                placeholder="Natureza">
-            <label for="floatingInput">Natureza</label>
-        </div>
-    </div>
-
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" [value]="pokemon.stats?.form"
-                placeholder="Forma">
-            <label for="floatingInput">Forma</label>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="number" class="form-control" id="floatingInput" [value]="pokemon.stats?.experienceValues"
-                placeholder="Ponts EV">
-            <label for="floatingInput">Pontos de HP</label>
-        </div>
-    </div>
-
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="number" class="form-control" id="floatingInput" [value]="pokemon.stats?.individualValues"
-                placeholder="Pontos IV">
-            <label for="floatingInput">Pontos de Ataque</label>
-        </div>
-    </div>
-
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="number" class="form-control" id="floatingInput" [value]="pokemon.stats?.individualValues"
-                placeholder="Pontos IV">
-            <label for="floatingInput">Pontos de Defesa</label>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="number" class="form-control" id="floatingInput" [value]="pokemon.stats?.experienceValues"
-                placeholder="Ponts EV">
-            <label for="floatingInput">Points de Defesa Especial</label>
-        </div>
-    </div>
-
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="number" class="form-control" id="floatingInput" [value]="pokemon.stats?.individualValues"
-                placeholder="Pontos IV">
-            <label for="floatingInput">Pontos de Ataque Especial</label>
-        </div>
-    </div>
-
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="number" class="form-control" id="floatingInput" [value]="pokemon.stats?.individualValues"
-                placeholder="Pontos IV">
-            <label for="floatingInput">Pontos de Velocidade</label>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" [value]="pokemon.stats?.shiny"
-                placeholder="Shiny">
-            <label for="floatingInput">Shiny</label>
-        </div>
-    </div>
-
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="number" class="form-control" id="floatingInput" [value]="pokemon.gameID" placeholder="Game ID">
-            <label for="floatingInput">Game ID</label>
-        </div>
-    </div>
-</div>
+</form>

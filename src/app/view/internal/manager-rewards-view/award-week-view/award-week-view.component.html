@@ -1,8 +1,25 @@
 <div class="card border-secondary">
-    <div class="card-header text-center">
+    <div class="card-header text-center mb-2">
         <h2 class="card-title">Sorteio Semanal</h2>
         <h5>Data: {{formatDateTime(awardWeek.dateTime)}}</h5>
         <h5 class="card-title">Status: Agendado</h5>
+
+        <!-- <button class="btn btn-sm btn-primary me-2">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+            VOLTAR
+        </button> -->
+        <button class="btn btn-sm btn-primary me-2" (click)="revertAction()">
+            <fa-icon [icon]="faRotateLeft"></fa-icon>
+            REVERTER
+        </button>
+        <button class="btn btn-sm btn-primary me-2" (click)="newItem(content_new_item)">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            NOVO
+        </button>
+        <button class="btn btn-sm btn-primary me-2" (click)="save()">
+            <fa-icon [icon]="faFloppyDisk"></fa-icon>
+            SALVAR
+        </button>
     </div>
     <div class="card-body">
         <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
@@ -11,14 +28,10 @@
                 <ng-template ngbNavContent>
                     <br>
                     <div class="container row text-center">
-                        <div class="col-4 pokemon-presentation" *ngFor="let item of awardWeek.items">
+                        <div class="col-4 pokemon-presentation mb-2" *ngFor="let item of itemsBasic">
                             <div class="card border-secondary h-100">
                                 <div class="card-header">
                                     {{item.name}} | QTD: {{item.quantity}}
-                                    <!-- <br>
-                                    Qtd: {{item.quantity}}
-                                    <br>
-                                    Shiny: {{item.pokemon.stas?.shiny == true ? "Sim" : "Não"}} -->
                                 </div>
                                 <div class="text-center">
                                     <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name" class="pokemon-image">
@@ -43,12 +56,7 @@
                                         <input type="number" class="form-control" id="floatingInput"
                                             [(ngModel)]="item.quantity" placeholder="Quantidade">
                                     </div>
-                                    <app-type-pokemon [pokemon]="item.pokemon"></app-type-pokemon>
-                                    <br>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-primary"
-                                            (click)="modal.close('Save click')">SALVAR</button>
-                                    </div>
+                                    <app-type-pokemon [awardItem]="item"></app-type-pokemon>
                                 </div>
                             </ng-template>
                         </div>
@@ -58,7 +66,41 @@
             <li [ngbNavItem]="2">
                 <button ngbNavLink>Premium</button>
                 <ng-template ngbNavContent>
+                    <br>
+                    <div class="container row text-center">
+                        <div class="col-4 pokemon-presentation mb-2" *ngFor="let item of itemsPremium">
+                            <div class="card border-secondary h-100">
+                                <div class="card-header">
+                                    {{item.name}} | QTD: {{item.quantity}}
+                                </div>
+                                <div class="text-center">
+                                    <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name" class="pokemon-image">
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button class="btn btn-sm btn-primary me-2">
+                                        <fa-icon [icon]="faPencil" (click)="open(content)"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-sm btn-primary">
+                                        <fa-icon [icon]="faMinus" (click)="removeItem(item)"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
 
+                            <ng-template #content let-modal class="modal-pokemon-award-item">
+                                <div class="modal-header secondary">
+                                    <h4 class="modal-title text-center" id="modal-basic-title">{{item.name}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3 col-2">
+                                        <label for="floatingInput">Quantidade</label>
+                                        <input type="number" class="form-control" id="floatingInput"
+                                            [(ngModel)]="item.quantity" placeholder="Quantidade">
+                                    </div>
+                                    <app-type-pokemon [awardItem]="item"></app-type-pokemon>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
                 </ng-template>
             </li>
 
@@ -66,24 +108,6 @@
 
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
-        <div class="text-center mt-5">
-            <!-- <button class="btn btn-sm btn-primary me-2">
-                <fa-icon [icon]="faArrowLeft"></fa-icon>
-                VOLTAR
-            </button> -->
-            <button class="btn btn-sm btn-primary me-2" (click)="revertAction()">
-                <fa-icon [icon]="faRotateLeft"></fa-icon>
-                REVERTER
-            </button>
-            <button class="btn btn-sm btn-primary me-2" (click)="newItem(content_new_item)">
-                <fa-icon [icon]="faPlus"></fa-icon>
-                NOVO
-            </button>
-            <button class="btn btn-sm btn-primary me-2">
-                <fa-icon [icon]="faFloppyDisk"></fa-icon>
-                SALVAR
-            </button>
-        </div>
     </div>
 
     <ng-template #content_new_item let-modal>
@@ -128,7 +152,7 @@
                 <div class="text-center">
                     <form *ngIf="!(pokemonSelected == undefined)"
                         class="form-pokemon-item  animate__animated animate__zoomIn">
-                        <app-type-pokemon [pokemon]="newAwardItem.pokemon"></app-type-pokemon>
+                        <app-type-pokemon [awardItem]="newAwardItem" [action]="saveNewAwardItem"></app-type-pokemon>
                     </form>
                 </div>
             </div>
@@ -149,7 +173,10 @@
             <br>
 
             <div class="text-center mt-3">
-                <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">SALVAR</button>
+                <button type="button" class="btn btn-primary" (click)="saveNewAwardItem()">
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                    ADICIONAR
+                </button>
             </div>
         </div>
     </ng-template>

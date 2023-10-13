@@ -27,6 +27,11 @@ input {
     border: 1px solid #666 !important;
 }
 
+/** Selects */
+select {
+    border: 1px solid #666 !important;
+}
+
 .toast-alert {
     background-color: transparent;
     border: transparent;
