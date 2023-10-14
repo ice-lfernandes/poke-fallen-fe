@@ -1,3 +1,4 @@
+import { Item } from "../commons/item"
 import { ItemImage } from "../commons/item-image"
 import { Pokemon } from "../commons/pokemon"
 
@@ -7,11 +8,11 @@ export class AwardItemsRequest {
     quantity: number = 1
     occupation: string = ""
     pokemon: Pokemon | null
-    item: ItemImage | null
+    item: Item | null
 
     constructor(name: string, quantity: number, occupation: string, 
         pokemon: Pokemon | null = null, 
-        item: ItemImage | null = null) {
+        item: Item | null = null) {
         this.name = name
         this.quantity = quantity
         this.occupation = occupation

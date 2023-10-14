@@ -1,6 +1,7 @@
 export enum StatusAwardWeek {
 
-    FINISHED, SCHEDULED
+    FINISHED = "FINISHED", 
+    SCHEDULED = "SCHEDULE"
 
    
 }

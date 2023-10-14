@@ -8,7 +8,7 @@
             <fa-icon [icon]="faArrowLeft"></fa-icon>
             VOLTAR
         </button> -->
-        <ng-template *ngIf="awardWeekCanUpdatable()">
+        <ng-template [ngIf]="awardWeekCanUpdatable()">
             <button class="btn btn-sm btn-primary me-2" (click)="revertAction()">
                 <fa-icon [icon]="faRotateLeft"></fa-icon>
                 REVERTER
@@ -39,7 +39,7 @@
                                     {{item.name}} | QTD: {{item.quantity}}
                                 </div>
                                 <div class="text-center">
-                                    <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name" class="pokemon-image">
+                                    <img [src]="item.validImageBlob" class="pokemon-image">
                                 </div>
                                 <div *ngIf="awardWeekCanUpdatable()" class="card-footer text-center">
                                     <button class="btn btn-sm btn-primary me-2">
@@ -67,8 +67,10 @@
                                             [disabled]="!awardWeekCanUpdatable()" [(ngModel)]="item.quantity"
                                             placeholder="Quantidade">
                                     </div>
-                                    <app-type-pokemon [awardItem]="item"
+                                    <app-type-pokemon [awardItem]="item" *ngIf="item.pokemon != undefined"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
+                                    <app-type-item [awardItem]="item" *ngIf="item.item != undefined"
+                                        [disableEdit]="!awardWeekCanUpdatable()"></app-type-item>
                                 </div>
                             </ng-template>
                         </div>
@@ -179,7 +181,7 @@
                 <div class="text-center">
                     <form *ngIf="!(itemSelected == undefined)"
                         class="form-pokemon-item  animate__animated animate__zoomIn">
-                        <app-type-item [item]="newAwardItem.item"></app-type-item>
+                        <app-type-item [awardItem]="newAwardItem"></app-type-item>
                     </form>
                 </div>
             </div>

@@ -1,12 +1,32 @@
-<div class="mb-3 text-center">
-    <img [src]="item.imageBlob" [alt]="item.name" class="pokemon-image">
-</div>
-<div class="row">
-    <div class="col-4 mb-3">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" disabled="true" [value]="item.name"
-                placeholder="item">
-            <label for="floatingInput">Item</label>
+<form #itemForm="ngForm">
+    <div class="mb-3 text-center">
+        <img [src]="awardItem.item.imageBlob" [alt]="awardItem.item.name" class="pokemon-image">
+    </div>
+    <div class="row mb-1">
+        <h6 class="red">Dados do Prêmio</h6>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" disabled="true" [(ngModel)]="awardItem.item.gameId" name="gameId"
+                    placeholder="Game ID">
+                <label for="floatingInput">Game ID</label>
+            </div>
+        </div>
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="occupation" [disabled]="disableEdit"
+                    [(ngModel)]="awardItem.occupation" placeholder="Cargo do Prêmio">
+                <label for="floatingInput">Cargo do Prêmio</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.name"
+                    [disabled]="disableEdit" name="name-award" placeholder="Nome do Prêmio">
+                <label for="floatingInput">Nome do Prêmio</label>
+            </div>
         </div>
     </div>
-</div>
+</form>

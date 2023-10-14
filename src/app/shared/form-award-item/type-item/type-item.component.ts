@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ItemImage } from 'src/app/service/integration/model/commons/item-image';
+import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 
 @Component({
   selector: 'app-type-item',
@@ -8,7 +8,9 @@ import { ItemImage } from 'src/app/service/integration/model/commons/item-image'
 })
 export class TypeItemComponent {
 
-@Input()
-item!: ItemImage
+  @Input()
+  awardItem!: AwardItem
+  @Input()
+  disableEdit!: boolean
 
 }

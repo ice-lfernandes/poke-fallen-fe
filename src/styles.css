@@ -22,6 +22,16 @@ body {
     color: #B22222 !important;
 }
 
+/* .btn.btn-primary {
+    background-color: #B22222 !important;
+    border-color: #B22222 !important;
+}
+
+.btn.btn-primary:hover {
+    background-color: #880808 !important;
+    border-color: #880808 !important;
+} */
+
 /** Input */
 input {
     border: 1px solid #666 !important;
@@ -66,9 +76,9 @@ a:hover {
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
-     border-top-left-radius: 5px;
-     border-top-right-radius: 5px;
- }
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 
 
 /** Main classes */
@@ -98,13 +108,13 @@ a:hover {
     color: white;
 }
 
-.text-title{
-  font-weight: bold;
-  font-size: 4.6em;
-  transition: 500ms linear;
+.text-title {
+    font-weight: bold;
+    font-size: 4.6em;
+    transition: 500ms linear;
 }
 
-.text-paragraph{
-  font-size: 2em;
-  transition: 500ms linear;
+.text-paragraph {
+    font-size: 2em;
+    transition: 500ms linear;
 }

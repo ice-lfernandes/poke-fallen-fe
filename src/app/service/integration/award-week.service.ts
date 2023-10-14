@@ -29,9 +29,9 @@ export class AwardWeekService {
   findByRangeDatas(dateInit: String, dateFinish: String, status: StatusAwardWeek | undefined): Observable<AwardWeek[]> {
     let url = baseUrlAwardWeek + '?dateInit=' + dateInit + "&dateFinish=" + dateFinish
 
-    if (status == 0) {
+    if (status === StatusAwardWeek.FINISHED) {
       url = url + "&status=" + "FINISHED"
-    } else if (status == 1) {
+    } else if (status === StatusAwardWeek.SCHEDULED) {
       url = url + "&status=" + "SCHEDULED"
     }
 
@@ -42,12 +42,13 @@ export class AwardWeekService {
 
   updateItems(awardWeekId: Number, awardItemsList: AwardItem[]): Observable<any> {
     let itemsRequest = awardItemsList.map(item => {
-      if (item.pokemon.name != null) {
+      if (item.pokemon != undefined && item.pokemon.name != '') {
         return new AwardItemsRequest(item.name, item.quantity, item.occupation, item.pokemon)
       } else {
         return new AwardItemsRequest(item.name, item.quantity, item.occupation, null, item.item)
       }
     })
+
     return this.http.put<any>(
       baseUrlAwardWeek + "/" + awardWeekId,
       new AwardWeekUpdateRequest(itemsRequest),

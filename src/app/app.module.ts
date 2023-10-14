@@ -64,7 +64,7 @@ import { ToastsComponent } from './shared/toasts/toasts.component';
     AwardWeekViewComponent,
     TypePokemonComponent,
     TypeItemComponent,
-    ToastsComponent,
+    ToastsComponent
   ],
   imports: [
     CommonModule,

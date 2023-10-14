@@ -13,7 +13,6 @@ import { ItemImage } from 'src/app/service/integration/model/commons/item-image'
 import { PokemonImage } from 'src/app/service/integration/model/commons/pokemon-image';
 import { PokemonService } from 'src/app/service/integration/pokemon.service';
 import { ToastService } from 'src/app/shared/toasts/toast-service.service';
-import { StatusAwardWeek } from 'src/app/service/integration/model/commons/status-award-week';
 
 @Component({
   selector: 'app-award-week-view',
@@ -65,6 +64,11 @@ export class AwardWeekViewComponent implements OnInit {
       if (item.pokemon != null) {
         let objectURL = 'data:image/jpeg;base64,' + item.pokemon.image
         item.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        item.validImageBlob = item.pokemon.imageBlob
+      } else {
+        let objectURL = 'data:image/jpeg;base64,' + item.item.image
+        item.item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        item.validImageBlob = item.item.imageBlob
       }
     })
     this.updateEacheTypeItems()
@@ -82,7 +86,7 @@ export class AwardWeekViewComponent implements OnInit {
   }
 
   awardWeekCanUpdatable(): boolean {
-    return this.awardWeek.status == StatusAwardWeek.SCHEDULED
+    return this.awardWeek.status === "SCHEDULED"
   }
 
   newItem(contentNewItem: any) {
@@ -191,7 +195,7 @@ export class AwardWeekViewComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       map((term) =>
-        term.length < 2 ? [] : this.itemsImage.map(p => p.name).filter((v) => v.indexOf(term.toUpperCase()) > -1).slice(0, 10),
+        term.length < 2 ? [] : this.itemsImage.map(i => i.name).filter((v) => v.indexOf(term.toUpperCase()) > -1).slice(0, 10),
       )
     );
 
@@ -203,7 +207,7 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.pokemon.imageBlob = this.pokemonSelected!.imageBlob
       this.newAwardItem.pokemon.name = this.pokemonSelected!.name
       this.newAwardItem.pokemon.gameId = ":" + this.pokemonSelected!.name
-
+      this.newAwardItem.validImageBlob = this.pokemonSelected!.imageBlob
 
     } else {
       this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
@@ -211,6 +215,8 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.item.image = this.itemSelected!.image
       this.newAwardItem.item.imageBlob = this.itemSelected!.imageBlob
       this.newAwardItem.item.name = this.itemSelected!.name
+      this.newAwardItem.item.gameId = ":" + this.itemSelected!.name
+      this.newAwardItem.validImageBlob = this.itemSelected!.imageBlob
     }
   }
 
