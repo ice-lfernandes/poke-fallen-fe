@@ -120,24 +120,25 @@
         <div class="row">
             <div class="col-4 mb-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="ev-defense-special"
-                        [disabled]="disableEdit" value="Ash" placeholder="Username do Jogador Premiado">
+                    <input type="text" class="form-control" id="floatingInput" name="username-player"
+                        [disabled]="disableEdit" [(ngModel)]="awardItem.player.username"
+                        placeholder="Username do Jogador Premiado">
                     <label for="floatingInput">Username do Jogador Premiado</label>
                 </div>
             </div>
 
             <div class="col-4 mb-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="ev-attack-special"
-                        [disabled]="disableEdit" value="12345" placeholder="GameID do Jogador Premiado">
-                    <label for="floatingInput">GameID do Jogador Premiado</label>
+                    <input type="text" class="form-control" id="floatingInput" name="playerId" [disabled]="disableEdit"
+                        [(ngModel)]="awardItem.player.playerId" placeholder="PlayerID do Jogador Premiado">
+                    <label for="floatingInput">PlayerID do Jogador Premiado</label>
                 </div>
             </div>
 
             <div class="col-4 mb-3">
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingInput" name="statusaward-item-delivery"
-                        [disabled]="disableEdit" value="Aguardando Recebimento"
+                        [disabled]="disableEdit" [(ngModel)]="awardItem.status"
                         placeholder="Status de Entrega do Prêmio">
                     <label for="floatingInput">Status de Entrega do Prêmio</label>
                 </div>

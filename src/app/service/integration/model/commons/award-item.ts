@@ -1,6 +1,7 @@
 import { Item } from "./item"
 import { Player } from "./player"
 import { Pokemon } from "./pokemon"
+import { StatusAwardItem } from "./status-award-item"
 
 export class AwardItem {
 
@@ -12,6 +13,7 @@ export class AwardItem {
     item: Item = new Item()
     player: Player | null = null
     validImageBlob: any
+    status: StatusAwardItem = StatusAwardItem.SCHEDULED
 
     updateValodImageBlob(): any {
         if (this.pokemon != null && this.pokemon.image.length > 0) {
