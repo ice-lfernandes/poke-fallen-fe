@@ -122,8 +122,8 @@ export class AwardWeekViewComponent implements OnInit {
   }
 
   private updateEacheTypeItems() {
-    this.itemsBasic = this.awardWeek.items.filter(i => i.occupation == 'BASIC')
-    this.itemsPremium = this.awardWeek.items.filter(i => i.occupation == 'PREMIUM')
+    this.itemsBasic = this.awardWeek.items.filter(i => i.occupation == 'Básico')
+    this.itemsPremium = this.awardWeek.items.filter(i => i.occupation == 'Premium')
   }
 
   save() {

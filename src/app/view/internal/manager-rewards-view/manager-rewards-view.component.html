@@ -65,19 +65,20 @@
     <div class="row">
         <ng-template [ngIf]="awardWeekList != [] && !awardWeekSelected">
             <div class="col-3" *ngFor="let week of awardWeekList">
-                <div class="card border-secondary text-center">
+                <div class="card border-secondary text-center h-100">
                     <div class="card-body">
-                        <h5 class="text-tittle">Data: {{formatDateTime(week.dateTime)}}</h5>
-                        <p class="card-text">
-                            Quantidade itens Básico: 25
-                            <br>
-                            Quantidade itens Premium: 25
-                            <br>
+                        <h5 class="text-tittle">Data/Hora: {{formatDate(week.dateTime)}}
+                            {{formatDateTime(week.dateTime)}}</h5>
+                        <h6 class="card-text">
                             Status: {{week.status}}
-                        </p>
-                        <button class="btn btn-sm btn-primary" (click)="detailAwardWeek(week)">
+                        </h6>
+                        <button class="btn btn-sm btn-primary me-2" (click)="detailAwardWeek(week)">
                             <fa-icon [icon]="faEye"></fa-icon>
                             DETALHAR
+                        </button>
+                        <button class="btn btn-sm btn-primary">
+                            <fa-icon [icon]="faShuffle"></fa-icon>
+                            SORTEAR
                         </button>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
     <div class="card-header text-center mb-2">
         <h2 class="card-title">Sorteio Semanal</h2>
         <h5>Data: {{formatDateTime(awardWeek.dateTime)}}</h5>
-        <h5 class="card-title">Status: Agendado</h5>
+        <h5 class="card-title">Status: {{awardWeek.status}}</h5>
 
         <!-- <button class="btn btn-sm btn-primary me-2">
             <fa-icon [icon]="faArrowLeft"></fa-icon>
@@ -88,14 +88,19 @@
                                     {{item.name}} | QTD: {{item.quantity}}
                                 </div>
                                 <div class="text-center">
-                                    <img [src]="item.pokemon.imageBlob" [alt]="item.pokemon.name" class="pokemon-image">
+                                    <img [src]="item.validImageBlob" class="pokemon-image">
                                 </div>
-                                <div class="card-footer text-center">
+                                <div *ngIf="awardWeekCanUpdatable()" class="card-footer text-center">
                                     <button class="btn btn-sm btn-primary me-2">
                                         <fa-icon [icon]="faPencil" (click)="open(content)"></fa-icon>
                                     </button>
                                     <button class="btn btn-sm btn-primary">
                                         <fa-icon [icon]="faMinus" (click)="removeItem(item)"></fa-icon>
+                                    </button>
+                                </div>
+                                <div *ngIf="!awardWeekCanUpdatable()" class="card-footer text-center">
+                                    <button class="btn btn-sm btn-primary me-2">
+                                        <fa-icon [icon]="faCircleInfo" (click)="open(content)"></fa-icon>
                                     </button>
                                 </div>
                             </div>
@@ -108,10 +113,13 @@
                                     <div class="mb-3 col-2">
                                         <label for="floatingInput">Quantidade</label>
                                         <input type="number" class="form-control" id="floatingInput"
-                                            [(ngModel)]="item.quantity" placeholder="Quantidade">
+                                            [disabled]="!awardWeekCanUpdatable()" [(ngModel)]="item.quantity"
+                                            placeholder="Quantidade">
                                     </div>
-                                    <app-type-pokemon [awardItem]="item"
+                                    <app-type-pokemon [awardItem]="item" *ngIf="item.pokemon != undefined"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
+                                    <app-type-item [awardItem]="item" *ngIf="item.item != undefined"
+                                        [disableEdit]="!awardWeekCanUpdatable()"></app-type-item>
                                 </div>
                             </ng-template>
                         </div>

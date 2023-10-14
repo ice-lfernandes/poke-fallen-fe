@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { faSearch, faCalendarDays, faEye, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faCalendarDays, faEye, faPencil, faShuffle } from '@fortawesome/free-solid-svg-icons';
 
 import { AwardWeekService } from 'src/app/service/integration/award-week.service';
 import { StatusAwardWeek } from 'src/app/service/integration/model/commons/status-award-week';
@@ -18,6 +18,7 @@ export class ManagerRewardsViewComponent {
   faCalendarDays = faCalendarDays
   faSearch = faSearch
   faEye = faEye
+  faShuffle = faShuffle
   faPencil = faPencil
 
   hoveredDate: NgbDate | null = null;
@@ -128,8 +129,12 @@ export class ManagerRewardsViewComponent {
     }
   };
 
+  formatDate(date: Date): String {
+    return formatDate(date, "dd/MM/yyyy", 'en-US')
+  }
+
   formatDateTime(date: Date): String {
-    return formatDate(date, "dd/MM/yyyy HH:mm", 'en-US')
+    return formatDate(date, "HH:mm", 'en-US')
   }
 
 }

@@ -22,7 +22,7 @@ body {
     color: #B22222 !important;
 }
 
-/* .btn.btn-primary {
+.btn.btn-primary {
     background-color: #B22222 !important;
     border-color: #B22222 !important;
 }
@@ -30,7 +30,7 @@ body {
 .btn.btn-primary:hover {
     background-color: #880808 !important;
     border-color: #880808 !important;
-} */
+}
 
 /** Input */
 input {
