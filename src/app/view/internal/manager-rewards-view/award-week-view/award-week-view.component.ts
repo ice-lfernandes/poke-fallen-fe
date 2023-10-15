@@ -86,7 +86,7 @@ export class AwardWeekViewComponent implements OnInit {
   }
 
   awardWeekCanUpdatable(): boolean {
-    return this.awardWeek.status === "SCHEDULED"
+    return this.awardWeek.status === "Agendado"
   }
 
   newItem(contentNewItem: any) {
