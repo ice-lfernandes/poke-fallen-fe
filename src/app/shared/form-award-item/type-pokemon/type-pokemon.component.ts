@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 
 
@@ -16,8 +16,12 @@ export class TypePokemonComponent {
   action!: (args: any) => void;
   @Input()
   disableEdit!: boolean
+  // @Input()
+  // @Output()
+  // enableToAdd: boolean = false
 
-  statusSelect: String = "0"
+  occupationList: String[] = ["Básico", "Premium"]
+  individualTypeValueList: String[] = ["Full IV", "Rank A"]
   natureList: String[] = [
     "",
     "ADAMANT",
@@ -47,9 +51,21 @@ export class TypePokemonComponent {
     "TIMID"
   ]
 
-  onChange(eventValue: String) {
-    this.awardItem.pokemon.stats!!.nature = eventValue
-    console.log(this.awardItem.pokemon.stats.nature)
-  }
+  // onChangeFields(): void {
+  //   this.enableToAdd = 
+  //     (this.awardItem.name != null && this.awardItem.name != "") &&
+  //     (this.awardItem.occupation != null && this.awardItem.occupation != "") &&
+  //     this.awardItem.pokemon != null && 
+  //     this.awardItem.pokemon.gameId != "" && 
+  //     this.awardItem.pokemon.name != "" &&
+  //     (this.awardItem.pokemon.stats.experienceValues.attack != 0 && this.awardItem.pokemon.stats.experienceValues.attack != undefined) &&
+  //     (this.awardItem.pokemon.stats.experienceValues.defense != 0 && this.awardItem.pokemon.stats.experienceValues.defense != undefined) &&
+  //     (this.awardItem.pokemon.stats.experienceValues.specialAttack != 0 && this.awardItem.pokemon.stats.experienceValues.specialAttack != undefined) &&
+  //     (this.awardItem.pokemon.stats.experienceValues.specialDefense != 0 && this.awardItem.pokemon.stats.experienceValues.specialDefense != undefined) &&
+  //     (this.awardItem.pokemon.stats.experienceValues.speed != 0 && this.awardItem.pokemon.stats.experienceValues.speed != undefined) && 
+  //     (this.awardItem.pokemon.stats.experienceValues.hp != 0 && this.awardItem.pokemon.stats.experienceValues.hp != undefined) && 
+  //     (this.awardItem.pokemon.stats.individualValueType != "") && 
+  //     (this.awardItem.pokemon.stats.nature != "") 
+  // }
 
 }

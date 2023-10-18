@@ -6,6 +6,7 @@ import { AwardWeekService } from 'src/app/service/integration/award-week.service
 import { StatusAwardWeek } from 'src/app/service/integration/model/commons/status-award-week';
 import { AwardWeek } from 'src/app/service/integration/model/commons/award-week';
 import { formatDate } from '@angular/common';
+import { AwardWeekLotteryService } from 'src/app/service/integration/award-week-lottery.service';
 
 @Component({
   selector: 'app-manager-rewards-view',
@@ -24,8 +25,8 @@ export class ManagerRewardsViewComponent {
   hoveredDate: NgbDate | null = null;
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
-  
-  
+
+
   status: StatusAwardWeek | undefined
   awardWeekList: AwardWeek[] = []
   loading: boolean = false
@@ -34,7 +35,7 @@ export class ManagerRewardsViewComponent {
   awardWeek!: AwardWeek
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
-    private awardWeekService: AwardWeekService) {
+    private awardWeekService: AwardWeekService, private lotteryAwardService: AwardWeekLotteryService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -48,6 +49,23 @@ export class ManagerRewardsViewComponent {
       this.toDate = null;
       this.fromDate = date;
     }
+  }
+
+  lottery() {
+    this.loading = true
+    let foundData = false
+    this.lotteryAwardService.lottery().subscribe(
+      {
+        next: response => {
+          console.log("sorteio realizado")
+        },
+        error: error => {
+          console.log(error)
+          this.loading = false
+          foundData = false
+        }
+      }
+    )
   }
 
   isHovered(date: NgbDate) {
@@ -116,7 +134,7 @@ export class ManagerRewardsViewComponent {
 
   }
 
- 
+
 
   private dateToString(date: NgbDate | null) {
     if (date) {

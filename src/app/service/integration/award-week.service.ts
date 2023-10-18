@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { StatusAwardWeek } from './model/commons/status-award-week';
 import { environment } from 'src/environments/environment';
 import { AwardWeek } from './model/commons/award-week';
-import { el } from '@fullcalendar/core/internal-common';
 import { AwardItem } from './model/commons/award-item';
 import { AwardWeekUpdateRequest } from './model/request/award-week-update-request';
 import { AwardItemsRequest } from './model/request/award-items-request';

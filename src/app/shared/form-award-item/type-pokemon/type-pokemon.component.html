@@ -17,9 +17,10 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="occupation" [disabled]="disableEdit"
-                    [(ngModel)]="awardItem.occupation" placeholder="Cargo do Prêmio">
-                <label for="floatingInput">Cargo do Prêmio</label>
+                <select class="form-control form-select" name="occupation" [(ngModel)]="awardItem.occupation" required>
+                    <option *ngFor="let occupation of occupationList" [value]="occupation">{{occupation}}</option>
+                </select>
+                <label for="floatingSelect">Cargo do Prêmio</label>
             </div>
         </div>
 
@@ -45,19 +46,22 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" [disabled]="disableEdit"
-                    [(ngModel)]="awardItem.pokemon.stats.individualValueType" name="type-iv" placeholder="Tipo IV">
-                <label for="floatingInput">Tipo IV</label>
+                <select class="form-control form-select" name="typeIV" [(ngModel)]="awardItem.pokemon.stats.individualValueType"
+                    required>
+                    <option *ngFor="let type of individualTypeValueList" [value]="type">{{type}}</option>
+                </select>
+                <label for="floatingSelect">Tipo IV</label>
             </div>
         </div>
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.pokemon.stats.nature"
-                    required name="nature" placeholder="Natureza" [disabled]="disableEdit">
-                <label for="floatingInput">Natureza</label>
+                <select class="form-control form-select" name="nature"
+                    [(ngModel)]="awardItem.pokemon.stats.nature" required>
+                    <option *ngFor="let typeNature of natureList" [value]="typeNature">{{typeNature}}</option>
+                </select>
+                <label for="floatingSelect">Natureza</label>
             </div>
-
         </div>
 
     </div>

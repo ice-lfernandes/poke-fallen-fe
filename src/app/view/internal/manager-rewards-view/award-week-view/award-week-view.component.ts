@@ -44,6 +44,7 @@ export class AwardWeekViewComponent implements OnInit {
   active = 1
   closeResult = '';
   loading: boolean = false
+  enableToAdd: boolean = false
 
   typeItemChoose: string = 'pokemon'
   itemChoose: any;
