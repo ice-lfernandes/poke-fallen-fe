@@ -26,6 +26,8 @@ export class AdminPlayersViewComponent implements OnInit {
   tableResponse!: PlayersPaginateResponse
   players: Player[] = []
   total: number = 0
+  page = 1
+  size = 10
 
   // Actions
   actionChoice: ActionChoice = ActionChoice.INFORMATION
@@ -35,14 +37,28 @@ export class AdminPlayersViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.players = []
-    this.playerService.findAllPlayers()
+    this.playerService.findAllPlayers(this.page)
       .subscribe(response => {
+        console.log(response)
         this.tableResponse = response
         this.players = response.content
-        this.total = response.numberOfElements
+        this.total = response.totalElements
       },
         error => console.log(error))
   }
+
+  refreshTable() {
+    this.playerService.findAllPlayers(this.page)
+      .subscribe(response => {
+        console.log(response)
+        this.tableResponse = response
+        this.players = response.content
+        this.total = response.totalElements
+      },
+        error => console.log(error))
+  }
+
+
 
 
   openModalInformation(player: Player) {

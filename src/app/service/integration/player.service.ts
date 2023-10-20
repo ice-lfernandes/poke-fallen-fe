@@ -57,15 +57,15 @@ export class PlayerService {
       .get<Player>(baseUrlPlayers + "/" + playerId, this.httpOptionsWithAuthorization).pipe()
   }
 
-  findAllPlayers(): Observable<PlayersPaginateResponse> {
+  findAllPlayers(page: number): Observable<PlayersPaginateResponse> {
     return this.http
-      .get<PlayersPaginateResponse>(baseUrlPlayers, this.httpOptionsWithAuthorization).pipe()
+      .get<PlayersPaginateResponse>(baseUrlPlayers + "?size=10&page=" + (page - 1), this.httpOptionsWithAuthorization).pipe()
   }
 
   downloadGameSave(playerId: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-      'Content-Type' : 'application/octet-stream'
+      'Content-Type': 'application/octet-stream'
     })
     return this.http.get(baseUrlGamesSave + "/" + playerId + "/download", { headers, responseType: 'blob' })
   }

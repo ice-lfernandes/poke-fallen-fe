@@ -3,7 +3,8 @@ import { Player } from "../commons/player";
 export interface PlayersPaginateResponse {
 
     content: Player[];
-    numberOfElements: number;
+    totalElements: number;
     number: number;
 	size: number;
+    numberOfElements: number
 }

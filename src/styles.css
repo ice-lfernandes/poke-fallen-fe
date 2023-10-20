@@ -118,3 +118,14 @@ a:hover {
     font-size: 2em;
     transition: 500ms linear;
 }
+
+/** Table */
+.active>.page-link,
+.page-link.active {
+    background-color: #B22222;
+    border-color: #B22222;
+}
+
+.page-link {
+    color: #B22222
+}
