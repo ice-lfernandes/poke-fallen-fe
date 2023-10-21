@@ -1,59 +1,71 @@
 <form>
     <div class="row">
         <div class="col-4">
-            <label for="exampleFormControlInput1" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.email"
-                name="email">
-
+            <div class="form-floating">
+                <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.email"
+                    name="email">
+                <label for="exampleFormControlInput1" class="form-label">Email:</label>
+            </div>
         </div>
         <div class="col-4">
-            <label for="exampleFormControlInput1" class="form-label">Username:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.username"
-                name="username" [readOnly]="isUser">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.username"
+                    name="username" [readOnly]="isUser">
+                <label for="exampleFormControlInput1" class="form-label">Username:</label>
+            </div>
         </div>
         <div class="col-4">
-            <label for="exampleFormControlInput1" class="form-label">Nome Completo:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.name" name="name">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.name"
+                    name="name">
+                <label for="exampleFormControlInput1" class="form-label">Nome Completo:</label>
+            </div>
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col-3">
-            <label for="exampleFormControlInput1" class="form-label">Card Id:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.playerId"
-                name="playerId" [readOnly]="isUser">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.playerId"
+                    name="playerId" [readOnly]="isUser">
+                <label for="exampleFormControlInput1" class="form-label">Card Id:</label>
+            </div>
         </div>
         <div class="col-3">
-            <label for="exampleFormControlInput1" class="form-label">Points:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.points"
-                name="points" [readOnly]="!isUser">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="player.points"
+                    name="points" [readOnly]="!isUser">
+                <label for="exampleFormControlInput1" class="form-label">Points:</label>
+            </div>
         </div>
         <div class="col-3">
-            <label for="exampleFormControlInput1" class="form-label">Cargo:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" [value]="player.prettyOccupations"
-                name="cargo" [readOnly]="!isUser">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="exampleFormControlInput1" [value]="player.prettyOccupations"
+                    name="cargo" [readOnly]="!isUser">
+                <label for="exampleFormControlInput1" class="form-label">Cargo:</label>
+            </div>
         </div>
         <div class="col-3">
-            <label for="exampleFormControlInput1" class="form-label">Status:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" value="INATIVO" name="status"
-                [readOnly]="isUser">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="exampleFormControlInput1" value="INATIVO" name="status"
+                    [readOnly]="isUser">
+                <label for="exampleFormControlInput1" class="form-label">Status:</label>
+            </div>
         </div>
     </div>
     <br>
     <div class="row">
 
         <div class="col-5">
-        </div>
+        </div>  
         <div class="col-2">
-            <button class="btn btn-primary btn-login mb-3" (click)="updateBasicData()">SALVAR</button>
+            <button class="btn btn-primary btn-login mb-3" (click)="updateBasicData()">
+                <fa-icon [icon]="faFloppyDisk"></fa-icon>
+                SALVAR
+            </button>
             <app-loading [loading]="loading"></app-loading>
         </div>
         <div class="col-5">
-        </div>
-    </div>
-    <div class="row">
-        <div *ngIf="submitted" [class]="classAfterSubmitted" role="alert">
-            {{msgAfterSubmitted}}
         </div>
     </div>
 </form>

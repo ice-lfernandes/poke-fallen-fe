@@ -1,5 +1,5 @@
 import { Component, OnInit, PipeTransform, QueryList, ViewChildren } from '@angular/core';
-import { faFloppyDisk, faTrash, faPen, faHandHoldingDollar } from '@fortawesome/free-solid-svg-icons';
+import { faFloppyDisk, faTrash, faPen, faHandHoldingDollar, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { Player } from 'src/app/service/integration/model/commons/player';
 import { PlayersPaginateResponse } from 'src/app/service/integration/model/response/players-paginate-response';
@@ -21,6 +21,7 @@ export class AdminPlayersViewComponent implements OnInit {
   faFloppyDisk = faFloppyDisk
   faHandHoldingDollar = faHandHoldingDollar
   faTrash = faTrash
+  faSearch = faSearch
 
   // Datatable
   tableResponse!: PlayersPaginateResponse
@@ -29,33 +30,36 @@ export class AdminPlayersViewComponent implements OnInit {
   page = 1
   size = 10
 
+  // Filters
+  playerIdSearchFilter: string | undefined
+  usernameSearchFilter: string | undefined
+
   // Actions
   actionChoice: ActionChoice = ActionChoice.INFORMATION
   playerSelected: Player | undefined
+  loading: boolean = false
 
   constructor(private playerService: PlayerService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.players = []
-    this.playerService.findAllPlayers(this.page)
-      .subscribe(response => {
-        console.log(response)
-        this.tableResponse = response
-        this.players = response.content
-        this.total = response.totalElements
-      },
-        error => console.log(error))
+    this.refreshTable()
   }
 
   refreshTable() {
-    this.playerService.findAllPlayers(this.page)
+    this.loading = true
+    this.playerService.findAllPlayers(this.page, this.playerIdSearchFilter, this.usernameSearchFilter)
       .subscribe(response => {
         console.log(response)
         this.tableResponse = response
         this.players = response.content
         this.total = response.totalElements
+        this.loading = false
       },
-        error => console.log(error))
+        error => {
+          console.log(error)
+          this.loading = false
+        })
   }
 
 

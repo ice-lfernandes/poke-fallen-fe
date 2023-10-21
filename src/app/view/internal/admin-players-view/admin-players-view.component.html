@@ -1,6 +1,25 @@
 <app-menu-lateral>
-    <div class="animate__animated animate__zoomIn container player-content m-3">
-        <div class="row">
+    <div class="row mb-3">
+        <div class="col-3">
+            <label for="player-id-search" class="form-label">Player ID: </label>
+            <input id="player-id-search" type="text" class="form-control" name="player-id-search" [(ngModel)]="playerIdSearchFilter"/>
+        </div>
+        <div class="col-3">
+            <label for="username-search" class="form-label">Usuário: </label>
+            <input id="username-search" type="text" class="form-control" name="username-search" [(ngModel)]="usernameSearchFilter"/>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary" style="margin-top: 30px;" (click)="refreshTable()">
+                <fa-icon [icon]="faSearch"></fa-icon>
+                PESQUISAR
+            </button>
+        </div>
+    </div>
+    <div class="col-12">
+        <app-loading [loading]="loading"></app-loading>
+    </div>
+    <div class="row">
+        <div class="col-12">
             <ng-template [ngIf]="players != []">
                 <table class="table table-hover">
                     <thead class="table-dark">
@@ -27,22 +46,20 @@
                             <td>{{ player.username }}</td>
                             <td>{{ player.points }}</td>
                             <td>{{ player.prettyOccupations }}</td>
-
+    
                         </tr>
                     </tbody>
                 </table>
-
+    
                 <div class="d-flex justify-content-between p-2 end-0">
                     <ngb-pagination [collectionSize]="total" [(page)]="page" [pageSize]="size"
                         (pageChange)="refreshTable()">
                     </ngb-pagination>
-
+    
                     <h5 class="red">TOTAL: {{total}}</h5>
                 </div>
-
+    
             </ng-template>
-
-
         </div>
     </div>
 

@@ -57,9 +57,21 @@ export class PlayerService {
       .get<Player>(baseUrlPlayers + "/" + playerId, this.httpOptionsWithAuthorization).pipe()
   }
 
-  findAllPlayers(page: number): Observable<PlayersPaginateResponse> {
+  findAllPlayers(page: number, playerIdSearch: string | undefined = undefined, usernameSearch: string | undefined = undefined): Observable<PlayersPaginateResponse> {
+    let url = baseUrlPlayers + "?size=10&page=" + (page - 1)
+
+    if (playerIdSearch != undefined) {
+      url = url + "&playerId=" + playerIdSearch
+    }
+
+    if (usernameSearch != undefined) {
+      url = url + "&name=" + usernameSearch
+    }
+
+    console.log(url)
+
     return this.http
-      .get<PlayersPaginateResponse>(baseUrlPlayers + "?size=10&page=" + (page - 1), this.httpOptionsWithAuthorization).pipe()
+      .get<PlayersPaginateResponse>(url, this.httpOptionsWithAuthorization).pipe()
   }
 
   downloadGameSave(playerId: string): Observable<any> {
