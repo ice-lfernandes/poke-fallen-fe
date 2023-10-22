@@ -32,8 +32,8 @@
                 <button ngbNavLink>Básico</button>
                 <ng-template ngbNavContent>
                     <br>
-                    <div class="container row text-center">
-                        <div class="col-4 pokemon-presentation mb-2" *ngFor="let item of itemsBasic">
+                    <div class="container row text-center" style="overflow-y: auto; max-height: 50vh;">
+                        <div class="col-3 pokemon-presentation mb-2" *ngFor="let item of itemsBasic">
                             <div class="card border-secondary h-100">
                                 <div class="card-header">
                                     {{item.name}} | QTD: {{item.quantity}}
@@ -67,9 +67,9 @@
                                             [disabled]="!awardWeekCanUpdatable()" [(ngModel)]="item.quantity"
                                             placeholder="Quantidade">
                                     </div>
-                                    <app-type-pokemon [awardItem]="item" *ngIf="item.pokemon != undefined"
+                                    <app-type-pokemon [awardItem]="item" *ngIf="!item.isItem"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
-                                    <app-type-item [awardItem]="item" *ngIf="item.item != undefined"
+                                    <app-type-item [awardItem]="item" *ngIf="item.isItem"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-item>
                                 </div>
                             </ng-template>
@@ -171,7 +171,6 @@
                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="itemChoose"
                     [ngbTypeahead]="searchPokemons" (change)="updateModel()" />
                 <label for="typeahead-basic" class="form-label">Escolha o Pokemon:</label>
-                <br>
                 <div class="text-center">
                     <form *ngIf="!(pokemonSelected == undefined)"
                         class="form-pokemon-item  animate__animated animate__zoomIn">

@@ -14,6 +14,7 @@ export class AwardItem {
     player: Player | null = null
     validImageBlob: any
     status: StatusAwardItem = StatusAwardItem.SCHEDULED
+    isItem: boolean = false
 
     updateValodImageBlob(): any {
         if (this.pokemon != null && this.pokemon.image.length > 0) {

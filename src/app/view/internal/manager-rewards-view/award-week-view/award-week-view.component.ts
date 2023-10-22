@@ -209,6 +209,7 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.pokemon.name = this.pokemonSelected!.name
       this.newAwardItem.pokemon.gameId = ":" + this.pokemonSelected!.name
       this.newAwardItem.validImageBlob = this.pokemonSelected!.imageBlob
+      this.newAwardItem.isItem = false
 
     } else {
       this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
@@ -218,6 +219,7 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.item.name = this.itemSelected!.name
       this.newAwardItem.item.gameId = ":" + this.itemSelected!.name
       this.newAwardItem.validImageBlob = this.itemSelected!.imageBlob
+      this.newAwardItem.isItem = true
     }
   }
 

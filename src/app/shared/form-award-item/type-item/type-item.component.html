@@ -15,9 +15,10 @@
         </div>
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="occupation" [disabled]="disableEdit"
-                    [(ngModel)]="awardItem.occupation" placeholder="Cargo do Prêmio">
-                <label for="floatingInput">Cargo do Prêmio</label>
+                <select class="form-control form-select" name="occupation" [(ngModel)]="awardItem.occupation" required>
+                    <option *ngFor="let occupation of occupationList" [value]="occupation">{{occupation}}</option>
+                </select>
+                <label for="floatingSelect">Cargo do Prêmio</label>
             </div>
         </div>
 

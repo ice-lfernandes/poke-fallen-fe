@@ -119,6 +119,13 @@ a:hover {
     transition: 500ms linear;
 }
 
+/** Components */
+.pokemon-image {
+    width: 100px;
+    height: 100px;
+}
+
+
 /** Table */
 .active>.page-link,
 .page-link.active {

@@ -13,4 +13,6 @@ export class TypeItemComponent {
   @Input()
   disableEdit!: boolean
 
+  occupationList: String[] = ["Básico", "Premium"]
+
 }

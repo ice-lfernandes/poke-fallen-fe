@@ -1,92 +1,94 @@
 <app-menu-lateral>
-    <div class="row">
-        <div class="col-3">
-            <label for="date-init" class="form-label">Data Inicio: </label>
-        </div>
-        <div class="col-3">
-            <label for="date-init" class="form-label">Data Fim: </label>
-        </div>
-        <div class="col-3">
-            <label for="date-init" class="form-label">Status: </label>
-        </div>
-    </div>
-    <form class="row row-cols-sm-auto mb-5">
-        <div class="col-12">
-            <div class="dp-hidden position-absolute">
-                <div class="input-group">
-                    <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
-                        [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                        [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1" />
-                    <ng-template #t let-date let-focused="focused">
-                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                            (mouseleave)="hoveredDate = null">
-                            {{ date.day }}
-                        </span>
-                    </ng-template>
-                </div>
+    <div>
+        <div class="row">
+            <div class="col-3">
+                <label for="date-init" class="form-label">Data Inicio: </label>
             </div>
-            <div class="input-group">
-                <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
-                    [value]="formatter.format(fromDate)"
-                    (input)="fromDate = validateInput(fromDate, dpFromDate.value)" />
-                <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
-                    <fa-icon [icon]="faCalendarDays"></fa-icon>
-                </button>
+            <div class="col-3">
+                <label for="date-init" class="form-label">Data Fim: </label>
+            </div>
+            <div class="col-3">
+                <label for="date-init" class="form-label">Status: </label>
             </div>
         </div>
-        <div class="col-12">
-            <div class="input-group">
-                <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
-                    [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)" />
-                <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
-                    <fa-icon [icon]="faCalendarDays"></fa-icon>
-                </button>
-            </div>
-        </div>
-        <div class="col-12">
-            <select class="form-select" [ngModel]="statusSelect" (ngModelChange)="onChange($event)"
-                name="status-award-week">
-                <option *ngFor="let statusOption of statusList" [value]="statusOption">{{statusOption}}</option>
-            </select>
-        </div>
-        <div class="col-12">
-            <button class="btn btn-primary" (click)="search()">
-                <fa-icon [icon]="faSearch"></fa-icon>
-                PESQUISAR
-            </button>
-        </div>
-    </form>
-
-    <div class="col-12">
-        <app-loading [loading]="loading"></app-loading>
-    </div>
-
-    <div class="row">
-        <ng-template [ngIf]="awardWeekList != [] && !awardWeekSelected">
-            <div class="col-3" *ngFor="let week of awardWeekList">
-                <div class="card border-secondary text-center h-100">
-                    <div class="card-body">
-                        <h5 class="text-tittle">Data/Hora: {{formatDate(week.dateTime)}}
-                            {{formatDateTime(week.dateTime)}}</h5>
-                        <h6 class="card-text">
-                            Status: {{week.status}}
-                        </h6>
-                        <button class="btn btn-sm btn-primary me-2" (click)="detailAwardWeek(week)">
-                            <fa-icon [icon]="faEye"></fa-icon>
-                            DETALHAR
-                        </button>
-                        <button class="btn btn-sm btn-primary" (click)="lottery()">
-                            <fa-icon [icon]="faShuffle"></fa-icon>
-                            SORTEAR
-                        </button>
+        <form class="row row-cols-sm-auto mb-5">
+            <div class="col-12">
+                <div class="dp-hidden position-absolute">
+                    <div class="input-group">
+                        <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
+                            [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                            [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1" />
+                        <ng-template #t let-date let-focused="focused">
+                            <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null">
+                                {{ date.day }}
+                            </span>
+                        </ng-template>
                     </div>
                 </div>
+                <div class="input-group">
+                    <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
+                        [value]="formatter.format(fromDate)"
+                        (input)="fromDate = validateInput(fromDate, dpFromDate.value)" />
+                    <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
+                        <fa-icon [icon]="faCalendarDays"></fa-icon>
+                    </button>
+                </div>
             </div>
+            <div class="col-12">
+                <div class="input-group">
+                    <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
+                        [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)" />
+                    <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
+                        <fa-icon [icon]="faCalendarDays"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="col-12">
+                <select class="form-select" [ngModel]="statusSelect" (ngModelChange)="onChange($event)"
+                    name="status-award-week">
+                    <option *ngFor="let statusOption of statusList" [value]="statusOption">{{statusOption}}</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" (click)="search()">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                    PESQUISAR
+                </button>
+            </div>
+        </form>
+
+        <div class="col-12">
+            <app-loading [loading]="loading"></app-loading>
+        </div>
+
+        <div class="row">
+            <ng-template [ngIf]="awardWeekList != [] && !awardWeekSelected">
+                <div class="col-3" *ngFor="let week of awardWeekList">
+                    <div class="card border-secondary text-center h-100">
+                        <div class="card-body">
+                            <h5 class="text-tittle">Data/Hora: {{formatDate(week.dateTime)}}
+                                {{formatDateTime(week.dateTime)}}</h5>
+                            <h6 class="card-text">
+                                Status: {{week.status}}
+                            </h6>
+                            <button class="btn btn-sm btn-primary me-2" (click)="detailAwardWeek(week)">
+                                <fa-icon [icon]="faEye"></fa-icon>
+                                DETALHAR
+                            </button>
+                            <button class="btn btn-sm btn-primary" (click)="lottery()">
+                                <fa-icon [icon]="faShuffle"></fa-icon>
+                                SORTEAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+        <ng-template [ngIf]="awardWeekSelected">
+            <app-award-week-view [awardWeek]="awardWeek"></app-award-week-view>
         </ng-template>
     </div>
-
-    <ng-template [ngIf]="awardWeekSelected">
-        <app-award-week-view [awardWeek]="awardWeek"></app-award-week-view>
-    </ng-template>
 </app-menu-lateral>

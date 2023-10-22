@@ -1,9 +1,18 @@
 <form #pokemonForm="ngForm" (ngSubmit)="action">
-    <div class="mb-3 text-center">
+    <div class="mb-2 text-center">
         <img [src]="awardItem.pokemon.imageBlob" [alt]="awardItem.pokemon.name" class="pokemon-image">
     </div>
-    <div class="row mb-1">
+    <div class="row">
         <h6 class="red">Dados do Prêmio</h6>
+    </div>
+    <div class="row">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.name"
+                    [disabled]="disableEdit" name="name-award" placeholder="Nome do Prêmio">
+                <label for="floatingInput">Nome do Prêmio</label>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-4 mb-3">
@@ -11,6 +20,14 @@
                 <input type="text" class="form-control" id="floatingInput" disabled="true" name="gameId"
                     [(ngModel)]="awardItem.pokemon.gameId" placeholder="Game ID">
                 <label for="floatingInput">Game ID</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="form"
+                    [(ngModel)]="awardItem.pokemon.stats.form" placeholder="Forma">
+                <label for="floatingInput">Forma</label>
             </div>
         </div>
 
@@ -23,16 +40,6 @@
                 <label for="floatingSelect">Cargo do Prêmio</label>
             </div>
         </div>
-
-        <div class="col-4 mb-3">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.name"
-                    [disabled]="disableEdit" name="name-award" placeholder="Nome do Prêmio">
-                <label for="floatingInput">Nome do Prêmio</label>
-            </div>
-        </div>
-
-
     </div>
 
     <div class="row">
