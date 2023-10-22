@@ -77,7 +77,7 @@
                                 <fa-icon [icon]="faEye"></fa-icon>
                                 DETALHAR
                             </button>
-                            <button class="btn btn-sm btn-primary" (click)="lottery()">
+                            <button class="btn btn-sm btn-primary" (click)="lottery()" [disabled]="disabledLottery(week)">
                                 <fa-icon [icon]="faShuffle"></fa-icon>
                                 SORTEAR
                             </button>

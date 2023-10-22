@@ -54,14 +54,14 @@ export class FormPlayerComponent implements OnInit {
           this.msgAfterSubmitted = msgSuccess
           this.classAfterSubmitted = classSuccess
           this.submitted = true
-          this.toastService.show('Prêmios da Semana Atualizado com Sucesso!', { classname: 'bg-success text-light', delay: 10000 });
+          this.toastService.show('Dados de usuário alterado com sucesso!', { classname: 'bg-success text-light', delay: 10000 });
         }, error => {
           console.log(error)
           this.loading = false
           this.msgAfterSubmitted = msgError
           this.classAfterSubmitted = classError
           this.submitted = true
-          this.toastService.show('Erro ao atualizar Premios da Semana!', { classname: 'bg-danger text-light', delay: 10000 });
+          this.toastService.show('Erro ao atualizar dados de usuário!', { classname: 'bg-danger text-light', delay: 10000 });
         }
       );
   }

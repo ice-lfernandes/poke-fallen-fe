@@ -7,6 +7,7 @@ import { StatusAwardWeek } from 'src/app/service/integration/model/commons/statu
 import { AwardWeek } from 'src/app/service/integration/model/commons/award-week';
 import { formatDate } from '@angular/common';
 import { AwardWeekLotteryService } from 'src/app/service/integration/award-week-lottery.service';
+import { ToastService } from 'src/app/shared/toasts/toast-service.service';
 
 @Component({
   selector: 'app-manager-rewards-view',
@@ -34,7 +35,7 @@ export class ManagerRewardsViewComponent {
   awardWeekSelected = false
   awardWeek!: AwardWeek
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
+  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private toastService: ToastService,
     private awardWeekService: AwardWeekService, private lotteryAwardService: AwardWeekLotteryService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -53,16 +54,17 @@ export class ManagerRewardsViewComponent {
 
   lottery() {
     this.loading = true
-    let foundData = false
     this.lotteryAwardService.lottery().subscribe(
       {
         next: response => {
           console.log("sorteio realizado")
+          this.toastService.show('Sorteio realizado com sucesso!', { classname: 'bg-success text-light', delay: 10000 });
+          this.loading = false
         },
         error: error => {
           console.log(error)
+          this.toastService.show('Erro ao realizar Sorteio!', { classname: 'bg-danger text-light', delay: 10000 });
           this.loading = false
-          foundData = false
         }
       }
     )
@@ -109,29 +111,35 @@ export class ManagerRewardsViewComponent {
     this.awardWeek = awardWeek
   }
 
+  disabledLottery(awardWeek: AwardWeek): boolean {
+    return awardWeek.status == 'Finalizado'
+  }
+
 
   search() {
     this.awardWeekSelected = false
     this.loading = true
-    let foundData = false
     this.awardWeekList = []
 
     if (this.validateInput(this.fromDate, this.dateToString(this.toDate))) {
-      this.awardWeekService.findByRangeDatas(this.dateToString(this.fromDate), this.dateToString(this.toDate), this.status)
-        .subscribe({
-          next: response => {
-            this.awardWeekList = response
-            this.loading = false
-            foundData = true
-          },
-          error: error => {
-            console.log(error)
-            this.loading = false
-            foundData = false
-          }
-        })
+      this.getAwardWeeksByRange()
     }
 
+  }
+
+  private getAwardWeeksByRange() {
+    this.loading = true
+    this.awardWeekService.findByRangeDatas(this.dateToString(this.fromDate), this.dateToString(this.toDate), this.status)
+      .subscribe({
+        next: response => {
+          this.awardWeekList = response
+          this.loading = false
+        },
+        error: error => {
+          console.log(error)
+          this.loading = false
+        }
+      })
   }
 
 

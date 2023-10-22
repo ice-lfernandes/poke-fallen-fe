@@ -34,8 +34,6 @@ export class AwardWeekService {
       url = url + "&status=" + "SCHEDULED"
     }
 
-    console.log(url)
-
     return this.http.get<AwardWeek[]>(url, this.httpOptionsWithAuthorization).pipe();
   }
 
