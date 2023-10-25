@@ -13,16 +13,7 @@ export class AwardItem {
     item: Item = new Item()
     player: Player | null = null
     validImageBlob: any
+    validGameId: string | undefined
     status: StatusAwardItem = StatusAwardItem.SCHEDULED
     isItem: boolean = false
-
-    updateValodImageBlob(): any {
-        if (this.pokemon != null && this.pokemon.image.length > 0) {
-            console.log('pokemon')
-            return this.pokemon.imageBlob
-        } else {
-            console.log('item')
-            return this.item.imageBlob
-        }
-    }
 }

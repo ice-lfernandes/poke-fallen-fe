@@ -66,10 +66,12 @@ export class AwardWeekViewComponent implements OnInit {
         let objectURL = 'data:image/jpeg;base64,' + item.pokemon.image
         item.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         item.validImageBlob = item.pokemon.imageBlob
+        item.validGameId = item.pokemon.gameId
       } else {
         let objectURL = 'data:image/jpeg;base64,' + item.item.image
         item.item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         item.validImageBlob = item.item.imageBlob
+        item.validGameId = item.item.gameId
       }
     })
     this.updateEacheTypeItems()
@@ -85,7 +87,7 @@ export class AwardWeekViewComponent implements OnInit {
       },
     );
   }
-
+  
   awardWeekCanUpdatable(): boolean {
     return this.awardWeek.status === "Agendado"
   }

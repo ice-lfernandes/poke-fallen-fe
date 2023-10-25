@@ -1,6 +1,6 @@
 export class Item {
     name: String = ""
-    gameId: String = ":"
+    gameId: string = ":"
     image: String[] = []
     imageBlob: any
 }

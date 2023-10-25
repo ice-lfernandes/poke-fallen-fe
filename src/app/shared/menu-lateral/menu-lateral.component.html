@@ -45,7 +45,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a *ngIf="loginService.isUserAllowedByRole('ROLE_USER')" class="nav-link" href="#">
+                        <a *ngIf="loginService.isUserAllowedByRole('ROLE_USER')" class="nav-link"
+                            routerLink="/player-manager-awards">
                             <fa-icon [icon]="faAward"></fa-icon>
                             Prêmios
                         </a>

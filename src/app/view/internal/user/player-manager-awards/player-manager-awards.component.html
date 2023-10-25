@@ -1,0 +1,95 @@
+<app-menu-lateral>
+    <div class="text-center">
+        <!-- <div class="alert alert-info" role="alert">
+            <h5>Você não tem Prêmios a receber</h5>
+        </div> -->
+        <div *ngIf="!noAwards && !enableChoice">
+            <div class="alert alert-success" role="alert">
+                <h5>Parabéns! Você tem direito a Prêmios</h5>
+            </div>
+            <a (click)="openGifts()"><fa-icon [icon]="faGift" class="icon-action" style="font-size: 4em;"></fa-icon></a>
+        </div>
+        <div *ngIf="noAwards">
+            <div class="alert alert-info" role="alert">
+                <h5>Você ainda não tem direito a Prêmios</h5>
+            </div>
+        </div>
+
+        <div *ngIf="enableChoice">
+            <div class="container row text-center animate__animated animate__bounceInUp"
+                style="overflow-y: auto; max-height: 50vh;">
+                <h2 class="mb-3 red">Lista de Prêmios</h2>
+                <div class="col-3 pokemon-presentation mb-2" *ngFor="let awardItemDelivery of awardItemsDelivery">
+                    <div class="card border-secondary h-100">
+                        <div class="card-header">
+                            {{awardItemDelivery.awardItem.name}} | QTD: {{awardItemDelivery.awardItem.quantity}}
+                        </div>
+                        <div class="text-center">
+                            <img [src]="awardItemDelivery.awardItem.validImageBlob" class="pokemon-image">
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-sm btn-primary me-2" title="receber prêmio"
+                                (click)="openConfirmation(contentConfirmation)">
+                                <fa-icon [icon]="faDownload"></fa-icon>
+                            </button>
+                            <button class="btn btn-sm btn-primary me-2" title="enviar prêmio a outro jogador"
+                                (click)="openTransfer(contentTransfer)">
+                                <fa-icon [icon]="faGift"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <ng-template #contentConfirmation let-modal class="modal-pokemon-award-item">
+                        <div class="modal-header secondary">
+                            <h4 class="modal-title text-center" id="modal-basic-title">
+                                {{awardItemDelivery.awardItem.name}}</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4 class="mb-3">Tem certeza que deseja receber o Prêmio?</h4>
+                            <button class="btn btn-primary me-2" (click)="confirmIntent(awardItemDelivery.awardItemId)">
+                                <fa-icon [icon]="faThumbsUp"></fa-icon>
+                                SIM</button>
+                            <button class="btn btn-primary me-2" (click)="modal.dismiss('Cross click')">
+                                <fa-icon [icon]="faXmark"></fa-icon>
+                                NÃO</button>
+                            <br>
+                            <app-loading [loading]="loading"></app-loading>
+                        </div>
+                    </ng-template>
+                    <ng-template #contentTransfer let-modal class="modal-pokemon-award-item">
+                        <div class="modal-header secondary">
+                            <h4 class="modal-title text-center" id="modal-basic-title">
+                                {{awardItemDelivery.awardItem.name}}</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4 class="mb-3">Tem certeza que deseja enviar o Prêmio?</h4>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingInput" name="gameId"
+                                            placeholder="Game ID" [(ngModel)]="gameIdToSend">
+                                        <label for="floatingInput">Game ID</label>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary me-2" [disabled]="isGameIdtoSendNotFilled()">
+                                <fa-icon [icon]="faThumbsUp"></fa-icon>
+                                SIM</button>
+                            <button class="btn btn-primary me-2" (click)="modal.dismiss('Cross click')">
+                                <fa-icon [icon]="faXmark"></fa-icon>
+                                NÃO</button>
+                            <br>
+                            <app-loading [loading]="loading"></app-loading>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</app-menu-lateral>

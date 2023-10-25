@@ -12,11 +12,11 @@ import { LoginViewComponent } from './view/login-view/login-view.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FirstLoginViewComponent } from './view/first-login-view/first-login-view.component';
 import { HomeViewComponent } from './view/home-view/home-view.component';
-import { PlayerDetailsViewComponent } from './view/internal/player-details-view/player-details-view.component';
-import { PlayerGameSaveViewComponent } from './view/internal/player-game-save-view/player-game-save-view.component';
+import { PlayerDetailsViewComponent } from './view/internal/user/player-details-view/player-details-view.component';
+import { PlayerGameSaveViewComponent } from './view/internal/user/player-game-save-view/player-game-save-view.component';
 import { ButtonComponent } from './shared/button/button.component';
-import { AdminPlayersViewComponent } from './view/internal/admin-players-view/admin-players-view.component';
-import { ManagerRewardsViewComponent } from './view/internal/manager-rewards-view/manager-rewards-view.component';
+import { AdminPlayersViewComponent } from './view/internal/admin/admin-players-view/admin-players-view.component';
+import { ManagerRewardsViewComponent } from './view/internal/admin/manager-rewards-view/manager-rewards-view.component';
 import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.component';
 import { WellcomeViewComponent } from './shared/wellcome-view/wellcome-view.component';
 import { FormPlayerComponent } from './shared/form-player/form-player.component';
@@ -30,11 +30,13 @@ import { SinopseViewComponent } from './shared/sinopse-view/sinopse-view.compone
 import { SystemViewComponent } from './shared/system-view/system-view.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { CommonModule, JsonPipe, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
-import { ManagerPokemonsComponent } from './view/internal/manager-pokemons/manager-pokemons.component';
-import { AwardWeekViewComponent } from './view/internal/manager-rewards-view/award-week-view/award-week-view.component';
+import { ManagerPokemonsComponent } from './view/internal/admin/manager-pokemons/manager-pokemons.component';
+import { AwardWeekViewComponent } from './view/internal/admin/manager-rewards-view/award-week-view/award-week-view.component';
 import { TypePokemonComponent } from './shared/form-award-item/type-pokemon/type-pokemon.component';
 import { TypeItemComponent } from './shared/form-award-item/type-item/type-item.component';
 import { ToastsComponent } from './shared/toasts/toasts.component';
+import { PlayerManagerAwardsComponent } from './view/internal/user/player-manager-awards/player-manager-awards.component';
+import { ModalGiftChoiceComponent } from './shared/modal/modal-gift-choice/modal-gift-choice.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { ToastsComponent } from './shared/toasts/toasts.component';
     AwardWeekViewComponent,
     TypePokemonComponent,
     TypeItemComponent,
-    ToastsComponent
+    ToastsComponent,
+    PlayerManagerAwardsComponent,
+    ModalGiftChoiceComponent
   ],
   imports: [
     CommonModule,
