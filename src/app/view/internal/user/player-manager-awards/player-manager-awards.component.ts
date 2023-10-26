@@ -27,7 +27,7 @@ export class PlayerManagerAwardsComponent implements OnInit {
   awardItemsDelivery: AwardItemDeliveryPlayer[] = []
   modalConfirmation!: NgbActiveModal
   modalTransfer!: NgbActiveModal
-  gameIdToSend: string | undefined
+  playerIdToSend: string | undefined
 
 
   constructor(private awardItemDeliveryService: AwardItemDeliveryService,
@@ -76,7 +76,27 @@ export class PlayerManagerAwardsComponent implements OnInit {
         },
         error: error => {
           console.log("error ao confirmadar intenção de recebimento, error=" + error)
-          this.toastService.show('Erro ao confirmadar intenção de recebimento!', { classname: 'bg-danger text-light', delay: 10000 });
+          this.toastService.show('Erro ao confirmar intenção de recebimento!', { classname: 'bg-danger text-light', delay: 10000 });
+          this.loading = false
+        }
+      }
+    )
+  }
+
+  transferIntent(awardIdItem: number) {
+    this.loading = true
+    this.awardItemDeliveryService.transferIntent(this.playerIdToSend!, awardIdItem).subscribe(
+      {
+        next: response => {
+          console.log("confirmado intenção de transferência de prêmio, response=" + response)
+          this.modalService.dismissAll()
+          this.searchGifts()
+          this.loading = false
+          this.toastService.show('Intenção de Transferência Confirmado!', { classname: 'bg-success text-light', delay: 10000 });
+        },
+        error: error => {
+          console.log("error ao confirmadar intenção de recebimento, error=" + error)
+          this.toastService.show('Erro ao confirmar intenção de transferência!', { classname: 'bg-danger text-light', delay: 10000 });
           this.loading = false
         }
       }
@@ -84,7 +104,7 @@ export class PlayerManagerAwardsComponent implements OnInit {
   }
 
   isGameIdtoSendNotFilled(): boolean {
-    return this.gameIdToSend == undefined
+    return this.playerIdToSend == undefined
   }
 
 
