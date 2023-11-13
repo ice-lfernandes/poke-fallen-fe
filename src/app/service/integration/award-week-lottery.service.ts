@@ -21,7 +21,7 @@ export class AwardWeekLotteryService {
   }
 
   lottery(): Observable<any> {
-    return this.http.post<any>(baseUrlAwardWeekLottery, this.httpOptionsWithAuthorization).pipe()
+    return this.http.post<any>(baseUrlAwardWeekLottery, null, this.httpOptionsWithAuthorization).pipe()
   }
 
 }

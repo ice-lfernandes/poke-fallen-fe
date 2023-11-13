@@ -59,6 +59,7 @@ export class ManagerRewardsViewComponent {
         next: response => {
           console.log("sorteio realizado")
           this.toastService.show('Sorteio realizado com sucesso!', { classname: 'bg-success text-light', delay: 10000 });
+          this.search()
           this.loading = false
         },
         error: error => {

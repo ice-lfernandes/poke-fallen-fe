@@ -53,6 +53,9 @@
                                     <button class="btn btn-sm btn-primary me-2">
                                         <fa-icon [icon]="faCircleInfo" (click)="open(content)"></fa-icon>
                                     </button>
+                                    <button class="btn btn-sm btn-primary me-2">
+                                        <fa-icon [icon]="faUser" (click)="open(contentplayers)"></fa-icon>
+                                    </button>
                                 </div>
                             </div>
 
@@ -73,6 +76,15 @@
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-item>
                                 </div>
                             </ng-template>
+
+                            <ng-template #contentplayers let-modal class="modal-pokemon-award-item">
+                                <div class="modal-header secondary">
+                                    <h4 class="modal-title text-center" id="modal-basic-title">{{item.name}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <app-type-player [nameAward]="item.name"></app-type-player>
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
                 </ng-template>
@@ -82,7 +94,8 @@
                 <ng-template ngbNavContent>
                     <br>
                     <div class="container row text-center">
-                        <div class="col-4 pokemon-presentation mb-2" *ngFor="let item of itemsPremium">
+                        <div class="col-3 pokemon-presentation mb-2" *ngFor="let item of itemsPremium"
+                            style="overflow-y: auto; max-height: 50vh;">
                             <div class="card border-secondary h-100">
                                 <div class="card-header">
                                     {{item.name}} | QTD: {{item.quantity}}
@@ -102,6 +115,9 @@
                                     <button class="btn btn-sm btn-primary me-2">
                                         <fa-icon [icon]="faCircleInfo" (click)="open(content)"></fa-icon>
                                     </button>
+                                    <button class="btn btn-sm btn-primary me-2">
+                                        <fa-icon [icon]="faUser" (click)="open(contentplayers)"></fa-icon>
+                                    </button>
                                 </div>
                             </div>
 
@@ -120,6 +136,15 @@
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
                                     <app-type-item [awardItem]="item" *ngIf="item.item != undefined"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-item>
+                                </div>
+                            </ng-template>
+
+                            <ng-template #contentplayers let-modal class="modal-pokemon-award-item">
+                                <div class="modal-header secondary">
+                                    <h4 class="modal-title text-center" id="modal-basic-title">{{item.name}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <app-type-player [nameAward]="item.name"></app-type-player>
                                 </div>
                             </ng-template>
                         </div>

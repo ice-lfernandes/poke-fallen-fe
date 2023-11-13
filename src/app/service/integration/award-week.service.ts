@@ -8,6 +8,7 @@ import { AwardWeek } from './model/commons/award-week';
 import { AwardItem } from './model/commons/award-item';
 import { AwardWeekUpdateRequest } from './model/request/award-week-update-request';
 import { AwardItemsRequest } from './model/request/award-items-request';
+import { AwardItemPlayer } from './model/commons/award-item-player';
 
 const baseUrlAwardWeek: string = environment.apiUrl + '/award-week'
 
@@ -34,6 +35,8 @@ export class AwardWeekService {
       url = url + "&status=" + "SCHEDULED"
     }
 
+    console.log(this.httpOptionsWithAuthorization)
+
     return this.http.get<AwardWeek[]>(url, this.httpOptionsWithAuthorization).pipe();
   }
 
@@ -51,6 +54,10 @@ export class AwardWeekService {
       new AwardWeekUpdateRequest(itemsRequest),
       this.httpOptionsWithAuthorization)
       .pipe()
+  }
+
+  findByAwardItemsByName(name: string): Observable<AwardItemPlayer[]> {
+    return this.http.get<AwardItemPlayer[]>(baseUrlAwardWeek + "/item/" + name, this.httpOptionsWithAuthorization).pipe()
   }
 
 }

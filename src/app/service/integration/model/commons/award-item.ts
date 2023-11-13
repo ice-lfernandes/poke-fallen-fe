@@ -11,7 +11,7 @@ export class AwardItem {
     typeItemAward: string | undefined
     pokemon: Pokemon = new Pokemon()
     item: Item = new Item()
-    player: Player | null = null
+    players: Player[] | null = null
     validImageBlob: any
     validGameId: string | undefined
     status: StatusAwardItem = StatusAwardItem.SCHEDULED

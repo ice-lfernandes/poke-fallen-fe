@@ -37,6 +37,7 @@ import { TypeItemComponent } from './shared/form-award-item/type-item/type-item.
 import { ToastsComponent } from './shared/toasts/toasts.component';
 import { PlayerManagerAwardsComponent } from './view/internal/user/player-manager-awards/player-manager-awards.component';
 import { ModalGiftChoiceComponent } from './shared/modal/modal-gift-choice/modal-gift-choice.component';
+import { TypePlayerComponent } from './shared/form-award-item/type-player/type-player.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ModalGiftChoiceComponent } from './shared/modal/modal-gift-choice/modal
     TypeItemComponent,
     ToastsComponent,
     PlayerManagerAwardsComponent,
-    ModalGiftChoiceComponent
+    ModalGiftChoiceComponent,
+    TypePlayerComponent
   ],
   imports: [
     CommonModule,

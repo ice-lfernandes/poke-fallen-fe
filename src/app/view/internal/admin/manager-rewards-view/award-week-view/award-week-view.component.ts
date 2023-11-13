@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { faArrowLeft, faCircleInfo, faEye, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCircleInfo, faEye, faFloppyDisk, faMinus, faPencil, faPlus, faRotateLeft, faUser } from '@fortawesome/free-solid-svg-icons';
 import { OperatorFunction, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
 
 import { AwardWeekService } from 'src/app/service/integration/award-week.service';
@@ -25,6 +25,7 @@ export class AwardWeekViewComponent implements OnInit {
   // Icons
   faPencil = faPencil
   faCircleInfo = faCircleInfo
+  faUser = faUser
   faArrowLeft = faArrowLeft
   faMinus = faMinus
   faFloppyDisk = faFloppyDisk

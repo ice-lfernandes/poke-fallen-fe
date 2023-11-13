@@ -1,0 +1,27 @@
+<ng-template [ngIf]="awardItemPlayers != null">
+    <div class="row mb-1" *ngFor="let awardItemPlayer of awardItemPlayers">
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="username-player" disabled="true"
+                    [(ngModel)]="awardItemPlayer.player.username" placeholder="Username do Jogador Premiado">
+                <label for="floatingInput">Username do Jogador Premiado</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="playerId" disabled="true"
+                    [(ngModel)]="awardItemPlayer.player.playerId" placeholder="PlayerID do Jogador Premiado">
+                <label for="floatingInput">PlayerID do Jogador Premiado</label>
+            </div>
+        </div>
+
+        <div class="col-4 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="statusaward-item-delivery"
+                    disabled="true" [(ngModel)]="awardItemPlayer.status" placeholder="Status de Entrega do Prêmio">
+                <label for="floatingInput">Status de Entrega do Prêmio</label>
+            </div>
+        </div>
+    </div>
+</ng-template>

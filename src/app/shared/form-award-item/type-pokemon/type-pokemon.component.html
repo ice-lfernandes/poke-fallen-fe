@@ -25,7 +25,7 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="form"
+                <input type="text" class="form-control" id="floatingInput" name="form" [disabled]="disableEdit"
                     [(ngModel)]="awardItem.pokemon.stats.form" placeholder="Forma">
                 <label for="floatingInput">Forma</label>
             </div>
@@ -34,7 +34,8 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <select class="form-control form-select" name="occupation" [(ngModel)]="awardItem.occupation" required>
+                <select class="form-control form-select" name="occupation" [(ngModel)]="awardItem.occupation"
+                    [disabled]="disableEdit" required>
                     <option *ngFor="let occupation of occupationList" [value]="occupation">{{occupation}}</option>
                 </select>
                 <label for="floatingSelect">Cargo do Prêmio</label>
@@ -53,8 +54,8 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <select class="form-control form-select" name="typeIV" [(ngModel)]="awardItem.pokemon.stats.individualValueType"
-                    required>
+                <select class="form-control form-select" name="typeIV" [disabled]="disableEdit"
+                    [(ngModel)]="awardItem.pokemon.stats.individualValueType" required>
                     <option *ngFor="let type of individualTypeValueList" [value]="type">{{type}}</option>
                 </select>
                 <label for="floatingSelect">Tipo IV</label>
@@ -63,8 +64,8 @@
 
         <div class="col-4 mb-3">
             <div class="form-floating">
-                <select class="form-control form-select" name="nature"
-                    [(ngModel)]="awardItem.pokemon.stats.nature" required>
+                <select class="form-control form-select" name="nature" [(ngModel)]="awardItem.pokemon.stats.nature"
+                    [disabled]="disableEdit" required>
                     <option *ngFor="let typeNature of natureList" [value]="typeNature">{{typeNature}}</option>
                 </select>
                 <label for="floatingSelect">Natureza</label>
@@ -124,37 +125,5 @@
             </div>
         </div>
     </div>
-    <ng-template [ngIf]="awardItem.player != null">
-        <div class="row mb-1">
-            <h6 class="red">Dados do Jogador Premiado</h6>
-        </div>
-        <div class="row">
-            <div class="col-4 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="username-player"
-                        [disabled]="disableEdit" [(ngModel)]="awardItem.player.username"
-                        placeholder="Username do Jogador Premiado">
-                    <label for="floatingInput">Username do Jogador Premiado</label>
-                </div>
-            </div>
-
-            <div class="col-4 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="playerId" [disabled]="disableEdit"
-                        [(ngModel)]="awardItem.player.playerId" placeholder="PlayerID do Jogador Premiado">
-                    <label for="floatingInput">PlayerID do Jogador Premiado</label>
-                </div>
-            </div>
-
-            <div class="col-4 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="statusaward-item-delivery"
-                        [disabled]="disableEdit" [(ngModel)]="awardItem.status"
-                        placeholder="Status de Entrega do Prêmio">
-                    <label for="floatingInput">Status de Entrega do Prêmio</label>
-                </div>
-            </div>
-        </div>
-    </ng-template>
 
 </form>
