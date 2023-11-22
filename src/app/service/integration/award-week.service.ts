@@ -35,8 +35,6 @@ export class AwardWeekService {
       url = url + "&status=" + "SCHEDULED"
     }
 
-    console.log(this.httpOptionsWithAuthorization)
-
     return this.http.get<AwardWeek[]>(url, this.httpOptionsWithAuthorization).pipe();
   }
 
@@ -56,8 +54,8 @@ export class AwardWeekService {
       .pipe()
   }
 
-  findByAwardItemsByName(name: string): Observable<AwardItemPlayer[]> {
-    return this.http.get<AwardItemPlayer[]>(baseUrlAwardWeek + "/item/" + name, this.httpOptionsWithAuthorization).pipe()
+  findByAwardItemsByName(name: string, awardWeekId: Number): Observable<AwardItemPlayer[]> {
+    return this.http.get<AwardItemPlayer[]>(baseUrlAwardWeek + "/" + awardWeekId + "/item/" + name, this.httpOptionsWithAuthorization).pipe()
   }
 
 }

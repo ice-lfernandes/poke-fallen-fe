@@ -4,20 +4,23 @@
             <div class="col-4">
             </div>
             <div class="col-4">
-                <div class="card form-login text-center">
+                <div class="card form-authentication text-center">
                     <div class="card-body">
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput" placeholder="Email"
                                 [(ngModel)]="email" name="email">
                             <label for="floatingInput">Email</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-2">
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"
                                 [(ngModel)]="password" name="password">
                             <label for="floatingPassword">Senha</label>
+                            <div class="text-start ms-1 mt-1">
+                                <a routerLink="/forget-password"> Esqueceu sua senha?</a>
+                            </div>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary btn-login mb-3" (click)="checkLogin()">ENTRAR</button>
+                            <button class="btn btn-primary btn-login mb-2" (click)="checkLogin()">ENTRAR</button>
                             <app-loading [loading]="loading"></app-loading>
                             <div class="alert alert-danger text-center" role="alert" *ngIf="invalidLogin">
                                 Email ou senha estão incorretos

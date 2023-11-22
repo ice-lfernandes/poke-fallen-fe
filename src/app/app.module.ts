@@ -38,6 +38,8 @@ import { ToastsComponent } from './shared/toasts/toasts.component';
 import { PlayerManagerAwardsComponent } from './view/internal/user/player-manager-awards/player-manager-awards.component';
 import { ModalGiftChoiceComponent } from './shared/modal/modal-gift-choice/modal-gift-choice.component';
 import { TypePlayerComponent } from './shared/form-award-item/type-player/type-player.component';
+import { ForgetPasswordViewComponent } from './view/forget-password-view/forget-password-view.component';
+import { ForgetPasswordResetViewComponent } from './view/forget-password-reset-view/forget-password-reset-view.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { TypePlayerComponent } from './shared/form-award-item/type-player/type-p
     ToastsComponent,
     PlayerManagerAwardsComponent,
     ModalGiftChoiceComponent,
-    TypePlayerComponent
+    TypePlayerComponent,
+    ForgetPasswordViewComponent,
+    ForgetPasswordResetViewComponent
   ],
   imports: [
     CommonModule,

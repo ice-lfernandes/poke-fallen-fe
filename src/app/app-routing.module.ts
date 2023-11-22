@@ -14,6 +14,8 @@ import { SaveProgressViewComponent } from './view/save-progress-view/save-progre
 import { ManagerRewardsViewComponent } from './view/internal/admin/manager-rewards-view/manager-rewards-view.component';
 import { ManagerPokemonsComponent } from './view/internal/admin/manager-pokemons/manager-pokemons.component';
 import { PlayerManagerAwardsComponent } from './view/internal/user/player-manager-awards/player-manager-awards.component';
+import { ForgetPasswordViewComponent } from './view/forget-password-view/forget-password-view.component';
+import { ForgetPasswordResetViewComponent } from './view/forget-password-reset-view/forget-password-reset-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -23,12 +25,15 @@ const routes: Routes = [
   { path: 'download', component: DownloadViewComponent },
   { path: 'fallen-shop', component: FallenShopViewComponent },
   { path: 'save-progress', component: SaveProgressViewComponent },
+  { path: 'forget-password', component: ForgetPasswordViewComponent },
+  { path: 'forget-password-reset', component: ForgetPasswordResetViewComponent },
   { path: 'player-details', component: PlayerDetailsViewComponent, canActivate: [AuthGuardService] },
   { path: 'player-game-save', component: PlayerGameSaveViewComponent, canActivate: [AuthGuardService] },
   { path: 'players-details', component: AdminPlayersViewComponent, canActivate: [AuthGuardService] },
   { path: 'player-manager-awards', component: PlayerManagerAwardsComponent, canActivate: [AuthGuardService] },
   { path: 'manager-awards', component: ManagerRewardsViewComponent, canActivate: [AuthGuardService] },
-  { path: 'manager-pokemons', component: ManagerPokemonsComponent, canActivate: [AuthGuardService] }
+  { path: 'manager-pokemons', component: ManagerPokemonsComponent, canActivate: [AuthGuardService] },
+  { path: 'forget-password', component: ForgetPasswordViewComponent }
 ];
 
 @NgModule({

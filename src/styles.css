@@ -88,6 +88,20 @@ a:hover {
     min-height: 100vh;
 }
 
+.form-authentication {
+    border: none;
+    background-color: transparent;
+}
+
+input {
+    border: 1px solid #666;
+}
+
+.btn-main {
+    font-weight: 500;
+}
+
+
 /** Utilities  */
 .backgroud-transparent {
     background-color: transparent !important;
@@ -123,6 +137,25 @@ a:hover {
 .pokemon-image {
     width: 100px;
     height: 100px;
+}
+
+.icon-span-input-success {
+    float: right;
+    margin-right: 6px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+    color: #5cb85c;
+}
+
+
+.icon-span-input-error {
+    float: right;
+    margin-right: 6px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+    color: #B22222;
 }
 
 

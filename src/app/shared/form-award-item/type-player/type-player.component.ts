@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AwardWeekService } from 'src/app/service/integration/award-week.service';
-
-import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 import { AwardItemPlayer } from 'src/app/service/integration/model/commons/award-item-player';
 
 @Component({
@@ -13,13 +11,15 @@ export class TypePlayerComponent implements OnInit {
 
   @Input()
   nameAward!: string
+  @Input()
+  awardWeekId!: Number 
   awardItemPlayers!: AwardItemPlayer[]
 
   constructor(private awardWeekService: AwardWeekService) {
   }
 
   ngOnInit(): void {
-    this.awardWeekService.findByAwardItemsByName(this.nameAward).subscribe(
+    this.awardWeekService.findByAwardItemsByName(this.nameAward, this.awardWeekId).subscribe(
       {
         next: response => {
           this.awardItemPlayers = response
