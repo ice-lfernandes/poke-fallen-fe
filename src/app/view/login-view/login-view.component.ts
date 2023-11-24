@@ -10,8 +10,8 @@ import { AuthenticationService } from 'src/app/service/authentication/authentica
 })
 export class LoginViewComponent {
 
-  email: string = ''
-  password: string = ''
+  email!: string
+  password!: string
   invalidLogin: boolean | undefined
   loading: boolean = false
 

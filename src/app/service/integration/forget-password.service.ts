@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ForgetPasswordRequest } from './model/request/forget-password-request';
 import { TokenResetPassword } from './model/response/token-reset-password';
+import { ResetPasswordRequest } from './model/request/reset-password-request';
 
 const baseUrl: string = environment.apiUrl + '/forget-password'
 
@@ -22,6 +23,8 @@ export class ForgetPasswordService {
     return this.http.get<TokenResetPassword>(baseUrl + "/check?token=" + token).pipe();
   }
 
-  // resetPassword(email: string, )
+  resetPassword(email: string, newPassword: string): Observable<any> {
+    return this.http.patch<any>(baseUrl + "/reset/"+ email, new ResetPasswordRequest(newPassword)).pipe();
+  }
 
 }
