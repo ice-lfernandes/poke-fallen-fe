@@ -139,6 +139,14 @@ input {
     height: 100px;
 }
 
+.icon-span-input {
+    float: right;
+    margin-right: 6px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+}
+
 .icon-span-input-success {
     float: right;
     margin-right: 6px;

@@ -26,7 +26,7 @@ export class LoginViewComponent {
     try {
 
       await this.loginservice.authenticate(this.email, this.password)
-      
+
       this.loading = false
 
       if (this.loginservice.isUserLoggedIn()) {
@@ -43,6 +43,11 @@ export class LoginViewComponent {
       this.invalidLogin = true
       this.loading = false
     }
+  }
+
+  loginEnabled(): boolean {
+    return (this.email == undefined || this.email == '') ||
+      (this.password == undefined || this.password == undefined)
   }
 
 }

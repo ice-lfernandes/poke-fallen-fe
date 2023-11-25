@@ -41,4 +41,8 @@ export class ForgetPasswordViewComponent {
     )
   }
 
+  requestResetEnabled(): boolean {
+    return (this.email == undefined || this.email == '')
+  }
+
 }
