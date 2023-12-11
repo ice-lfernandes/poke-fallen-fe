@@ -167,17 +167,24 @@
                 <div class="col-3">
                     <div class="choose-type-item mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioCheckPokemon"
                                 value="pokemon" [(ngModel)]="typeItemChoose" checked>
-                            <label class="form-check-label" for="flexRadioDefault1">
+                            <label class="form-check-label" for="radioCheckPokemon">
                                 Tipo Pokemon
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radiocheckItem"
                                 value="item" [(ngModel)]="typeItemChoose">
-                            <label class="form-check-label" for="flexRadioDefault2">
+                            <label class="form-check-label" for="radiocheckItem">
                                 Tipo Item
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radiocheckBoth"
+                                value="both" [(ngModel)]="typeItemChoose">
+                            <label class="form-check-label" for="radiocheckBoth">
+                                Ambos
                             </label>
                         </div>
                     </div>
@@ -196,6 +203,7 @@
                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="itemChoose"
                     [ngbTypeahead]="searchPokemons" (change)="updateModel()" />
                 <label for="typeahead-basic" class="form-label">Escolha o Pokemon:</label>
+                <br>
                 <div class="text-center">
                     <form *ngIf="!(pokemonSelected == undefined)"
                         class="form-pokemon-item  animate__animated animate__zoomIn">
@@ -217,6 +225,32 @@
                     </form>
                 </div>
             </div>
+
+            <ng-template [ngIf]="typeItemChoose == 'both'">
+                <div class="choose-by-autocomplete form-floating">
+                    <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="pokemonChoose"
+                        [ngbTypeahead]="searchPokemons" (change)="updateModel()" />
+                    <label for="typeahead-basic" class="form-label">Escolha o Pokemon:</label>
+                </div>
+
+                <br>
+
+                <div class="choose-by-autocomplete form-floating">
+                    <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="itemChoose"
+                        [ngbTypeahead]="searchItems" (change)="updateModel()" />
+                    <label for="typeahead-basic" class="form-label">Escolha o Item:</label>
+                </div>
+
+                <br>
+
+                <div class="text-center">
+                    <form name="item-autocomplete" *ngIf="!(itemSelected == undefined) || !(pokemonSelected == undefined)"
+                        class="form-pokemon-item  animate__animated animate__zoomIn">
+                        <app-type-both [awardItem]="newAwardItem" ></app-type-both>
+                    </form>
+                </div>
+
+            </ng-template>
 
             <br>
 

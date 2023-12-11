@@ -8,6 +8,6 @@ export class Player {
     points: number = 0
     occupations: string[] = []
     prettyOccupations: string = ""
-
+    status: boolean = true
         
 }

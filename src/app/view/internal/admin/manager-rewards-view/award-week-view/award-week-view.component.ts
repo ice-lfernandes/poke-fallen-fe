@@ -49,6 +49,7 @@ export class AwardWeekViewComponent implements OnInit {
 
   typeItemChoose: string = 'pokemon'
   itemChoose: any;
+  pokemonChoose: any;
   pokemonSelected: PokemonImage | undefined
   itemSelected: ItemImage | undefined
   newAwardItem: AwardItem = new AwardItem()
@@ -214,7 +215,7 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.validImageBlob = this.pokemonSelected!.imageBlob
       this.newAwardItem.isItem = false
 
-    } else {
+    } else if (this,this.typeItemChoose == 'item') {
       this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
 
       this.newAwardItem.item.image = this.itemSelected!.image
@@ -223,6 +224,23 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.item.gameId = ":" + this.itemSelected!.name
       this.newAwardItem.validImageBlob = this.itemSelected!.imageBlob
       this.newAwardItem.isItem = true
+    } else {
+      this.pokemonSelected = this.pokemonsImage.find(p => p.name == this.pokemonChoose)
+
+      this.newAwardItem.pokemon.image = this.pokemonSelected!.image
+      this.newAwardItem.pokemon.imageBlob = this.pokemonSelected!.imageBlob
+      this.newAwardItem.pokemon.name = this.pokemonSelected!.name
+      this.newAwardItem.pokemon.gameId = ":" + this.pokemonSelected!.name
+      this.newAwardItem.validImageBlob = this.pokemonSelected!.imageBlob
+
+      this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
+
+      this.newAwardItem.item.image = this.itemSelected!.image
+      this.newAwardItem.item.imageBlob = this.itemSelected!.imageBlob
+      this.newAwardItem.item.name = this.itemSelected!.name
+      this.newAwardItem.item.gameId = ":" + this.itemSelected!.name
+      this.newAwardItem.validImageBlob = this.itemSelected!.imageBlob
+      this.newAwardItem.isBoth = true
     }
   }
 

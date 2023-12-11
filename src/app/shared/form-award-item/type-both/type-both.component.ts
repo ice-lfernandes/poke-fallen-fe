@@ -1,15 +1,18 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 
-
-
 @Component({
-  selector: 'app-type-pokemon',
-  templateUrl: './type-pokemon.component.html',
-  styleUrls: ['./type-pokemon.component.css']
+  selector: 'app-type-both',
+  templateUrl: './type-both.component.html',
+  styleUrls: ['./type-both.component.css']
 })
-export class TypePokemonComponent {
+export class TypeBothComponent {
 
+  //icons
+  faPlus = faPlus
+  
   @Input()
   awardItem!: AwardItem
   @Input()
@@ -47,6 +50,5 @@ export class TypePokemonComponent {
     "SERIOUS",
     "TIMID"
   ]
-
 
 }

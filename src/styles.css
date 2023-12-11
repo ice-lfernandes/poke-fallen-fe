@@ -37,6 +37,11 @@ input {
     border: 1px solid #666 !important;
 }
 
+input[type="password"] {
+    font-weight: 1000;
+    font-size: large;
+}
+
 /** Selects */
 select {
     border: 1px solid #666 !important;

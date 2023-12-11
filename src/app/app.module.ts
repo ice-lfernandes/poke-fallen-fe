@@ -40,6 +40,7 @@ import { ModalGiftChoiceComponent } from './shared/modal/modal-gift-choice/modal
 import { TypePlayerComponent } from './shared/form-award-item/type-player/type-player.component';
 import { ForgetPasswordViewComponent } from './view/forget-password-view/forget-password-view.component';
 import { ForgetPasswordResetViewComponent } from './view/forget-password-reset-view/forget-password-reset-view.component';
+import { TypeBothComponent } from './shared/form-award-item/type-both/type-both.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ForgetPasswordResetViewComponent } from './view/forget-password-reset-v
     ModalGiftChoiceComponent,
     TypePlayerComponent,
     ForgetPasswordViewComponent,
-    ForgetPasswordResetViewComponent
+    ForgetPasswordResetViewComponent,
+    TypeBothComponent
   ],
   imports: [
     CommonModule,

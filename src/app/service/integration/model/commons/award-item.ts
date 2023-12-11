@@ -16,4 +16,5 @@ export class AwardItem {
     validGameId: string | undefined
     status: StatusAwardItem = StatusAwardItem.SCHEDULED
     isItem: boolean = false
+    isBoth: boolean = false
 }

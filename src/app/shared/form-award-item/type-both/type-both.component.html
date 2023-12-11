@@ -1,0 +1,173 @@
+<form #bothForm="ngForm" (ngSubmit)="action">
+    <div class="row text-center">
+        <h6 class="red">Dados do Prêmio</h6>
+    </div>
+    <div class="row">
+        <div class="col-6 mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" [(ngModel)]="awardItem.name"
+                    [disabled]="disableEdit" name="name-award" placeholder="Nome do Prêmio">
+                <label for="floatingInput">Nome do Prêmio</label>
+            </div>
+        </div>
+        <div class="col-6 mb-3">
+            <div class="form-floating">
+                <select class="form-control form-select" name="occupation" [(ngModel)]="awardItem.occupation"
+                    [disabled]="disableEdit" required>
+                    <option *ngFor="let occupation of occupationList" [value]="occupation">{{occupation}}</option>
+                </select>
+                <label for="floatingSelect">Cargo do Prêmio</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-5 d-flex flex-column justify-content-center">
+            <div class="text-center">
+                <img [src]="awardItem.pokemon.imageBlob" [alt]="awardItem.pokemon.name" class="pokemon-image">
+            </div>
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-center">
+            <div class="text-center">
+                <fa-icon [icon]="faPlus" size="lg" class="red"></fa-icon>
+            </div>
+        </div>
+        <div class="col-5 d-flex flex-column justify-content-center">
+            <div class="text-center">
+                <img [src]="awardItem.item.imageBlob" [alt]="awardItem.item.name" class="pokemon-image">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput" disabled="true" name="gameId"
+                            [(ngModel)]="awardItem.pokemon.gameId" placeholder="Game ID">
+                        <label for="floatingInput">Game ID</label>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput" name="form" [disabled]="disableEdit"
+                            [(ngModel)]="awardItem.pokemon.stats.form" placeholder="Forma">
+                        <label for="floatingInput">Forma</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 mb-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput"
+                            [(ngModel)]="awardItem.pokemon.stats.shiny" [disabled]="disableEdit" name="shiny"
+                            placeholder="Shiny">
+                        <label for="floatingInput">Shiny</label>
+                    </div>
+                </div>
+
+                <div class="col-4 mb-3">
+                    <div class="form-floating">
+                        <select class="form-control form-select" name="typeIV" [disabled]="disableEdit"
+                            [(ngModel)]="awardItem.pokemon.stats.individualValueType" required>
+                            <option *ngFor="let type of individualTypeValueList" [value]="type">{{type}}</option>
+                        </select>
+                        <label for="floatingSelect">Tipo IV</label>
+                    </div>
+                </div>
+
+                <div class="col-4 mb-3">
+                    <div class="form-floating">
+                        <select class="form-control form-select" name="nature"
+                            [(ngModel)]="awardItem.pokemon.stats.nature" [disabled]="disableEdit" required>
+                            <option *ngFor="let typeNature of natureList" [value]="typeNature">{{typeNature}}</option>
+                        </select>
+                        <label for="floatingSelect">Natureza</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingInput" name="ev-hp"
+                            [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.hp"
+                            placeholder="Ponts EV">
+                        <label for="floatingInput">HP</label>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingInput" name="ev-attack"
+                            [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.attack"
+                            placeholder="Pontos de Ataque">
+                        <label for="floatingInput">Ataque</label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingInput" name="ev-defense"
+                            [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.defense"
+                            placeholder="Pontos de Defesa">
+                        <label for="floatingInput">Defesa</label>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingInput" name="ev-defense-special"
+                            [disabled]="disableEdit"
+                            [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialDefense"
+                            placeholder="Points de Defesa Especial">
+                        <label for="floatingInput">Defesa Especial</label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingInput" name="ev-attack-special"
+                            [disabled]="disableEdit"
+                            [(ngModel)]="awardItem.pokemon.stats.experienceValues.specialAttack"
+                            placeholder="Pontos de Ataque Especial">
+                        <label for="floatingInput">Ataque Especial</label>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingInput" name="ev-speed"
+                            [disabled]="disableEdit" [(ngModel)]="awardItem.pokemon.stats.experienceValues.speed"
+                            placeholder="Pontos de Velocidade">
+                        <label for="floatingInput">Velocidade</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput" disabled="true"
+                            [(ngModel)]="awardItem.item.gameId" name="gameId" placeholder="Game ID">
+                        <label for="floatingInput">Game ID</label>
+                    </div>
+                </div>        
+            </div>
+        </div>
+
+
+    </div>
+
+
+</form>

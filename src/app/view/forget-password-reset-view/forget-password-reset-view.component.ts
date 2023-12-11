@@ -72,12 +72,6 @@ export class ForgetPasswordResetViewComponent {
   resetPassword() {
     this.loading = true
 
-    if (this.validatePassword()) {
-      this.loading = false
-      this.toastService.show('Senha não atende politica de senha!', { classname: 'bg-warning text-light', delay: 10000 });
-      return
-    }
-
     if (this.newPassword === this.newPasswordConfirmation) {
       this.forgetPasswordService.resetPassword(this.tokenResetPassword.email, this.newPassword).subscribe({
         next: (response) => {
