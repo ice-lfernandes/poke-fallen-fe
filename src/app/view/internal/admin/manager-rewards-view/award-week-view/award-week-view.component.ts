@@ -241,6 +241,8 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.item.gameId = ":" + this.itemSelected!.name
       this.newAwardItem.validImageBlob = this.itemSelected!.imageBlob
       this.newAwardItem.isBoth = true
+
+      console.log(this.newAwardItem)
     }
   }
 
