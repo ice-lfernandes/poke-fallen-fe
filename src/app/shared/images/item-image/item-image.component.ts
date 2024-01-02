@@ -15,6 +15,8 @@ export class ItemImageComponent implements OnInit {
   @Input()
   extraClassesCss!: string
   classes: string = "text-center"
+  @Input()
+  imageclass!: string
 
   ngOnInit(): void {
     this.classes = this.classes.concat(' ').concat(this.extraClassesCss)

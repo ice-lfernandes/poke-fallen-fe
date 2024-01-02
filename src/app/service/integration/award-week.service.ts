@@ -9,6 +9,7 @@ import { AwardItem } from './model/commons/award-item';
 import { AwardWeekUpdateRequest } from './model/request/award-week-update-request';
 import { AwardItemsRequest } from './model/request/award-items-request';
 import { AwardItemPlayer } from './model/commons/award-item-player';
+import { el } from '@fullcalendar/core/internal-common';
 
 const baseUrlAwardWeek: string = environment.apiUrl + '/award-week'
 
@@ -40,7 +41,13 @@ export class AwardWeekService {
 
   updateItems(awardWeekId: Number, awardItemsList: AwardItem[]): Observable<any> {
     let itemsRequest = awardItemsList.map(item => {
-      return new AwardItemsRequest(item.name, item.quantity, item.occupation, item.pokemon, item.item)
+      if (item.typeItemAward == 'both') {
+        return new AwardItemsRequest(item.name, item.quantity, item.occupation, item.pokemon, item.item)
+      } else if (item.typeItemAward == 'pokemon') {
+        return new AwardItemsRequest(item.name, item.quantity, item.occupation, item.pokemon)
+      } else {
+        return new AwardItemsRequest(item.name, item.quantity, item.occupation, null, item.item)
+      }
     })
 
     return this.http.put<any>(

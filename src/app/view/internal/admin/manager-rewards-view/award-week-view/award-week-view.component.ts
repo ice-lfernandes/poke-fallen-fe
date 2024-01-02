@@ -222,6 +222,8 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.validImageBlob = this.pokemonSelected!.imageBlob
       this.newAwardItem.isItem = false
 
+      this.newAwardItem.item == null
+
     } else if (this,this.typeItemChoose == 'item') {
       this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
 
@@ -231,6 +233,9 @@ export class AwardWeekViewComponent implements OnInit {
       this.newAwardItem.item.gameId = ":" + this.itemSelected!.name
       this.newAwardItem.validImageBlob = this.itemSelected!.imageBlob
       this.newAwardItem.isItem = true
+
+      this.newAwardItem.pokemon == null
+
     } else {
       this.pokemonSelected = this.pokemonsImage.find(p => p.name == this.pokemonChoose)
 

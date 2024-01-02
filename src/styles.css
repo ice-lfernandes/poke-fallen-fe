@@ -140,6 +140,16 @@ input {
 
 /** Components */
 .pokemon-image {
+    width: 200px;
+    height: 200px;
+}
+
+.pokemon-image-card {
+    width: 125px;
+    height: 125px;
+}
+
+.pokemon-plus-item-image {
     width: 100px;
     height: 100px;
 }

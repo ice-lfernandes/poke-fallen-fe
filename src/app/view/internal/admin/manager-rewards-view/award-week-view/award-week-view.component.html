@@ -41,11 +41,13 @@
                                 <div class="text-center">
                                     <ng-template [ngIf]="item.typeItemAward == 'pokemon'">
                                         <app-pokemon-image [imageBlob]="item.pokemon.imageBlob"
-                                            [nameImage]="item.pokemon.name"></app-pokemon-image>
+                                            [nameImage]="item.pokemon.name"
+                                            imageclass="pokemon-image-card"></app-pokemon-image>
                                     </ng-template>
                                     <ng-template [ngIf]="item.typeItemAward == 'item'">
                                         <app-item-image [imageBlob]="item.item.imageBlob"
-                                            [nameImage]="item.item.name"></app-item-image>
+                                            [nameImage]="item.item.name"
+                                            imageclass="pokemon-image-card"></app-item-image>
                                     </ng-template>
                                     <ng-template [ngIf]="item.typeItemAward == 'both'">
                                         <app-pokemon-item-image [awardItem]="item"></app-pokemon-item-image>
@@ -80,10 +82,12 @@
                                             [disabled]="!awardWeekCanUpdatable()" [(ngModel)]="item.quantity"
                                             placeholder="Quantidade">
                                     </div>
-                                    <app-type-pokemon [awardItem]="item" *ngIf="!item.isItem"
+                                    <app-type-pokemon [awardItem]="item" *ngIf="item.typeItemAward == 'pokemon'"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
-                                    <app-type-item [awardItem]="item" *ngIf="item.isItem"
+                                    <app-type-item [awardItem]="item" *ngIf="item.typeItemAward == 'item'"
                                         [disableEdit]="!awardWeekCanUpdatable()"></app-type-item>
+                                    <app-type-both [awardItem]="item" *ngIf="item.typeItemAward == 'both'"
+                                        [disableEdit]="!awardWeekCanUpdatable()"></app-type-both>
                                 </div>
                             </ng-template>
 
