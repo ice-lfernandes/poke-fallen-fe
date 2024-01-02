@@ -41,6 +41,9 @@ import { TypePlayerComponent } from './shared/form-award-item/type-player/type-p
 import { ForgetPasswordViewComponent } from './view/forget-password-view/forget-password-view.component';
 import { ForgetPasswordResetViewComponent } from './view/forget-password-reset-view/forget-password-reset-view.component';
 import { TypeBothComponent } from './shared/form-award-item/type-both/type-both.component';
+import { PokemonItemImageComponent } from './shared/images/pokemon-item-image/pokemon-item-image.component';
+import { PokemonImageComponent } from './shared/images/pokemon-image/pokemon-image.component';
+import { ItemImageComponent } from './shared/images/item-image/item-image.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import { TypeBothComponent } from './shared/form-award-item/type-both/type-both.
     TypePlayerComponent,
     ForgetPasswordViewComponent,
     ForgetPasswordResetViewComponent,
-    TypeBothComponent
+    TypeBothComponent,
+    PokemonItemImageComponent,
+    PokemonImageComponent,
+    ItemImageComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,6 @@
 <form #pokemonForm="ngForm" (ngSubmit)="action">
-    <div class="mb-2 text-center">
-        <img [src]="awardItem.pokemon.imageBlob" [alt]="awardItem.pokemon.name" class="pokemon-image">
-    </div>
+    <app-pokemon-image extraClassesCss="mb-2" [imageBlob]="awardItem.pokemon.imageBlob"
+        [nameImage]="awardItem.pokemon.name"></app-pokemon-image>
     <div class="row">
         <h6 class="red">Dados do Prêmio</h6>
     </div>

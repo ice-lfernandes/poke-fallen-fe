@@ -40,11 +40,7 @@ export class AwardWeekService {
 
   updateItems(awardWeekId: Number, awardItemsList: AwardItem[]): Observable<any> {
     let itemsRequest = awardItemsList.map(item => {
-      if (item.pokemon != undefined && item.pokemon.name != '') {
-        return new AwardItemsRequest(item.name, item.quantity, item.occupation, item.pokemon)
-      } else {
-        return new AwardItemsRequest(item.name, item.quantity, item.occupation, null, item.item)
-      }
+      return new AwardItemsRequest(item.name, item.quantity, item.occupation, item.pokemon, item.item)
     })
 
     return this.http.put<any>(

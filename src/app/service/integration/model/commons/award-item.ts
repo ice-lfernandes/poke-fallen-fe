@@ -8,7 +8,7 @@ export class AwardItem {
     name: string = ""
     quantity: number = 1
     occupation: string = ""
-    typeItemAward: string | undefined
+    typeItemAward: string = ""
     pokemon: Pokemon = new Pokemon()
     item: Item = new Item()
     players: Player[] | null = null

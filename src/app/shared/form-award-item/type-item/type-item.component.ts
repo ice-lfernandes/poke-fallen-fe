@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 
 @Component({
@@ -6,7 +6,7 @@ import { AwardItem } from 'src/app/service/integration/model/commons/award-item'
   templateUrl: './type-item.component.html',
   styleUrls: ['./type-item.component.css']
 })
-export class TypeItemComponent {
+export class TypeItemComponent implements OnInit {
 
   @Input()
   awardItem!: AwardItem
@@ -14,5 +14,9 @@ export class TypeItemComponent {
   disableEdit!: boolean
 
   occupationList: String[] = ["Básico", "Premium"]
+
+  ngOnInit(): void {
+    this.awardItem.typeItemAward = 'item'
+  }
 
 }

@@ -39,7 +39,17 @@
                                     {{item.name}} | QTD: {{item.quantity}}
                                 </div>
                                 <div class="text-center">
-                                    <img [src]="item.validImageBlob" class="pokemon-image">
+                                    <ng-template [ngIf]="item.typeItemAward == 'pokemon'">
+                                        <app-pokemon-image [imageBlob]="item.pokemon.imageBlob"
+                                            [nameImage]="item.pokemon.name"></app-pokemon-image>
+                                    </ng-template>
+                                    <ng-template [ngIf]="item.typeItemAward == 'item'">
+                                        <app-item-image [imageBlob]="item.item.imageBlob"
+                                            [nameImage]="item.item.name"></app-item-image>
+                                    </ng-template>
+                                    <ng-template [ngIf]="item.typeItemAward == 'both'">
+                                        <app-pokemon-item-image [awardItem]="item"></app-pokemon-item-image>
+                                    </ng-template>
                                 </div>
                                 <div *ngIf="awardWeekCanUpdatable()" class="card-footer text-center">
                                     <button class="btn btn-sm btn-primary me-2">
@@ -82,7 +92,8 @@
                                     <h4 class="modal-title text-center" id="modal-basic-title">{{item.name}}</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <app-type-player [nameAward]="item.name" [awardWeekId]="awardWeek.id"></app-type-player>
+                                    <app-type-player [nameAward]="item.name"
+                                        [awardWeekId]="awardWeek.id"></app-type-player>
                                 </div>
                             </ng-template>
                         </div>
@@ -244,9 +255,10 @@
                 <br>
 
                 <div class="text-center">
-                    <form name="item-autocomplete" *ngIf="!(itemSelected == undefined) || !(pokemonSelected == undefined)"
+                    <form name="item-autocomplete"
+                        *ngIf="!(itemSelected == undefined) || !(pokemonSelected == undefined)"
                         class="form-pokemon-item  animate__animated animate__zoomIn">
-                        <app-type-both [awardItem]="newAwardItem" ></app-type-both>
+                        <app-type-both [awardItem]="newAwardItem"></app-type-both>
                     </form>
                 </div>
 

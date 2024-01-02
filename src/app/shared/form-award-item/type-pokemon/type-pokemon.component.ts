@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
 
 
@@ -8,7 +8,7 @@ import { AwardItem } from 'src/app/service/integration/model/commons/award-item'
   templateUrl: './type-pokemon.component.html',
   styleUrls: ['./type-pokemon.component.css']
 })
-export class TypePokemonComponent {
+export class TypePokemonComponent implements OnInit {
 
   @Input()
   awardItem!: AwardItem
@@ -47,6 +47,10 @@ export class TypePokemonComponent {
     "SERIOUS",
     "TIMID"
   ]
+
+  ngOnInit(): void {
+    this.awardItem.typeItemAward = 'pokemon'
+  }
 
 
 }

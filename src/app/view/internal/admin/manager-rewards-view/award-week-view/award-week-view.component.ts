@@ -64,16 +64,22 @@ export class AwardWeekViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.awardWeek.items.forEach(item => {
-      if (item.pokemon != null) {
+      if (item.typeItemAward == 'pokemon') {
         let objectURL = 'data:image/jpeg;base64,' + item.pokemon.image
         item.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         item.validImageBlob = item.pokemon.imageBlob
         item.validGameId = item.pokemon.gameId
-      } else {
+      } else if(item.typeItemAward == 'item') {
         let objectURL = 'data:image/jpeg;base64,' + item.item.image
         item.item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         item.validImageBlob = item.item.imageBlob
         item.validGameId = item.item.gameId
+      } else {
+        let objectURL = 'data:image/jpeg;base64,' + item.pokemon.image
+        item.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+        objectURL = 'data:image/jpeg;base64,' + item.item.image
+        item.item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
       }
     })
     this.updateEacheTypeItems()
@@ -110,13 +116,13 @@ export class AwardWeekViewComponent implements OnInit {
 
   addNewAwardItem() {
     this.itemsReverted = this.awardWeek.items
+    
     this.awardWeek.items.push(this.newAwardItem)
     this.updateEacheTypeItems()
 
     this.clear()
 
     this.modalService.dismissAll()
-    console.log('atualizando items da lista para backend: items: ' + this.awardWeek.items)
   }
 
   private clear() {
@@ -133,6 +139,7 @@ export class AwardWeekViewComponent implements OnInit {
 
   save() {
     this.loading = true
+    console.log(this.awardWeek.items)
     this.awardWeekService.updateItems(this.awardWeek.id, this.awardWeek.items).subscribe(
       {
         next: () => {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { AwardItem } from 'src/app/service/integration/model/commons/award-item';
@@ -8,7 +8,8 @@ import { AwardItem } from 'src/app/service/integration/model/commons/award-item'
   templateUrl: './type-both.component.html',
   styleUrls: ['./type-both.component.css']
 })
-export class TypeBothComponent {
+export class TypeBothComponent implements OnInit {
+ 
 
   //icons
   faPlus = faPlus
@@ -50,5 +51,9 @@ export class TypeBothComponent {
     "SERIOUS",
     "TIMID"
   ]
+
+  ngOnInit(): void {
+    this.awardItem.typeItemAward = 'both'
+  }
 
 }
