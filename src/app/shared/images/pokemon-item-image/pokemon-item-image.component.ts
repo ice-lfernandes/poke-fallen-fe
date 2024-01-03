@@ -8,7 +8,7 @@ import { AwardItem } from 'src/app/service/integration/model/commons/award-item'
   templateUrl: './pokemon-item-image.component.html',
   styleUrls: ['./pokemon-item-image.component.css']
 })
-export class PokemonItemImageComponent {
+export class PokemonItemImageComponent implements OnInit {
 
 
   faPlus = faPlus
@@ -16,5 +16,9 @@ export class PokemonItemImageComponent {
   @Input()
   awardItem!: AwardItem
 
+
+  ngOnInit(): void {
+    console.log(this.awardItem);
+  }
 
 }

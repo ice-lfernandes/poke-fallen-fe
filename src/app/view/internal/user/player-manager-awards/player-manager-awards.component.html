@@ -27,7 +27,20 @@
                             {{awardItemDelivery.awardItem.name}} | QTD: {{awardItemDelivery.awardItem.quantity}}
                         </div>
                         <div class="text-center">
-                            <img [src]="awardItemDelivery.awardItem.validImageBlob" class="pokemon-image">
+                            <ng-template [ngIf]="awardItemDelivery.awardItem.typeItemAward == 'pokemon'">
+                                <app-pokemon-image [imageBlob]="awardItemDelivery.awardItem.pokemon.imageBlob"
+                                    [nameImage]="awardItemDelivery.awardItem.pokemon.name"
+                                    imageclass="pokemon-image-card"></app-pokemon-image>
+                            </ng-template>
+                            <ng-template [ngIf]="awardItemDelivery.awardItem.typeItemAward == 'item'">
+                                <app-item-image [imageBlob]="awardItemDelivery.awardItem.item.imageBlob"
+                                    [nameImage]="awardItemDelivery.awardItem.item.name"
+                                    imageclass="pokemon-image-card"></app-item-image>
+                            </ng-template>
+                            <ng-template [ngIf]="awardItemDelivery.awardItem.typeItemAward == 'both'">
+                                <app-pokemon-item-image
+                                    [awardItem]="awardItemDelivery.awardItem"></app-pokemon-item-image>
+                            </ng-template>
                         </div>
                         <div class="card-footer text-center">
                             <button class="btn btn-sm btn-primary me-2" title="receber prêmio"

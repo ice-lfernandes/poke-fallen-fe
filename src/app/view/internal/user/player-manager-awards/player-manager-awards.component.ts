@@ -128,16 +128,22 @@ export class PlayerManagerAwardsComponent implements OnInit {
       next: response => {
         this.awardItemsDelivery = response
         this.awardItemsDelivery.forEach(item => {
-          if (item.awardItem.pokemon != null) {
+          if (item.awardItem.typeItemAward == 'pokemon') {
             let objectURL = 'data:image/jpeg;base64,' + item.awardItem.pokemon.image
             item.awardItem.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             item.awardItem.validImageBlob = item.awardItem.pokemon.imageBlob
             item.awardItem.validGameId = item.awardItem.pokemon.gameId
-          } else {
+          } else if(item.awardItem.typeItemAward == 'item') {
             let objectURL = 'data:image/jpeg;base64,' + item.awardItem.item.image
             item.awardItem.item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             item.awardItem.validImageBlob = item.awardItem.item.imageBlob
             item.awardItem.validGameId = item.awardItem.item.gameId
+          } else {
+            let objectURL = 'data:image/jpeg;base64,' + item.awardItem.pokemon.image
+            item.awardItem.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    
+            objectURL = 'data:image/jpeg;base64,' + item.awardItem.item.image
+            item.awardItem.item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
           }
         })
         this.noAwards = false
