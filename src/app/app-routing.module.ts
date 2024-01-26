@@ -16,6 +16,7 @@ import { ManagerPokemonsComponent } from './view/internal/admin/manager-pokemons
 import { PlayerManagerAwardsComponent } from './view/internal/user/player-manager-awards/player-manager-awards.component';
 import { ForgetPasswordViewComponent } from './view/forget-password-view/forget-password-view.component';
 import { ForgetPasswordResetViewComponent } from './view/forget-password-reset-view/forget-password-reset-view.component';
+import { ManagerBlockRewardsViewComponent } from './view/internal/admin/manager-block-rewards-view/manager-block-rewards-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'players-details', component: AdminPlayersViewComponent, canActivate: [AuthGuardService] },
   { path: 'player-manager-awards', component: PlayerManagerAwardsComponent, canActivate: [AuthGuardService] },
   { path: 'manager-awards', component: ManagerRewardsViewComponent, canActivate: [AuthGuardService] },
+  { path: 'manager-block-awards', component: ManagerBlockRewardsViewComponent, canActivate: [AuthGuardService] },
   { path: 'manager-pokemons', component: ManagerPokemonsComponent, canActivate: [AuthGuardService] },
   { path: 'forget-password', component: ForgetPasswordViewComponent }
 ];

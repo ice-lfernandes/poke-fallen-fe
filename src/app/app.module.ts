@@ -44,6 +44,8 @@ import { TypeBothComponent } from './shared/form-award-item/type-both/type-both.
 import { PokemonItemImageComponent } from './shared/images/pokemon-item-image/pokemon-item-image.component';
 import { PokemonImageComponent } from './shared/images/pokemon-image/pokemon-image.component';
 import { ItemImageComponent } from './shared/images/item-image/item-image.component';
+import { ManagerBlockRewardsViewComponent } from './view/internal/admin/manager-block-rewards-view/manager-block-rewards-view.component';
+import { MultiplePokemonImageComponent } from './shared/images/multiple-pokemon-image/multiple-pokemon-image.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import { ItemImageComponent } from './shared/images/item-image/item-image.compon
     TypeBothComponent,
     PokemonItemImageComponent,
     PokemonImageComponent,
-    ItemImageComponent
+    ItemImageComponent,
+    ManagerBlockRewardsViewComponent,
+    MultiplePokemonImageComponent
   ],
   imports: [
     CommonModule,

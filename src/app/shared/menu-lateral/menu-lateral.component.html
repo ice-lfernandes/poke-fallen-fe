@@ -33,6 +33,13 @@
                     </li>
                     <li class="nav-item">
                         <a *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')" class="nav-link"
+                            routerLink="/manager-block-awards">
+                            <fa-icon [icon]="faAward"></fa-icon>
+                            Gerenciamento de Blocos de Prêmios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a *ngIf="loginService.isUserAllowedByRole('ROLE_ADMIN')" class="nav-link"
                             routerLink="/manager-pokemons">
                             <fa-icon [icon]="faOtter"></fa-icon>
                             Gerenciamento de Pokemons

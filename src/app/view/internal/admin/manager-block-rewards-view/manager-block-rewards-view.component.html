@@ -1,0 +1,40 @@
+<app-menu-lateral>
+    <div class="row mb-3">
+        <div class="col-3">
+            <label for="player-id-search" class="form-label">Nome do Bloco: </label>
+            <input id="player-id-search" type="text" class="form-control" name="player-id-search"
+                [(ngModel)]="blockNameSearchFilter" />
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary" style="margin-top: 30px;" (click)="findBlocks()">
+                <fa-icon [icon]="faSearch"></fa-icon>
+                PESQUISAR
+            </button>
+        </div>
+    </div>
+    <div class="col-12">
+        <app-loading [loading]="loading"></app-loading>
+    </div>
+
+    <div class="row text-center" style="overflow-y: auto; max-height: 50vh;">
+        <div class="col-3 pokemon-presentation mb-2" *ngFor="let block of blocks">
+            <div class="card border-secondary h-100">
+                <div class="card-header">
+                    {{block.name}}
+                </div>
+                <div class="text-center">
+                    <app-multiple-pokemon-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
+                    </app-multiple-pokemon-image>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-sm btn-primary me-2">
+                        <fa-icon [icon]="faPencil"></fa-icon>
+                    </button>
+                    <button class="btn btn-sm btn-primary">
+                        <fa-icon [icon]="faMinus"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-menu-lateral>
