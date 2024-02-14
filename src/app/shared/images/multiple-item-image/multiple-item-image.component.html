@@ -1,0 +1,9 @@
+<div [class]="classes">
+    <div *ngFor="let image of images">
+        <div class="row">
+            <app-item-image [imageBlob]="image.imageItemBlob" imageclass="pokemon-plus-item-image"
+                [nameImage]="image.nameItemImage"></app-item-image>
+        </div>
+    </div>
+
+</div>

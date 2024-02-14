@@ -4,4 +4,5 @@ export class BlockPreAwardItem {
     id: Number | undefined
     name: string | undefined
     preAwardItems: PreAwardItem[] = []
+    typeItemAward!: string
 }

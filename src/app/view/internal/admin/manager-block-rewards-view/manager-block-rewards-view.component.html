@@ -2,7 +2,7 @@
     <div class="row mb-3">
         <div class="col-3">
             <label for="player-id-search" class="form-label">Nome do Bloco: </label>
-            <input id="player-id-search" type="text" class="form-control" name="player-id-search"
+            <input id="player-id-search" type="text" class="form-control" name="player-id-search" placeholder="Pesquisar..."
                 [(ngModel)]="blockNameSearchFilter" />
         </div>
         <div class="col-3">
@@ -22,9 +22,21 @@
                 <div class="card-header">
                     {{block.name}}
                 </div>
-                <div class="text-center">
-                    <app-multiple-pokemon-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
-                    </app-multiple-pokemon-image>
+                <div class="text-center h-100">
+                    <ng-template [ngIf]="block.typeItemAward == 'both'">
+                        <app-multiple-pokemon-item-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
+                        </app-multiple-pokemon-item-image>
+                    </ng-template>
+
+                    <ng-template [ngIf]="block.typeItemAward == 'pokemon'">
+                        <app-multiple-pokemon-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
+                        </app-multiple-pokemon-image>
+                    </ng-template>
+
+                    <ng-template [ngIf]="block.typeItemAward == 'item'">
+                        <app-multiple-item-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
+                        </app-multiple-item-image>
+                    </ng-template>
                 </div>
                 <div class="card-footer text-center">
                     <button class="btn btn-sm btn-primary me-2">

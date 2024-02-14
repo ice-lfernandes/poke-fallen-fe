@@ -27,7 +27,7 @@ export class BlockPreAwardItemService {
     let url = baseUrlBlockPreAwardItem
 
     if (nameFilter != undefined && nameFilter != '') {
-      url = url + "&name=" + nameFilter
+      url = url + "?name=" + nameFilter
     }
 
     return this.http.get<BlockPreAwardItem[]>(url, this.httpOptionsWithAuthorization).pipe()

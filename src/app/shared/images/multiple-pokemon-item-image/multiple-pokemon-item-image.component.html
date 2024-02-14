@@ -1,0 +1,20 @@
+<div [class]="classes">
+    <div *ngFor="let image of images">
+        <div class="row">
+            <div class="col-5 d-flex flex-column justify-content-center">
+                <app-pokemon-image [imageBlob]="image.imagePokemonBlob"
+                    [nameImage]="image.namePokemonImage" imageclass="pokemon-plus-item-image"></app-pokemon-image>
+            </div>
+            <div class="col-1 d-flex flex-column justify-content-center">
+                <div class="text-center">
+                    <fa-icon [icon]="faPlus" size="lg" class="red"></fa-icon>
+                </div>
+            </div>
+            <div class="col-5 d-flex flex-column justify-content-center">
+                <app-item-image [imageBlob]="image.imageItemBlob"
+                    [nameImage]="image.nameItemImage" imageclass="pokemon-plus-item-image"></app-item-image>
+            </div>
+        </div>
+    </div>
+
+</div>

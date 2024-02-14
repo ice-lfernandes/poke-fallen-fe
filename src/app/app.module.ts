@@ -46,6 +46,8 @@ import { PokemonImageComponent } from './shared/images/pokemon-image/pokemon-ima
 import { ItemImageComponent } from './shared/images/item-image/item-image.component';
 import { ManagerBlockRewardsViewComponent } from './view/internal/admin/manager-block-rewards-view/manager-block-rewards-view.component';
 import { MultiplePokemonImageComponent } from './shared/images/multiple-pokemon-image/multiple-pokemon-image.component';
+import { MultiplePokemonItemImageComponent } from './shared/images/multiple-pokemon-item-image/multiple-pokemon-item-image.component';
+import { MultipleItemImageComponent } from './shared/images/multiple-item-image/multiple-item-image.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { MultiplePokemonImageComponent } from './shared/images/multiple-pokemon-
     PokemonImageComponent,
     ItemImageComponent,
     ManagerBlockRewardsViewComponent,
-    MultiplePokemonImageComponent
+    MultiplePokemonImageComponent,
+    MultiplePokemonItemImageComponent,
+    MultipleItemImageComponent
   ],
   imports: [
     CommonModule,
