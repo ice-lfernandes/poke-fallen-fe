@@ -2,13 +2,20 @@
     <div class="row mb-3">
         <div class="col-3">
             <label for="player-id-search" class="form-label">Nome do Bloco: </label>
-            <input id="player-id-search" type="text" class="form-control" name="player-id-search" placeholder="Pesquisar..."
-                [(ngModel)]="blockNameSearchFilter" />
+            <input id="player-id-search" type="text" class="form-control" name="player-id-search"
+                placeholder="Pesquisar..." [(ngModel)]="blockNameSearchFilter" />
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <button class="btn btn-primary" style="margin-top: 30px;" (click)="findBlocks()">
                 <fa-icon [icon]="faSearch"></fa-icon>
                 PESQUISAR
+            </button>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary" style="margin-top: 30px; margin-left: -40px;"
+                (click)="newItem(content_new_item)">
+                <fa-icon [icon]="faPlus"></fa-icon>
+                NOVO
             </button>
         </div>
     </div>
@@ -24,12 +31,14 @@
                 </div>
                 <div class="text-center">
                     <ng-template [ngIf]="block.typeItemAward == 'both'">
-                        <app-multiple-pokemon-item-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
+                        <app-multiple-pokemon-item-image
+                            [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
                         </app-multiple-pokemon-item-image>
                     </ng-template>
 
                     <ng-template [ngIf]="block.typeItemAward == 'pokemon'">
-                        <app-multiple-pokemon-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
+                        <app-multiple-pokemon-image
+                            [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
                         </app-multiple-pokemon-image>
                     </ng-template>
 
@@ -39,7 +48,8 @@
                     </ng-template>
 
                     <ng-template [ngIf]="block.typeItemAward == 'choice'">
-                        <app-choice-pokemon-image [images]="convertPreAwardItemToImageCompositionForChoiceAwards(block.preAwardItems)">
+                        <app-choice-pokemon-image
+                            [images]="convertPreAwardItemToImageCompositionForChoiceAwards(block.preAwardItems)">
                         </app-choice-pokemon-image>
                     </ng-template>
                 </div>
@@ -51,4 +61,63 @@
             </div>
         </div>
     </div>
+
+    <ng-template #content_new_item let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Novo Item</h4>
+        </div>
+        <div class="modal-body">
+            <div class="choose-type-item mb-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioCheckPokemon"
+                        value="pokemon" [(ngModel)]="typeItemChoose" checked>
+                    <label class="form-check-label" for="radioCheckPokemon">
+                        Tipo Pokemon
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radiocheckItem"
+                        value="item" [(ngModel)]="typeItemChoose">
+                    <label class="form-check-label" for="radiocheckItem">
+                        Tipo Item
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radiocheckBoth"
+                        value="both" [(ngModel)]="typeItemChoose">
+                    <label class="form-check-label" for="radiocheckBoth">
+                        Tipo Item + Pokemon
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radiocheckChoice"
+                        value="choice" [(ngModel)]="typeItemChoose">
+                    <label class="form-check-label" for="radiocheckBoth">
+                        Tipo Escolha
+                    </label>
+                </div>
+            </div>
+
+            <div *ngIf="typeItemChoose == 'pokemon'" class="choose-by-autocomplete form-floating">
+                <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="itemChoose"
+                    [ngbTypeahead]="searchPokemons" (change)="updateModel()" />
+                <label for="typeahead-basic" class="form-label">Escolha o Pokemon:</label>
+                <br>
+                <div class="text-center">
+                    <!-- <form *ngIf="!(pokemonSelected == undefined)"
+                            class="form-pokemon-item  animate__animated animate__zoomIn">
+                            <app-type-pokemon [awardItem]="newAwardItem" [action]="addNewAwardItem"
+                                [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
+                        </form> -->
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary">
+                        <fa-icon [icon]="faPlus"></fa-icon>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </ng-template>
 </app-menu-lateral>
