@@ -18,11 +18,11 @@
 
     <div class="row text-center" style="overflow-y: auto; max-height: 50vh;">
         <div class="col-3 pokemon-presentation mb-2" *ngFor="let block of blocks">
-            <div class="card border-secondary h-100">
+            <div class="card border-secondary">
                 <div class="card-header">
                     {{block.name}}
                 </div>
-                <div class="text-center h-100">
+                <div class="text-center">
                     <ng-template [ngIf]="block.typeItemAward == 'both'">
                         <app-multiple-pokemon-item-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
                         </app-multiple-pokemon-item-image>
@@ -37,13 +37,15 @@
                         <app-multiple-item-image [images]="convertPreAwardItemToImageComposition(block.preAwardItems)">
                         </app-multiple-item-image>
                     </ng-template>
+
+                    <ng-template [ngIf]="block.typeItemAward == 'choice'">
+                        <app-choice-pokemon-image [images]="convertPreAwardItemToImageCompositionForChoiceAwards(block.preAwardItems)">
+                        </app-choice-pokemon-image>
+                    </ng-template>
                 </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-sm btn-primary me-2">
-                        <fa-icon [icon]="faPencil"></fa-icon>
-                    </button>
                     <button class="btn btn-sm btn-primary">
-                        <fa-icon [icon]="faMinus"></fa-icon>
+                        <fa-icon [icon]="faTrash"></fa-icon>
                     </button>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 export class Item {
-    name: String = ""
+    name: string = ""
     gameId: string = ":"
     image: String[] = []
     imageBlob: any

@@ -1,5 +1,5 @@
 export class ItemImage {
-    name: String = ""
+    name: string = ""
     image: String[] = []
     imageBlob: any 
 }

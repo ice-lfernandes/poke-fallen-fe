@@ -1,7 +1,7 @@
 import { DomSanitizer } from "@angular/platform-browser"
 
 export class PokemonImage {
-    name: String = ""
+    name: string = ""
     image: String[] = []
     imageBlob: any
 

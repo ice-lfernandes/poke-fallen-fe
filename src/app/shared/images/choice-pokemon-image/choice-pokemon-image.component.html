@@ -1,0 +1,8 @@
+<ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" class="carrosel-choice-items"
+    [showNavigationIndicators]="showNavigationIndicators">
+    <ng-template ngbSlide *ngFor="let item of carrosel">
+        <div class="picsum-img-wrapper">
+            <img [src]="item.imageBlob" [alt]="item.text" />
+        </div>
+    </ng-template>
+</ngb-carousel>

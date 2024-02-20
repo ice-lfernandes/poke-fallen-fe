@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { faFloppyDisk, faSearch, faArrowLeft, faCircleInfo, faMinus, faPencil, faPlus, faRotateLeft, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { BlockPreAwardItemService } from 'src/app/service/integration/block-pre-award-item.service';
@@ -17,15 +17,8 @@ import { ImageComposition } from 'src/app/shared/images/image-composition';
 export class ManagerBlockRewardsViewComponent implements OnInit {
 
   // Icons
+  faTrash = faTrash
   faSearch = faSearch
-  faPencil = faPencil
-  faCircleInfo = faCircleInfo
-  faUser = faUser
-  faArrowLeft = faArrowLeft
-  faMinus = faMinus
-  faFloppyDisk = faFloppyDisk
-  faPlus = faPlus
-  faRotateLeft = faRotateLeft
 
   blocks: BlockPreAwardItem[] = []
 
@@ -62,6 +55,12 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
               let objectURL = 'data:image/jpeg;base64,' + preAwardItem.item.image
               preAwardItem.item.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL)
             }
+            if (preAwardItem.choiceItems != null) {
+              preAwardItem.choiceItems.forEach(choiceAwardItem => {
+                let objectURL = 'data:image/jpeg;base64,' + choiceAwardItem.pokemon.image
+                choiceAwardItem.pokemon.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL)
+              })
+            }
           })
         })
 
@@ -76,9 +75,9 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
   convertPreAwardItemToImageComposition(preAwardItems: PreAwardItem[]): ImageComposition[] {
     return preAwardItems.map(preAwardItem => {
       let imagePokemonBlob: any
-      let namePokemon!: String
+      let namePokemon!: string
       let imageItemBlob: any
-      let nameItem!: String
+      let nameItem!: string
 
       if (preAwardItem.pokemon != null) {
         imagePokemonBlob = preAwardItem.pokemon.imageBlob,
@@ -96,5 +95,22 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
         nameItem
       )
     })
+  }
+
+  convertPreAwardItemToImageCompositionForChoiceAwards(preAwardItems: PreAwardItem[]): ImageComposition[] {
+    let images: ImageComposition[] = []
+    preAwardItems.map(preAwardItem => {
+      let imageItemBlob: any
+      let nameItem!: String
+      preAwardItem.choiceItems.forEach(choiceItem => 
+        images.push(new ImageComposition(
+          choiceItem.pokemon.imageBlob,
+          choiceItem.pokemon.name,
+          imageItemBlob,
+          nameItem
+        ))  
+      )
+    })
+    return images
   }
 }

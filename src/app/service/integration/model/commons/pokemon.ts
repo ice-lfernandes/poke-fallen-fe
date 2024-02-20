@@ -2,7 +2,7 @@ import { PokemonStats } from "./pokemon-stats"
 
 export class Pokemon {
 
-    name: String = ""
+    name: string = ""
     gameId: string = ":"
     image: String[] = []
     stats: PokemonStats = new PokemonStats()
