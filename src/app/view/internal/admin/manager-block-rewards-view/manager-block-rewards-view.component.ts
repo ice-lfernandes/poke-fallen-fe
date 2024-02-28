@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { faFloppyDisk } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OperatorFunction, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
@@ -9,6 +10,7 @@ import { BlockPreAwardItem } from 'src/app/service/integration/model/commons/blo
 import { ItemImage } from 'src/app/service/integration/model/commons/item-image';
 import { PokemonImage } from 'src/app/service/integration/model/commons/pokemon-image';
 import { PreAwardItem } from 'src/app/service/integration/model/commons/pre-award-item';
+import { PokemonService } from 'src/app/service/integration/pokemon.service';
 import { ImageComposition } from 'src/app/shared/images/image-composition';
 
 
@@ -23,16 +25,20 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
   faTrash = faTrash
   faSearch = faSearch
   faPlus = faPlus
+  faFloppyDisk = faFloppyDisk
 
   blocks: BlockPreAwardItem[] = []
   pokemonsImage: PokemonImage[] = []
   itemsImage: ItemImage[] = []
+  
   typeItemChoose: string = 'pokemon'
   itemChoose: any;
   pokemonChoose: any;
   pokemonSelected: PokemonImage | undefined
   itemSelected: ItemImage | undefined
-  newBlock: BlockPreAwardItem = new BlockPreAwardItem()
+  newBlock!: BlockPreAwardItem
+  preAwardItemsFromNewBlock : PreAwardItem[] = [this.createPreAwardItem()]
+
   closeResult = '';
 
   // Filters
@@ -41,6 +47,7 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
   loading: boolean = false
 
   constructor(private blockService: BlockPreAwardItemService,
+    private pokemonService: PokemonService,
     private sanitizer: DomSanitizer,
     private modalService: NgbModal) { }
 
@@ -55,7 +62,6 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
 
     this.blockService.findAllBlocks(this.blockNameSearchFilter)
       .subscribe(response => {
-        console.log(response)
         this.blocks = response
 
         this.blocks.forEach(block => {
@@ -83,6 +89,23 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
           console.log(error)
           this.loading = false
         })
+  }
+
+  private findPokemonsImages() {
+    this.pokemonService.findAllPokemons().subscribe(
+      {
+        next: response => {
+          this.pokemonsImage = response
+          this.pokemonsImage.forEach(p => {
+            let objectURL = 'data:image/jpeg;base64,' + p.image
+            p.imageBlob = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          })
+        },
+        error: error => {
+          console.log(error)
+        }
+      }
+    )
   }
 
   convertPreAwardItemToImageComposition(preAwardItems: PreAwardItem[]): ImageComposition[] {
@@ -115,13 +138,13 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
     preAwardItems.map(preAwardItem => {
       let imageItemBlob: any
       let nameItem!: String
-      preAwardItem.choiceItems.forEach(choiceItem => 
+      preAwardItem.choiceItems.forEach(choiceItem =>
         images.push(new ImageComposition(
           choiceItem.pokemon.imageBlob,
           choiceItem.pokemon.name,
           imageItemBlob,
           nameItem
-        ))  
+        ))
       )
     })
     return images
@@ -136,6 +159,10 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       },
     );
+
+    this.newBlock = new BlockPreAwardItem()
+    this.newBlock.preAwardItems.push(new PreAwardItem())
+    this.findPokemonsImages();
   }
 
 
@@ -157,25 +184,41 @@ export class ManagerBlockRewardsViewComponent implements OnInit {
       )
     );
 
-    updateModel() {
-      if (this.typeItemChoose == 'pokemon') {
-        this.pokemonSelected = this.pokemonsImage.find(p => p.name == this.itemChoose)
-  
-        
-  
-      } else if (this,this.typeItemChoose == 'item') {
-        this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
-  
-        
-  
-      } else {
-        this.pokemonSelected = this.pokemonsImage.find(p => p.name == this.pokemonChoose)
-  
-        
-      }
-    }
-  
+  updateModel(model: PreAwardItem) {
+    if (this.typeItemChoose == 'pokemon') {
+      this.pokemonSelected = this.pokemonsImage.find(p => p.name == model!.pokemon!.name)
+      console.log(model)
 
+      this.newBlock.typeItemAward = this.typeItemChoose
+      model.typeItemAward = this.typeItemChoose
+    } else if (this, this.typeItemChoose == 'item') {
+      this.itemSelected = this.itemsImage.find(i => i.name == this.itemChoose)
+
+
+
+    } else {
+      this.pokemonSelected = this.pokemonsImage.find(p => p.name == this.pokemonChoose)
+
+
+    }
+  }
+
+  addPreAwardItem() {
+    this.preAwardItemsFromNewBlock.push(this.createPreAwardItem())
+    console.log(this.preAwardItemsFromNewBlock)
+  }
+
+  createPreAwardItem(): PreAwardItem {
+    let item = new PreAwardItem()
+    item.pokemon = new PokemonImage()
+    item.item = new ItemImage()
+    return item
+  }
+
+  saveNewBlock() {
+    this.newBlock.preAwardItems = this.preAwardItemsFromNewBlock
+    
+  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

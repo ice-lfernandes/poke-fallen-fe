@@ -64,9 +64,15 @@
 
     <ng-template #content_new_item let-modal>
         <div class="modal-header">
-            <h4 class="modal-title">Novo Item</h4>
+            <h4 class="modal-title">Novo Bloco</h4>
         </div>
         <div class="modal-body">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Card Id"
+                    [(ngModel)]="newBlock.name" name="playerId">
+                <label for="floatingInput">Nome do Bloco</label>
+            </div>
+
             <div class="choose-type-item mb-3">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioCheckPokemon"
@@ -98,26 +104,34 @@
                 </div>
             </div>
 
-            <div *ngIf="typeItemChoose == 'pokemon'" class="choose-by-autocomplete form-floating">
-                <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="itemChoose"
-                    [ngbTypeahead]="searchPokemons" (change)="updateModel()" />
-                <label for="typeahead-basic" class="form-label">Escolha o Pokemon:</label>
-                <br>
-                <div class="text-center">
-                    <!-- <form *ngIf="!(pokemonSelected == undefined)"
-                            class="form-pokemon-item  animate__animated animate__zoomIn">
-                            <app-type-pokemon [awardItem]="newAwardItem" [action]="addNewAwardItem"
-                                [disableEdit]="!awardWeekCanUpdatable()"></app-type-pokemon>
-                        </form> -->
-                </div>
-
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary">
-                        <fa-icon [icon]="faPlus"></fa-icon>
-                    </button>
-                </div>
+            <div *ngFor="let preAwardItem of preAwardItemsFromNewBlock, let i = index" class="row mb-2">
+                <ng-template [ngIf]="typeItemChoose == 'pokemon'">
+                    <div class="col-11">
+                        <div class="choose-by-autocomplete form-floating">
+                            <input [id]="i" type="text" class="form-control" [(ngModel)]="preAwardItem.pokemon!.name"
+                                [ngbTypeahead]="searchPokemons" (change)="updateModel(preAwardItem)" />
+                            <label [for]="i" class="form-label">Escolha o Pokemon:</label>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-primary" (click)="addPreAwardItem()">
+                                <fa-icon [icon]="faPlus"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
 
+            <br>
+
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-primary">
+                    <fa-icon [icon]="faFloppyDisk"></fa-icon>
+                    SALVAR
+                </button>
+            </div>
+            
         </div>
     </ng-template>
 </app-menu-lateral>
